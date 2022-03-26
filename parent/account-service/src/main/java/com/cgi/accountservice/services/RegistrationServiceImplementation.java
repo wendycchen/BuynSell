@@ -11,36 +11,22 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
-public class RegistrationServiceImplementation implements RegistrationService{
+public class RegistrationServiceImplementation implements RegistrationService {
 
-    private EmailValidationService emailValidator;
+
     private UserService userService;
     private ConfirmationTokenService tokenService;
 
-    public RegistrationServiceImplementation(EmailValidationService emailValidator, UserService userService, ConfirmationTokenService tokenService){
-        this.emailValidator = emailValidator;
+    public RegistrationServiceImplementation(UserService userService, ConfirmationTokenService tokenService) {
         this.userService = userService;
         this.tokenService = tokenService;
     }
 
-
     @Override
-    public String register(RegistrationRequest regRequest) throws EmailNotValidException {
-
-        boolean isValidEmail = emailValidator.test(regRequest.getEmail());
-        if(!isValidEmail) {
-            throw new EmailNotValidException("Email is not valid");
-        }
-
+    public String register(RegistrationRequest regRequest) {
         String token;
         try {
-            token = userService.registerUser(new User(Role.USER,
-                    regRequest.getUsername(),
-                    regRequest.getFirstName(),
-                    regRequest.getLastName(),
-                    regRequest.getEmail(),
-                    regRequest.getPassword()
-            ));
+            token = userService.addUser(new User(Role.USER, regRequest.getUsername(), regRequest.getFirstName(), regRequest.getLastName(), regRequest.getEmail(), regRequest.getPassword()));
 
         } catch (EmailAndUsernameExists | EmailAlreadyExistsException | UsernameAlreadyExistsException e) {
             return e.getMessage();
@@ -49,13 +35,13 @@ public class RegistrationServiceImplementation implements RegistrationService{
         //TODO find a way to send to email service
         //String link = "http://localhost:9004/api/register/confirm?token=";
         //emailSender.send(regRequest.getEmail(), buildEmail(regRequest.getFirstName(), link+token));
-        return token;
+        return regRequest.getEmail();
     }
-    @Transactional @Override
-    public String confirmToken(String token) throws TokenNotFoundException, EmailAlreadyConfirmedException, TokenExpiredException{
-        ConfirmationToken confirmationToken = tokenService
-                .getToken(token)
-                .orElseThrow(() -> new TokenNotFoundException("token not found"));
+
+    @Transactional
+    @Override
+    public String confirmToken(String token) throws TokenNotFoundException, EmailAlreadyConfirmedException, TokenExpiredException {
+        ConfirmationToken confirmationToken = tokenService.getToken(token).orElseThrow(() -> new TokenNotFoundException("token not found"));
 
         if (confirmationToken.getConfirmedAt() != null) {
             throw new EmailAlreadyConfirmedException("email already confirmed");
@@ -68,8 +54,7 @@ public class RegistrationServiceImplementation implements RegistrationService{
         }
 
         tokenService.setConfirmedAt(token);
-        userService.enableAppUser(
-                confirmationToken.getUser().getEmail());
+        userService.enableUser(confirmationToken.getUser().getEmail());
         return "confirmed";
     }
 

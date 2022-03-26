@@ -19,5 +19,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	//Query that enables a user once they have confirmed their account
 	@Transactional @Modifying @Query("UPDATE User a " + "SET a.isEnabled = TRUE WHERE a.email = ?1")
-    int enableAppUser(String email);
+    void enableAppUser(String email);
 }

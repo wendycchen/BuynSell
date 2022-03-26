@@ -8,6 +8,16 @@ spring:
     url: jdbc:mysql://localhost:3306/newDb2?createDatabaseIfNotExist=true&serverTimezone=GMT
     username: root
     password: password
+
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 15672
+    username: guest
+    exchange: user.exchange
+    queue: user.queue
+    routingkey: user.routingkey
+
   jpa:
     hibernate:
       ddl-auto: update

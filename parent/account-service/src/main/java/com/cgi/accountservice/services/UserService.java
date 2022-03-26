@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserService {
     UserDetails loadUserByUsername(String email);
-    String registerUser(User user) throws EmailAndUsernameExists, EmailAlreadyExistsException, UsernameAlreadyExistsException;
-    int enableAppUser(String email);
+
+    String addUser(User user) throws EmailAndUsernameExists, EmailAlreadyExistsException, UsernameAlreadyExistsException;
+
+    void enableUser(String email);
 
     //TODO
 }
