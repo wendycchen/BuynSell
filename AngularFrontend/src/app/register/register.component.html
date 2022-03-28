@@ -1,1 +1,271 @@
-<p>register works!</p>
+<div class="center-container">
+  <div class="title">
+    <h2>Sign Up</h2>
+    <a href="/login">or Login here</a>
+  </div>
+</div>
+<div class="form-container">
+  <div class="warning-message">{{message}}</div>
+  <form
+    #registerForm="ngForm"
+    [formGroup]="rForm"
+    (ngSubmit)="verifyRegister(rForm)"
+  >
+    <div class="form-group row">
+      <label for="inputUsername" class="col-sm-2 col-form-label"
+        >Username</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="username"
+          class="form-control"
+          id="inputUsername"
+          name="inputUsername"
+          formControlName="inputUsername"
+          aria-describedby="emailHelp"
+          placeholder="Enter username"
+          required
+        />
+        <div
+          *ngIf="
+            rForm.get('inputUsername')?.errors &&
+            (rForm.get('inputUsername').dirty ||
+              rForm.get('inputUsername').touched)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputUsername').hasError('required')"
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputUsername').hasError('minlength')"
+          >
+            The minimum length for this field is
+            {{ rForm.get("inputUsername").errors.minlength.requiredLength }}
+            characters.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputUsername').hasError('maxlength')"
+          >
+            The maximum length for this field is
+            {{ rForm.get("inputUsername").errors.maxlength.requiredLength }}
+            characters.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label"
+        >Password</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          formControlName="inputPassword"
+          placeholder="Password"
+          required
+        />
+        <div
+          *ngIf="
+            rForm.get('inputPassword')?.errors &&
+            (rForm.get('inputPassword').dirty ||
+              rForm.get('inputPassword').touched)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputPassword').hasError('required')"
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputPassword').hasError('minlength')"
+          >
+            The minimum length for this field is
+            {{ rForm.get("inputPassword").errors.minlength.requiredLength }}
+            characters.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputPassword').hasError('maxlength')"
+          >
+            The maximum length for this field is
+            {{ rForm.get("inputPassword").errors.maxlength.requiredLength }}
+            characters.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputConfirmPassword" class="col-sm-2 col-form-label"
+        >Confirm Password</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="password"
+          class="form-control"
+          id="inputConfirmPassword"
+          formControlName="inputConfirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
+        <div
+          *ngIf="
+            rForm.get('inputConfirmPassword')?.errors &&
+            (rForm.get('inputConfirmPassword').dirty ||
+              rForm.get('inputConfirmPassword').touched)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputConfirmPassword').hasError('required')"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          formControlName="inputEmail"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          required
+        />
+
+        <div
+          *ngIf="
+            rForm.get('inputEmail')?.errors &&
+            (rForm.get('inputEmail').dirty || rForm.get('inputEmail').touched)
+          "
+        >
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputEmail').hasError('required')"
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="rForm.get('inputEmail').hasError('pattern')"
+          >
+            Please provide a valid email address.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-5">
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="inputFirstName"
+              placeholder="First name"
+            />
+            <div
+              *ngIf="
+                rForm.get('inputFirstName')?.errors &&
+                (rForm.get('inputFirstName').dirty ||
+                  rForm.get('inputFirstName').touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="rForm.get('inputFirstName').hasError('required')"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="inputLastName"
+              placeholder="Last name"
+            />
+            <div
+              *ngIf="
+                rForm.get('inputLastName')?.errors &&
+                (rForm.get('inputLastName').dirty ||
+                  rForm.get('inputLastName').touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="rForm.get('inputLastName').hasError('required')"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <div class="btn-center">
+            <button type="submit" class="btn btn-primary" style="width: 130px">
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="modal-btn" [hidden]="true">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Please verify your email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        We sent a verification to {{userEmail}}.<br>
+        Click on the link in the email to complete your sign up.
+      </div>
+      <div class="modal-footer">
+        <!-- In case user needs to modify the email used -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Return to register page</button>
+        <!-- In case user does not receive an email -->
+        <button type="button" class="btn btn-primary" onclick="resendEmail()">Resend email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- template in case we need to add more fields -->
+<!-- <div class="form-group row">
+  <label for="inputUsername" class="col-sm-2 col-form-label"
+    >Username</label
+  >
+  <div class="col-sm-10"></div>
+</div> -->

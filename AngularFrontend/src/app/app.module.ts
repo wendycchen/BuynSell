@@ -51,7 +51,8 @@ const routes: Routes = [
     LoginComponent,
     ProfileComponent,
     ChatComponent,
-    SellComponent
+    SellComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
