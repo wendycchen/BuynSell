@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+
+  message: any;
   constructor() { }
 
   ngOnInit(): void {
+    this.message = localStorage.getItem('Bearer');
   }
 
 }
