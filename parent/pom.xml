@@ -166,6 +166,7 @@
 	</build>
 
 	<modules>
-		<module>child</module>
+		<module>email-service</module>
+		<module>account-service</module>
 	</modules>
 </project>
