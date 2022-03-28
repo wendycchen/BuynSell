@@ -1,0 +1,36 @@
+.center-container{
+    width:100%vw;
+    height:100%vh;
+}
+
+.title{
+    margin-top:5%;
+    text-align: center;
+    color: rgb(219, 15, 15);
+}
+
+.warning-message{
+    text-align: center;
+    color: rgb(219, 15, 15);
+    margin-bottom:20px;
+}
+
+.form-container{
+    margin-top:5%;
+    margin-left: 15%;
+    margin-right:15%;
+}
+
+#forget-password{
+    display: flex;
+    align-items: center;
+}
+
+
+.btn-center{
+    text-align: center;
+}
+
+.modal-title {
+    color:rgb(219, 15, 15) !important;
+}
