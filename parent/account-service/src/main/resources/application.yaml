@@ -9,14 +9,14 @@ spring:
     username: root
     password: password
 
-  rabbitmq:
-    host: localhost
-    password: guest
-    port: 15672
-    username: guest
-    exchange: user.exchange
-    queue: user.queue
-    routingkey: user.routingkey
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queue:
+    accountservice: accountservice.queue
+  routing-keys:
+    internal-accountservice: internal.accountservice.routing-key
+
 
   jpa:
     hibernate:
