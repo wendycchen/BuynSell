@@ -16,8 +16,6 @@ public class ProducerController {
     public ProducerController(RabbitSenderService rabbitSenderService) {
         this.rabbitSenderService = rabbitSenderService;
     }
-    @Value("${app.message}")
-    private String message;
 
     @PostMapping(value = "user")
     public RequestEntity<?> publishUserDetails() {

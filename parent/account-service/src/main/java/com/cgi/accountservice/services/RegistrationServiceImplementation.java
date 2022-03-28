@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 public class RegistrationServiceImplementation implements RegistrationService {
 
 
-    private UserService userService;
-    private ConfirmationTokenService tokenService;
+    private final UserService userService;
+    private final ConfirmationTokenService tokenService;
 
     public RegistrationServiceImplementation(UserService userService, ConfirmationTokenService tokenService) {
         this.userService = userService;

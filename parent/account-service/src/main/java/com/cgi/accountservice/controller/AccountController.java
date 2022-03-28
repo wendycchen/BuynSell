@@ -9,11 +9,15 @@ import com.cgi.accountservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Clock;
 
 
 @RestController
 @RequestMapping("/api/v1/account")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountController {
 
     private final RegistrationService registrationService;
@@ -31,7 +35,7 @@ public class AccountController {
     public ResponseEntity<?> register(@RequestBody RegistrationRequest regReq) throws UsernameAlreadyExistsException, EmailAndUsernameExists, EmailAlreadyExistsException {
         try{
             String email =  registrationService.register(regReq);
-            return ResponseEntity.ok().body(email);
+            return ResponseEntity.ok().body("hi");
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -48,9 +52,15 @@ public class AccountController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> generateJwtToken(@RequestBody LoginRequest loginRequest) {
-        String token = jwtUtil.generateToken((User) userService.loadUserByUsername(loginRequest.getEmail()));
-        return  ResponseEntity.ok().body(token);
+    public ResponseEntity<String> generateJwtToken(@RequestBody LoginRequest loginRequest) {
+        try {
+            User user = (User) userService.loadUserByUsername(loginRequest.getEmail());
+            String token = jwtUtil.generateToken(user);
+            return ResponseEntity.ok().body(token);
+        }
+        catch (UsernameNotFoundException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 

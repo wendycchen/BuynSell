@@ -18,15 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component @RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private JwtUtil jwtUtil;
     private UserService userService;
-    private AuthenticationManager authenticationManager;
 
     @Autowired
-    public JwtAuthenticationFilter(JwtUtil jwtUtil, UserService userService){
+    public JwtAuthenticationFilter(JwtUtil jwtUtil, UserService userService) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
@@ -42,7 +42,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith("Bearer ")) {
             token = header.substring(7);
             email = jwtUtil.extractEmail(token);
-        };
+        }
+
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.loadUserByUsername(email);
             if (jwtUtil.validateToken(token, userDetails)) {
@@ -51,7 +52,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(emailPasswordToken);
             }
         }
-
         filterChain.doFilter(request, response);
     }
 
