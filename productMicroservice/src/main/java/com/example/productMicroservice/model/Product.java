@@ -1,6 +1,6 @@
 package com.example.productMicroservice.model;
 
-<<<<<<< HEAD
+
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
@@ -101,8 +101,4 @@ public class Product {
 		return "Product [prodId=" + prodId + ", price=" + price + ", pname=" + pname + ", condition=" + condition + ", brand="
 				+ brand + ", desc=" + desc + ", postedBy=" + postedBy + ", date=" + date + "]";
 	}
-=======
-public class Product {
-
->>>>>>> 3d71c6a02aad2a5c497c014f5a5b225a0184c0d3
 }
