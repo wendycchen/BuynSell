@@ -1,49 +1,64 @@
 {
-    "categories": [
-      {
-        "cid": 100,
-        "cname": "Art",
-        "csub": [
-          {
-            "scid": 101,
-            "scname": "Stamps"
-          },
-          {
-            "scid": 102,
-            "scname": "Coins"
-          }
-        ]
-      },
-      {
-        "cid": 200,
-        "cname": "Clothes",
-        "csub": [
-          {
-            "scid": 201,
-            "scname": "Women"
-          },
-          {
-            "scid": 202,
-            "scname": "Men"
-          },
-          {
-            "scid": 203,
-            "scname": "Baby"
-          },
-          {
-            "scid": 204,
-            "scname": "Watches"
-          },
-          {
-            "scid": 205,
-            "scname": "Shoes"
-          },
-          {
-            "scid": 206,
-            "scname": "Accessories"
-          }
-        ]
-      }
-    ]
-  }
-  
+  "categories": [
+    {
+      "cid": 100,
+      "cname": "Art"
+    },
+    {
+      "cid": 101,
+      "cname": "Stamps"
+    },
+    {
+      "cid": 201,
+      "cname": "Women Clothes"
+    },
+    {
+      "cid": 202,
+      "cname": "Men Clothes"
+    },
+    {
+      "cid": 203,
+      "cname": "Baby Clothes"
+    },
+    {
+      "cid": 204,
+      "cname": "Watches"
+    },
+    {
+      "cid": 205,
+      "cname": "Shoes"
+    },
+    {
+      "cid": 206,
+      "cname": "Accessories"
+    },
+    {
+      "cid": 301,
+      "cname": "TV"
+    },
+    {
+      "cid": 302,
+      "cname": "Monitor"
+    },
+    {
+      "cid": 303,
+      "cname": "Phone"
+    },
+    {
+      "cid": 304,
+      "cname": "Nintendo"
+    },
+    {
+      "cid": 305,
+      "cname": "PS"
+    },
+    {
+      "cid": 306,
+      "cname": "XBOX"
+    },
+    {
+      "cid": 307,
+      "cname": "Video Games"
+    }
+  ]
+}

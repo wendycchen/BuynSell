@@ -4,7 +4,71 @@
     margin-right:15%;
 }
 
-h1{
-    font-weight:bold;
+.title{
+    margin-top:5%;
+    text-align: center;
+    color: rgb(219, 15, 15);
+    /* margin-bottom:3%; */
+}
+
+.warning-message{
+  text-align: center;
+  color: rgb(219, 15, 15);
+  margin-bottom:20px;
+}
+
+#category-dropdown {
+    width: 100% !important;
+
+}
+
+
+.submenu-container {
+    position: absolute;
+    left: 160px;
+    display: flex;
+    height: 0;
+    overflow-y: hidden;
+    transition: height 0.5s ease-out;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: auto;
+    word-break: keep-all;
+    z-index: 1;
+    background-color: #2d3a85;
+  }
+  
+  a:hover .submenu-container {
+    border: 2px solid gray;
+    height: 128px;
+    transition: height 0.25s linear;
+  }
+  
+  .submenu-item {
+    padding: 0.3rem 0.8rem;
+  }
+
+
+.image-preview{
+  margin-right:20px;
+  margin-bottom:20px;
+}
+
+
+  .center-container{
+    width:100%vw;
+    height:100%vh;
+}
+
+#btn-container {
+  position:absolute;
+}
+
+
+
+#btn-center {
+  text-align: center;
 
 }
