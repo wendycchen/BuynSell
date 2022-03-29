@@ -1,16 +1,15 @@
-package com.cgi.accountservice.util;
+package com.cgi.accountservice.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.core.Authentication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+@Configuration
 public class JwtUtil {
 //TODO: put secret and validity in yaml
     //@Value("${jwt.secret}")

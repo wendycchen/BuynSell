@@ -22,9 +22,9 @@ import java.util.Optional;
 public class UserServiceImplementation implements UserService, UserDetailsService {
 
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final ConfirmationTokenService tokenService;
+    private  UserRepository userRepository;
+    private  PasswordEncoder passwordEncoder;
+    private  ConfirmationTokenService tokenService;
 
     @Autowired
     public UserServiceImplementation(UserRepository userRepository, PasswordEncoder passwordEncoder, ConfirmationTokenService tokenService) {

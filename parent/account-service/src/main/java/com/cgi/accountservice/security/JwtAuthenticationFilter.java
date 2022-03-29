@@ -1,10 +1,7 @@
 package com.cgi.accountservice.security;
 
 import com.cgi.accountservice.services.UserService;
-import com.cgi.accountservice.util.JwtUtil;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,11 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private JwtUtil jwtUtil;
-    private UserService userService;
+    private final JwtUtil jwtUtil;
+    private final UserService userService;
 
     @Autowired
     public JwtAuthenticationFilter(JwtUtil jwtUtil, UserService userService) {

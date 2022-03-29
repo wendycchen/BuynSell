@@ -4,17 +4,16 @@ import com.cgi.accountservice.exceptions.*;
 import com.cgi.accountservice.models.LoginRequest;
 import com.cgi.accountservice.models.RegistrationRequest;
 import com.cgi.accountservice.services.RegistrationService;
-import com.cgi.accountservice.util.JwtUtil;
 import com.cgi.accountservice.services.UserService;
+import com.cgi.accountservice.security.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Clock;
-
-
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/account")
 @CrossOrigin(origins = "http://localhost:4200")

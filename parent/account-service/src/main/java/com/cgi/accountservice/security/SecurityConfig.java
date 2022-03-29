@@ -1,5 +1,6 @@
 package com.cgi.accountservice.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +17,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
     private PasswordEncoder passwordEncoder;
     private UserDetailsService userDetailsService;
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
 
     @Autowired
     public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -38,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //TODO finalize this
-        http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/authenticate").permitAll()
-                //   .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+        http.csrf().disable().authorizeRequests().antMatchers( HttpMethod.OPTIONS,"/**").permitAll()
+                 //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }

@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 
-@SpringBootApplication(
-        scanBasePackages ="com.cgi.ampqservice"
-)
+@SpringBootApplication(scanBasePackages = {"com.cgi.ampqservice","com.cgi.accountservice"})
 @EnableEurekaClient
 public class AccountServiceApplication {
 

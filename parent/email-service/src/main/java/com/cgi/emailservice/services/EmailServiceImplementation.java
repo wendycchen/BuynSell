@@ -19,7 +19,8 @@ public class EmailServiceImplementation implements EmailService{
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,"utf-8");
             helper.setText(email,true);
-            helper.setSubject("Confirm your email");
+            helper.setTo(to);
+            helper.setSubject("Confirm email");
             helper.setFrom("buyandsellcgi@email.com");
         }catch (MessagingException e){
                 //TODO error here
