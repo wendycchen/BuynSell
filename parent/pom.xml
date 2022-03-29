@@ -166,6 +166,11 @@
 	</build>
 
 	<modules>
-		<module>child</module>
+		<module>email-service</module>
+		<module>account-service</module>
+		<module>eureka-server</module>
+		<module>ConsumerRabbitMQ</module>
+		<module>ProducerRabbitMQ</module>
+		<module>productMicroservice</module>
 	</modules>
 </project>
