@@ -1,15 +1,5 @@
 server:
   port: 9006
-
-
-
-rabbitmq:
-  exchanges:
-    internal: internal.exchange
-  queue:
-    accountservice: accountservice.queue
-  routing-keys:
-    internal-accountservice: internal.accountservice.routing-key
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
