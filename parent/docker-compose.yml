@@ -18,6 +18,19 @@ services:
       - '3307:3306'
     volumes:
       - my-db:/var/lib/mysql
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - my-db:/var/lib/mongoDB
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
 # Names our volume
 volumes:
   my-db:

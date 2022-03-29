@@ -46,6 +46,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+        <!--AMQP DEPENDENCY-->
+        <dependency>
+            <groupId>com.cgi</groupId>
+            <artifactId>ampq-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

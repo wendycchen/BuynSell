@@ -5,6 +5,8 @@ import com.cgi.accountservice.models.ConfirmationToken;
 import com.cgi.accountservice.models.RegistrationRequest;
 import com.cgi.accountservice.models.Role;
 import com.cgi.accountservice.models.User;
+import com.cgi.ampqservice.config.RabbitMQMessageProducer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,10 +18,13 @@ public class RegistrationServiceImplementation implements RegistrationService {
 
     private final UserService userService;
     private final ConfirmationTokenService tokenService;
+    private final RabbitMQMessageProducer producer;
 
-    public RegistrationServiceImplementation(UserService userService, ConfirmationTokenService tokenService) {
+    @Autowired
+    public RegistrationServiceImplementation(UserService userService, ConfirmationTokenService tokenService, RabbitMQMessageProducer producer) {
         this.userService = userService;
         this.tokenService = tokenService;
+        this.producer = producer;
     }
 
     @Override
@@ -35,6 +40,7 @@ public class RegistrationServiceImplementation implements RegistrationService {
         //TODO find a way to send to email service
         //String link = "http://localhost:9004/api/register/confirm?token=";
         //emailSender.send(regRequest.getEmail(), buildEmail(regRequest.getFirstName(), link+token));
+        producer.publish("test", "internal.exchange","internal.confirmation.routing-key");
         return regRequest.getEmail();
     }
 
