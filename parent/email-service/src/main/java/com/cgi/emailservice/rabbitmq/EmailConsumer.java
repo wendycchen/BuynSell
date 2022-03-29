@@ -1,10 +1,14 @@
 package com.cgi.emailservice.rabbitmq;
 
-import com.cgi.emailservice.models.Confirmation;
+import com.cgi.ampqservice.model.UserDto;
 import com.cgi.emailservice.services.EmailService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component @Slf4j
 public class EmailConsumer {
 
     private final EmailService emailService;
@@ -15,11 +19,12 @@ public class EmailConsumer {
     }
 
     //TODO finish this
-    @RabbitListener(queues = "${rabbit.queues.confirmation}")
-    public void confirmationConsumer(Confirmation confirmation){
+    @RabbitListener(queues = "confirmation.queue")
+    public void consumer(UserDto userInfo){
         //TODO add logger
-        String link = "http://localhost:9006/api/v1/confirm?token=" + confirmation.getToken();
-        emailService.buildConfirmationEmail(link, confirmation.getName());
-        emailService.sendConfirmation(confirmation.getName(), confirmation.getEmail());
+        log.info("made it");
+        String link = "http://localhost:9006/api/v1/account/confirm?token=" + userInfo.token();
+        String email = emailService.buildConfirmationEmail(userInfo.name(),link);
+        emailService.sendConfirmation(userInfo.email(), email);
     }
 }

@@ -1,24 +1,21 @@
 package com.cgi.ampqservice.config;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration @AllArgsConstructor
 public class RabbitMQConfig {
 
-    private ConnectionFactory connectionFactory;
-    @Autowired
-    public RabbitMQConfig(ConnectionFactory connectionFactory){
-        this. connectionFactory = connectionFactory;
-    }
+    private final ConnectionFactory connectionFactory;
+
     @Bean
     public AmqpTemplate amqpTemplate(){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
@@ -34,9 +31,10 @@ public class RabbitMQConfig {
         return factory;
     }
 
+    @Bean
     public MessageConverter jacksonConverter(){
-         MessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter();
-         return  jackson2JsonMessageConverter;
+        MessageConverter jackson2JsonConverter =  new Jackson2JsonMessageConverter();
+        return jackson2JsonConverter;
     }
 
 
