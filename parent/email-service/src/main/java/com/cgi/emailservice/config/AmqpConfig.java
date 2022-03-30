@@ -17,7 +17,7 @@ public class AmqpConfig {
     private String confirmationQueue;
 
     @Value("$rabbitmq.routing-keys.internal-confirmation")
-    private String internalConfimationRoutingKey;
+    private String internalConfirmationRoutingKey;
 
     @Bean
     public Queue confirmationQueue(){
@@ -26,7 +26,7 @@ public class AmqpConfig {
 
     @Bean
     public Binding internalToNotificationBinding(){
-        return BindingBuilder.bind(confirmationQueue()).to(internalTopicExchange()).with(this.internalConfimationRoutingKey);
+        return BindingBuilder.bind(confirmationQueue()).to(internalTopicExchange()).with(this.internalConfirmationRoutingKey);
     }
 
     @Bean
@@ -43,6 +43,6 @@ public class AmqpConfig {
     }
 
     public String getInternalConfimationRoutingKey(){
-        return internalConfimationRoutingKey;
+        return internalConfirmationRoutingKey;
     }
 }
