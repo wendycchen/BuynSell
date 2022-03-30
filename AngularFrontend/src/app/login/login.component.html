@@ -1,0 +1,52 @@
+<div class="center-container">
+  <div class="title">
+    <h2>Login</h2>
+    <a href="/register">or Register here</a>
+  </div>
+</div>
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="verifyLogin()">
+    <div class="form-group">
+      <label for="inputEmail">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="inputEmail"
+        formControlName="inputEmail"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        required
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="inputPassword"
+        formControlName="inputPassword"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <div class="center-container">
+      <div class="row">
+        <div class="col" id="forget-password">
+          <a href="/resetpassword">Forgot password?</a>
+        </div>
+        <div class="col">
+          <div class="btn-center">
+            <button type="submit" class="btn btn-primary" style="width: 130px">
+              Login
+            </button>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </form>
+  <p>{{errorMessage}}</p>
+</div>

@@ -1,0 +1,49 @@
+{
+    "categories": [
+      {
+        "cid": 100,
+        "cname": "Art",
+        "csub": [
+          {
+            "scid": 101,
+            "scname": "Stamps"
+          },
+          {
+            "scid": 102,
+            "scname": "Coins"
+          }
+        ]
+      },
+      {
+        "cid": 200,
+        "cname": "Clothes",
+        "csub": [
+          {
+            "scid": 201,
+            "scname": "Women"
+          },
+          {
+            "scid": 202,
+            "scname": "Men"
+          },
+          {
+            "scid": 203,
+            "scname": "Baby"
+          },
+          {
+            "scid": 204,
+            "scname": "Watches"
+          },
+          {
+            "scid": 205,
+            "scname": "Shoes"
+          },
+          {
+            "scid": 206,
+            "scname": "Accessories"
+          }
+        ]
+      }
+    ]
+  }
+  
