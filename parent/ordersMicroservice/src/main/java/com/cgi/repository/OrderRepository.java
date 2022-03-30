@@ -1,5 +1,9 @@
 package com.cgi.repository;
 
-public class OrderRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cgi.model.Orders;
+
+public interface OrderRepository extends JpaRepository<Orders, Integer> {
 
 }
