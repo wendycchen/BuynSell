@@ -1,11 +1,9 @@
 package com.cgi.accountservice.services;
 
 import com.cgi.accountservice.exceptions.*;
-import com.cgi.accountservice.models.ConfirmationToken;
-import com.cgi.accountservice.models.RegistrationRequest;
-import com.cgi.accountservice.models.Role;
-import com.cgi.accountservice.models.User;
+import com.cgi.accountservice.models.*;
 import com.cgi.ampqservice.config.RabbitMQMessageProducer;
+import com.cgi.ampqservice.model.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +38,8 @@ public class RegistrationServiceImplementation implements RegistrationService {
         //TODO find a way to send to email service
         //String link = "http://localhost:9004/api/register/confirm?token=";
         //emailSender.send(regRequest.getEmail(), buildEmail(regRequest.getFirstName(), link+token));
-        producer.publish("test", "internal.exchange","internal.confirmation.routing-key");
+        UserDto userDto = new UserDto(regRequest.getFirstName(),"thomasskiff@outlook.com",token);
+        producer.publish(userDto,"internal.exchange","internal.confirmation.routing-key");
         return regRequest.getEmail();
     }
 

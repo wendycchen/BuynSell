@@ -41,8 +41,8 @@ public class AccountController {
         }
     }
 
-    @GetMapping(path = "/confirm/{token}")
-    public String confirmEmailConfirmation(@PathVariable ("token") String token) {
+    @GetMapping(path = "/confirm")
+    public String confirmEmailConfirmation(@RequestParam("token") String token) {
         try {
             return registrationService.confirmToken(token);
         } catch (TokenNotFoundException | EmailAlreadyConfirmedException | TokenExpiredException e) {

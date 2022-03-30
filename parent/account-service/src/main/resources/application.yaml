@@ -1,6 +1,8 @@
 server:
   port: 9006
 spring:
+  application:
+    name: account-service
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/accountDB?createDatabaseifNotExists=true
@@ -19,3 +21,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queue:
+    confirmation: confirmation.queue
+  routing-keys:
+    internal-confirmation: internal.confirmation.routing-key
