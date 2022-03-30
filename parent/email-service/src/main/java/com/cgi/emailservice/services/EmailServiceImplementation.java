@@ -1,10 +1,12 @@
 package com.cgi.emailservice.services;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -21,7 +23,7 @@ public class EmailServiceImplementation implements EmailService{
             helper.setText(email,true);
             helper.setTo(to);
             helper.setSubject("Confirm email");
-            helper.setFrom("buyandsellcgi@email.com");
+            mailSender.send(mimeMessage);
         }catch (MessagingException e){
                 //TODO error here
         }

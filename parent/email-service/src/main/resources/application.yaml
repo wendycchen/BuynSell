@@ -1,7 +1,32 @@
+server:
+  port: 9001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+    application:
+      name: email-service
+
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: buyandsellapplication@gmail.com
+      password: a2HTZTeH8tbcwfR
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+        protocol: smtp
+        test-connection: false
+
+
 rabbitmq:
   exchanges:
     internal: internal.exchange
   queue:
-    notfication: email-service.queue
+    confirmation: confirmation.queue
   routing-keys:
-    internal-notification: internal.email-service.routing-key
+    internal-confirmation: internal.confirmation.routing-key

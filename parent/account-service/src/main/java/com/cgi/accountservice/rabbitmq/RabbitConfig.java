@@ -1,5 +1,7 @@
-package com.cgi.emailservice.config;
+package com.cgi.accountservice.rabbitmq;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -8,16 +10,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class AmqpConfig {
+@Configuration @AllArgsConstructor @RequiredArgsConstructor
+public class RabbitConfig {
     @Value("${rabbitmq.exchanges.internal}")
     private String internalExchange;
 
-    @Value("${rabbit.queues.confirmation}")
+    @Value("${rabbitmq.queue.confirmation}")
     private String confirmationQueue;
 
-    @Value("$rabbitmq.routing-keys.internal-confirmation")
-    private String internalConfirmationRoutingKey;
+    //@Value("$rabbitmq.routing-keys.internal-confirmation")
+    private String internalConfirmationRoutingKey ="internal.confirmation.routing-key";
 
     @Bean
     public Queue confirmationQueue(){
@@ -25,14 +27,15 @@ public class AmqpConfig {
     }
 
     @Bean
-    public Binding internalToNotificationBinding(){
-        return BindingBuilder.bind(confirmationQueue()).to(internalTopicExchange()).with(this.internalConfirmationRoutingKey);
-    }
-
-    @Bean
     public TopicExchange internalTopicExchange(){
         return new TopicExchange(this.internalExchange);
     }
+
+    @Bean
+    public Binding internalConfirmationBinding(){
+        return BindingBuilder.bind(confirmationQueue()).to(internalTopicExchange()).with(this.internalConfirmationRoutingKey);
+    }
+
 
     public String getInternalExchange(){
         return internalExchange;
@@ -42,7 +45,7 @@ public class AmqpConfig {
         return confirmationQueue;
     }
 
-    public String getInternalConfimationRoutingKey(){
+    public String getInternalConfirmationRouting(){
         return internalConfirmationRoutingKey;
     }
 }
