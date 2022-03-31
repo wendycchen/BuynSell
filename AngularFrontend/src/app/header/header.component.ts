@@ -17,6 +17,10 @@ export class HeaderComponent implements OnInit {
     this.routerService.openSell();
   }
 
+  enterProduct() {
+    this.routerService.openProduct();
+  }
+  
   enterLogin() {
     this.routerService.openLogin();
   }

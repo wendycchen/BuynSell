@@ -1,1 +1,50 @@
-<p>product-list works!</p>
+<div style="margin-top: 5rem;">
+    <style>
+        .product-img-container {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("../../assets/images/plant1.jpg");
+            height: 250px;
+        }
+    </style>
+    <h2 class="mx-auto text-center" style="margin-bottom: 6rem;">Our Products</h2>
+    <div class="d-flex mx-5" style="justify-content: center; flex-wrap: wrap; text-align: center;">
+        <!-- <div *ngFor="let product of products; let i = index">
+            <div 
+                style="width: 300px;"
+                class="mx-5 my-3"
+                *ngIf="product.pname.toLowerCase().includes(term.toLowerCase())">
+                <h6 
+                    style="background-color: #fff5; border-radius: 0 10px 0 0;" 
+                    class="m-0 py-2 px-2"
+                >{{ product.pname }}</h6>
+                <div class="product-img-container" [style.backgroundImage]="'url(' + product.imageUrl + ')'"></div>
+                <div 
+                    style="background-color: #fff1; justify-content: space-between; align-items: center;" 
+                    class="p-3 d-flex">
+                    <h3>${{ product.price | number : '1.2-2' }}</h3>
+                    <a routerLink="/shop/products/{{ product.prodId }}" class="btn btn-success">Add to cart</a>
+                </div>
+            </div>
+        </div> -->
+        <mat-card *ngFor="let product of products; let i = index" style="margin: auto; width: 350px; background-color:lightgrey; margin-bottom: 10px;">
+            <mat-card-header>
+                <!-- <mat-card-subtitle>Angular Material Card</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card-title style="color: green;">{{ product.pname }}</mat-card-title>
+                <mat-card-subtitle class="product-img-container" [style.backgroundImage]="'url(' + product.imageUrl + ')'" ></mat-card-subtitle>
+                <mat-card-subtitle>${{ product.price | number : '1.2-2' }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ product.condition}}</mat-card-subtitle>
+                <mat-card-subtitle>{{ product.brand }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ product.desc }}</mat-card-subtitle>
+                <mat-card-subtitle>{{ product.postedBy }}</mat-card-subtitle>
+            </mat-card-content>
+            <mat-card-actions>
+                <a routerLink="/shop/products/{{ product.prodId }}" class="btn btn-success">Add to cart</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+

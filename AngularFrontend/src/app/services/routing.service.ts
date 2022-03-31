@@ -31,4 +31,8 @@ export class RoutingService {
   openSell() {
     this.routerService.navigate(['sell']);
   }
+
+  openProduct() {
+    this.routerService.navigate(['product']);
+  }
 }
