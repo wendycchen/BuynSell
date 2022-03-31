@@ -1,13 +1,16 @@
 import { Time } from "@angular/common";
+import { Byte } from "@angular/compiler/src/util";
 
 export class Product {
-    pid?:number;
-    pname?:string;
+    prodId?:number;
+    pname!: string;
     condition?:string;
     brand?:string;
-    description?:string;
+    desc?:string;
     price?:number;
-    images?:HTMLImageElement;
     postedBy?:string;
-    postedAt?:Time;
+    date?:Date;
+    imageUrl?: string;
+    image!: [Byte];
 }
+

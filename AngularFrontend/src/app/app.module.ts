@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import { MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,6 +42,9 @@ const routes: Routes = [
   }, {
     path:'profile/setting',
     component:SettingComponent
+  }, {
+    path:'product',
+    component: ProductListComponent
   }
 ]
 
@@ -66,6 +69,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatCardModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
