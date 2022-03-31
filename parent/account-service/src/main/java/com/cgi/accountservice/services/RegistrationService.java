@@ -6,6 +6,6 @@ import com.cgi.accountservice.exceptions.TokenNotFoundException;
 import com.cgi.accountservice.models.RegistrationRequest;
 
 public interface RegistrationService {
-    String register(RegistrationRequest regReq);
-    String confirmToken(String token) throws TokenExpiredException, TokenNotFoundException, EmailAlreadyConfirmedException;
+    void register(RegistrationRequest regReq);
+    void confirmEmailToken(String token) throws TokenExpiredException, TokenNotFoundException, EmailAlreadyConfirmedException;
 }

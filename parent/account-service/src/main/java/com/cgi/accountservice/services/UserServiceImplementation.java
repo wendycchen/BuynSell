@@ -7,27 +7,29 @@ import com.cgi.accountservice.models.Role;
 import com.cgi.accountservice.models.User;
 import com.cgi.accountservice.repository.UserRepository;
 import com.cgi.accountservice.security.PasswordEncoder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UserServiceImplementation implements UserService, UserDetailsService {
+@Service @Slf4j
+public class UserServiceImplementation implements UserService {
 
 
     private  UserRepository userRepository;
-    private  PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
     private  ConfirmationTokenService tokenService;
 
     @Autowired
-    public UserServiceImplementation(UserRepository userRepository, PasswordEncoder passwordEncoder, ConfirmationTokenService tokenService) {
+    public UserServiceImplementation(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, ConfirmationTokenService tokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
@@ -40,11 +42,9 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
         if (userOptional.isEmpty()) {
             throw new UsernameNotFoundException("Email Not found");
         }
-
         User user = userOptional.get();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-        user.setUserRole(Role.USER);
         authorities.add(new SimpleGrantedAuthority(user.getUserRole().name()));
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 
@@ -62,7 +62,7 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
             throw new UsernameAlreadyExistsException("Username already in use");
         }
         //Encoding password to be stored
-        String encodedPassword = passwordEncoder.bCryptPasswordEncoder().encode(user.getPassword());
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
         //saving user
@@ -73,7 +73,6 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
 
     public void enableUser(String email) {
         userRepository.enableAppUser(email);
+        log.info("Email confirmed for user with email: {}", email);
     }
-
-
 }
