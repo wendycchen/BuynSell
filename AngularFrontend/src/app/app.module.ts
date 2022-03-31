@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SellComponent } from './sell/sell.component';
+import { SettingComponent } from './setting/setting.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,9 @@ const routes: Routes = [
   }, {
     path:'sell',
     component:SellComponent
+  }, {
+    path:'profile/setting',
+    component:SettingComponent
   }
 ]
 
@@ -52,7 +56,8 @@ const routes: Routes = [
     ProfileComponent,
     ChatComponent,
     SellComponent,
-    RegisterComponent
+    RegisterComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,

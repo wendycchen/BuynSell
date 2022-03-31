@@ -6,7 +6,6 @@ export class User {
     ulname?:string;
     email?:string;
     password?:string;
-    phone?:number;
     registrationDate?:Time;
     reviews?:string;
 

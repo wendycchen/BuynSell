@@ -1,0 +1,42 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "ufname": "Adamn",
+      "ulname": "Josephine",
+      "email": "adam_josey@gmail.com",
+      "blocked": [
+        {
+          "id": 8271,
+          "email": "apple_abc@gmail.com"
+        },
+        {
+          "id": 9827,
+          "email": "cgi.user@cgi.com"
+        },
+        {
+          "id": 129,
+          "email": "testing_user@hotmail.com"
+        },
+        {
+          "id": 230,
+          "email": "whyisntitworking@yahoo.com"
+        },
+        {
+          "id": 231,
+          "email": "whyisnooverflow@yahoo.com"
+        },
+        {
+          "id": 235,
+          "email": "omgidkwhyg@yahoo.com"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ufname": "Jessica",
+      "ulname": "Ander",
+      "email": "jess_ander182@hotmail.com"
+    }
+  ]
+}

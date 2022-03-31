@@ -1,0 +1,43 @@
+.center-container{
+    margin-top:5%;
+    margin-left: 15%;
+    margin-right:15%;
+    width:100%vw;
+    height:100%vh;
+}
+.title{
+    margin-top:5%;
+    /* text-align: center; */
+    color: rgb(219, 15, 15);
+}
+
+.form-container{
+    margin-top:5%;
+}
+
+.table-box {
+    border:1px solid rgba(0,0,0,.125);
+    height: 50vh;
+    overflow: auto;
+    /* overflow: hidden; */
+ 
+}
+
+.edit-profile-box {
+    border:1px solid rgba(0,0,0,.125);
+    height: 25vh;
+}
+
+.below-btn-divider {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.custom-checkbox{
+    margin-bottom: 30px;
+}
+
+.warning-message-box{
+    margin-bottom:20px;
+    color: rgb(219, 15, 15);
+}

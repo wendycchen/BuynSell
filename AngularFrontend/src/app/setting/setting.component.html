@@ -1,0 +1,219 @@
+<div class="center-container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="title">
+        <h2>Profile Setting</h2>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-8"></div>
+  </div>
+
+  <div class="row" style="height: 60vh">
+    <div class="col-sm-3">
+      <div class="card mb-4" style="min-height: 35vh">
+        <div class="card-body text-center">
+          <img
+            src="assets/images/userlogo.png"
+            alt="avatar"
+            class="rounded-circle img-fluid"
+            style="width: 150px"
+          />
+          <h5 class="my-3" style="padding-top: 5px; padding-bottom: 5px">
+            {{ ufname }} {{ ulname }}
+          </h5>
+          <div class="dropdown-divider"></div>
+          <div class="list-group" id="myList" role="tablist">
+            <a
+              class="list-group-item list-group-item-action active"
+              data-toggle="list"
+              href="#editprofile"
+              role="tab"
+              >Edit profile</a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#changepassword"
+              role="tab"
+              >Change password</a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#editblock"
+              role="tab"
+              >Edit block list</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col col-sm-8">
+      <div class="tab-content">
+        <div class="tab-pane active" id="editprofile" role="tabpanel">
+          <div class="edit-profile-box">
+            <div class="form-container">
+              <form
+                #registerForm="ngForm"
+                [formGroup]="uForm"
+                (ngSubmit)="updateProfile(uForm)"
+              >
+                <div class="form-group row">
+                  <label for="firstNameLabel" class="col-sm-3 col-form-label"
+                    >First Name</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      formControlName="ufname"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="lastNameLabel" class="col-sm-3 col-form-label"
+                    >Last Name</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      formControlName="ulname"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="emailLabel" class="col-sm-3 col-form-label"
+                    >Email</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="center-container">
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                      <div class="btn-center">
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          style="width: 130px"
+                        >
+                          Update Profile
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="changepassword" role="tabpanel">
+          <div class="edit-profile-box">
+            <div class="form-container">
+              <div class="warning-message-box">
+                {{ this.warningMessage }}
+              </div>
+              <form
+                #registerForm="ngForm"
+                [formGroup]="pForm"
+                (ngSubmit)="updatePassword(pForm)"
+              >
+                <div class="form-group row">
+                  <label for="newPass" class="col-sm-3 col-form-label"
+                    >New Password</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newPass"
+                      formControlName="newPass"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="newConfirmPass" class="col-sm-3 col-form-label"
+                    >Confirm New Password</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newConfirmPass"
+                      formControlName="newConfirmPass"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="center-container">
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                      <div class="btn-center">
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          style="width: 130px"
+                        >
+                          Change Password
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col"></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="editblock" role="tabpanel">
+          <div class="table-box">
+          <table class="table" style="margin-top: 5%">
+            <thead>
+              <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Unblock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let block of blockList">
+                <th scope="row">{{ block.id }}</th>
+                <td>{{ block.email }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="unblockUser(block.id)"
+                  >
+                    Unblock
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

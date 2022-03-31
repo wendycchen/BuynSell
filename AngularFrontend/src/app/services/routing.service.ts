@@ -31,4 +31,8 @@ export class RoutingService {
   openSell() {
     this.routerService.navigate(['sell']);
   }
+
+  openSetting() {
+    this.routerService.navigate(['profile/setting']);
+  }
 }
