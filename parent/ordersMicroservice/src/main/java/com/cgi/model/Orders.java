@@ -1,53 +1,54 @@
 package com.cgi.model;
+import javax.persistence.Id;
 
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 
 
 @Entity
-@Table(name = "order_item")
 public class Orders {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
-	private String orderNumber;
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+	private long orderNumber;
+	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<OrderItems> orderItems;
-	
+	private List <ProductIds> productId;
 
-	public Orders(int orderId, String orderNumber, List<OrderItems> orderItems) {
+	public Orders() {
 		super();
-		this.orderId = orderId;
-		this.orderNumber = orderNumber;
-		this.orderItems = orderItems;
 	}
-	
+
 	public int getOrderId() {
 		return orderId;
 	}
+
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public String getOrderNumber() {
+
+	public long getOrderNumber() {
 		return orderNumber;
 	}
-	public void setOrderNumber(String orderNumber) {
+
+	public void setOrderNumber(long orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-	public List<OrderItems> getOrderItems() {
-		return orderItems;
-	}
-	public void setOrderItems(List<OrderItems> orderItems) {
-		this.orderItems = orderItems;
-	};
 
-	
-	
-	
-	
-	
-	
+	public List<ProductIds> getProductId() {
+		return productId;
+	}
+
+	public void setProductId(List<ProductIds> productId) {
+		this.productId = productId;
+	}
 }
