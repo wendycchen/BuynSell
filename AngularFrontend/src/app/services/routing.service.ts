@@ -35,7 +35,12 @@ export class RoutingService {
   openSetting() {
     this.routerService.navigate(['profile/setting']);
   }
+
   openProduct() {
     this.routerService.navigate(['product']);
+  }
+
+  openAdmin() {
+    this.routerService.navigate(['admin']);
   }
 }

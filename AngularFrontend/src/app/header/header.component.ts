@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 import { RoutingService } from '../services/routing.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { RoutingService } from '../services/routing.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private routerService:RoutingService) { }
+  constructor(private routerService:RoutingService, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,17 @@ export class HeaderComponent implements OnInit {
   }
 
   enterHome() {
+    this.routerService.openHome();
+  }
+
+  enterAdmin() {
+    this.routerService.openAdmin();
+  }
+
+  logOut() {
+    this.authService.setLoginStatus(0);
+    // Does setting it to empty means logging out?
+    // this.authService.setBearerToken(''); 
     this.routerService.openHome();
   }
 

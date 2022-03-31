@@ -20,24 +20,27 @@
           Home <span class="sr-only">(current)</span>
         </button>
       </li>
-      <div class="collapse navbar-collapse justify-content-end">
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" (click)="enterProduct()">
+          Products
+        </button>
+      </li>
+      </ul>
+      <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+        <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
-          <button type="button" class="btn btn-light" (click)="enterLogin()">
+          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 0" (click)="enterLogin()">
             Log In/ Sign Up
           </button>
           <!-- <button *ngIf="authService.loginStatus == 0" (click)="enterSell()">Log In/ Sign Up</button> -->
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-light" (click)="enterSell()">
+          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="enterSell()">
             Sell
           </button>
           <!-- <button *ngIf="authService.loginStatus== 1" (click)="enterSell()">SELL</button> -->
         </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-light" (click)="enterProduct()">
-            Products
-          </button>
-        </li>
+        
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -46,15 +49,21 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            *ngIf="authService.loginStatus == 1"
           >
-            Dropdown link
+            Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="/profile">My Profile</a>
             <a class="dropdown-item" href="/profile/setting">Setting</a>
           </div>
         </li>
-      </div>
-    </ul>
+        <li class="nav-item">
+          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus==1" (click)="enterAdmin()">
+            Admin
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

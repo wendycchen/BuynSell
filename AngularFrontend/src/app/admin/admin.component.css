@@ -1,0 +1,8 @@
+.product-list-container {
+    margin-top:5%;
+    margin-left: 15%;
+    margin-right:15%;
+    width:100%vw;
+    height:100%vh;
+    border:1px solid rgba(0,0,0,.125);
+}

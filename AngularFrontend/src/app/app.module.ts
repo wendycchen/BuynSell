@@ -18,6 +18,8 @@ import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SellComponent } from './sell/sell.component';
 import { SettingComponent } from './setting/setting.component';
+import { AdminComponent } from './admin/admin.component';
+import { CanActivateRouteGuard } from './can-activate-route.guard';
 
 
 const routes: Routes = [
@@ -45,6 +47,10 @@ const routes: Routes = [
   }, {
     path:'product',
     component: ProductListComponent
+  }, {
+    path:'admin',
+    component: AdminComponent,
+    canActivate:[CanActivateRouteGuard]
   }
 ]
 
@@ -61,6 +67,7 @@ const routes: Routes = [
     SellComponent,
     RegisterComponent,
     SettingComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
