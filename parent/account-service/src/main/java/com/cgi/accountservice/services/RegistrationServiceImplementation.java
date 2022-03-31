@@ -4,13 +4,14 @@ import com.cgi.accountservice.exceptions.*;
 import com.cgi.accountservice.models.*;
 import com.cgi.ampqservice.config.RabbitMQMessageProducer;
 import com.cgi.ampqservice.model.UserDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
-@Service
+@Service @Slf4j
 public class RegistrationServiceImplementation implements RegistrationService {
 
 
@@ -26,27 +27,27 @@ public class RegistrationServiceImplementation implements RegistrationService {
     }
 
     @Override
-    public String register(RegistrationRequest regRequest) {
+    public void register(RegistrationRequest regRequest) {
         String token;
         try {
             token = userService.addUser(new User(Role.USER, regRequest.getUsername(), regRequest.getFirstName(), regRequest.getLastName(), regRequest.getEmail(), regRequest.getPassword()));
-
+            UserDto userDto = new UserDto(regRequest.getFirstName(),"thomasskiff@outlook.com",token);
+            producer.publish(userDto,"internal.exchange","internal.confirmation.routing-key");
         } catch (EmailAndUsernameExists | EmailAlreadyExistsException | UsernameAlreadyExistsException e) {
-            return e.getMessage();
+            log.info("Unsuccessful Registration for user with email: {}, username: {}, firstname: {}, lastname: {}, \n with error {}",regRequest.getEmail(),regRequest.getUsername(),regRequest.getFirstName(),regRequest.getLastName(),e.getMessage());
         }
 
-        //TODO find a way to send to email service
-        //String link = "http://localhost:9004/api/register/confirm?token=";
-        //emailSender.send(regRequest.getEmail(), buildEmail(regRequest.getFirstName(), link+token));
-        UserDto userDto = new UserDto(regRequest.getFirstName(),"thomasskiff@outlook.com",token);
-        producer.publish(userDto,"internal.exchange","internal.confirmation.routing-key");
-        return regRequest.getEmail();
+        //TODO change from my email
+
+
     }
 
     @Transactional
     @Override
-    public String confirmToken(String token) throws TokenNotFoundException, EmailAlreadyConfirmedException, TokenExpiredException {
-        ConfirmationToken confirmationToken = tokenService.getToken(token).orElseThrow(() -> new TokenNotFoundException("token not found"));
+    public void confirmEmailToken(String token) throws TokenNotFoundException, EmailAlreadyConfirmedException, TokenExpiredException {
+        ConfirmationToken confirmationToken = tokenService
+                .getToken(token)
+                .orElseThrow(() -> new TokenNotFoundException("token not found"));
 
         if (confirmationToken.getConfirmedAt() != null) {
             throw new EmailAlreadyConfirmedException("email already confirmed");
@@ -60,7 +61,6 @@ public class RegistrationServiceImplementation implements RegistrationService {
 
         tokenService.setConfirmedAt(token);
         userService.enableUser(confirmationToken.getUser().getEmail());
-        return "confirmed";
     }
 
 }

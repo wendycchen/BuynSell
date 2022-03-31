@@ -7,14 +7,15 @@ import java.util.UUID;
 import com.cgi.accountservice.models.ConfirmationToken;
 import com.cgi.accountservice.models.User;
 import com.cgi.accountservice.repository.ConfirmationTokenRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-@Service
+@Service @Slf4j
 public class ConfirmationTokenService {
 	
-	private ConfirmationTokenRepository confirmationTokenRepository;
+	private final ConfirmationTokenRepository confirmationTokenRepository;
 	
 	@Autowired
 	public ConfirmationTokenService(ConfirmationTokenRepository confirmationTokenRepository) {
@@ -38,6 +39,7 @@ public class ConfirmationTokenService {
 				user
 		);
 		saveConfirmationToken(confirmationtoken);
+		log.info("Confirmation token: {} ,created for user with email: {}, token expires at: {}",confirmationtoken.getToken(),user.getEmail(),confirmationtoken.getExpiresAt());
 		return token;
 	}
 

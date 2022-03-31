@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration @AllArgsConstructor @RequiredArgsConstructor
 public class RabbitConfig {
+    //TODO fix yaml for routing key, look into centralizing these values
     @Value("${rabbitmq.exchanges.internal}")
     private String internalExchange;
 
@@ -36,16 +37,4 @@ public class RabbitConfig {
         return BindingBuilder.bind(confirmationQueue()).to(internalTopicExchange()).with(this.internalConfirmationRoutingKey);
     }
 
-
-    public String getInternalExchange(){
-        return internalExchange;
-    }
-
-    public String getConfirmationQueue(){
-        return confirmationQueue;
-    }
-
-    public String getInternalConfirmationRouting(){
-        return internalConfirmationRoutingKey;
-    }
 }
