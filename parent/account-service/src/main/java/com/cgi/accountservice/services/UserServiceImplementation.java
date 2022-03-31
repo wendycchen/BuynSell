@@ -75,8 +75,4 @@ public class UserServiceImplementation implements UserService {
         userRepository.enableAppUser(email);
         log.info("Email confirmed for user with email: {}", email);
     }
-
-
-
-
 }
