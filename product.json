@@ -1,76 +1,85 @@
 [{
   "_id": 123,
   "price": 10000,
-  "pname": "Computer",
+  "pname": "Serenity Wreath",
   "condition": "new",
-  "brand": "Dell",
-  "desc": "Gaming Laptop XPS 15",
-  "postedBy": "Dell",
+  "brand": "Delight",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
+  "postedBy": "Walmart",
   "_class": "com.example.productMicroservice.model.Product",
   "date": {
     "$date": "2022-12-02T05:00:00Z"
-  }
+  },
+  "imageUrl": "https://images.pexels.com/photos/7621140/pexels-photo-7621140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\n"
 },{
   "_id": 246,
   "price": 2000,
   "pname": "IPhone",
   "condition": "new",
-  "brand": "Iphone",
-  "desc": "IPhone ",
-  "postedBy": "Apple",
-  "_class": "com.example.productMicroservice.model.Product"
+  "brand": "Tulip",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
+  "postedBy": "Wine",
+  "_class": "com.example.productMicroservice.model.Product",
+  "date": "2022-12-03",
+  "imageUrl": "https://images.pexels.com/photos/776656/pexels-photo-776656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 446,
   "price": 123,
-  "pname": "Plant",
+  "pname": "Tulip Plant",
   "condition": "new",
-  "brand": "Walmart",
-  "desc": "In-door",
+  "brand": "Red Wine",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
   "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/4505469/pexels-photo-4505469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 46,
   "price": 13,
   "pname": "In-door Plants",
   "condition": "new",
-  "brand": "Walmart",
-  "desc": "In-house plants",
+  "brand": "Velvet",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
   "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/1030899/pexels-photo-1030899.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 56,
   "price": 103,
   "pname": "out-door Plants",
   "condition": "new",
-  "brand": "Walmart",
-  "desc": "out-house plants",
-  "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "brand": "Snap Collections",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
+  "postedBy": "Snap INC.",
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/970089/pexels-photo-970089.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 76,
   "price": 503,
   "pname": "Rose Plants",
   "condition": "new",
   "brand": "Walmart",
-  "desc": "Rose plants",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
   "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/796620/pexels-photo-796620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 86,
   "price": 803,
   "pname": "Lilly Plants",
   "condition": "new",
-  "brand": "Walmart",
-  "desc": "Lilly plants",
-  "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "brand": "Greenery NYC",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
+  "postedBy": "amazon",
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/2146109/pexels-photo-2146109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },{
   "_id": 96,
   "price": 804,
   "pname": "Cactus",
   "condition": "new",
-  "brand": "Walmart",
-  "desc": "Cactus",
+  "brand": "amazon",
+  "desc": "Ten gorgeous fresh cut tulips, perfect to express your love and affection on any special occasion. Our designer creation is a bold mix of pink, yellow, red, white and orange petals tastefully arranged in a Mason Jar. She will love the bright mix of colours and warm feelings that come with spring flowers.",
   "postedBy": "Walmart",
-  "_class": "com.example.productMicroservice.model.Product"
+  "_class": "com.example.productMicroservice.model.Product",
+  "imageUrl": "https://images.pexels.com/photos/1084188/pexels-photo-1084188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }]
