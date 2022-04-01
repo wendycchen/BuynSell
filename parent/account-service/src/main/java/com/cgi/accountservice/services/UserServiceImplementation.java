@@ -3,15 +3,12 @@ package com.cgi.accountservice.services;
 import com.cgi.accountservice.exceptions.EmailAlreadyExistsException;
 import com.cgi.accountservice.exceptions.EmailAndUsernameExists;
 import com.cgi.accountservice.exceptions.UsernameAlreadyExistsException;
-import com.cgi.accountservice.models.Role;
 import com.cgi.accountservice.models.User;
 import com.cgi.accountservice.repository.UserRepository;
-import com.cgi.accountservice.security.PasswordEncoder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -74,5 +71,17 @@ public class UserServiceImplementation implements UserService {
     public void enableUser(String email) {
         userRepository.enableAppUser(email);
         log.info("Email confirmed for user with email: {}", email);
+    }
+
+    @Override
+    public boolean isEnabled(String email) {
+        User user = userRepository.findByEmail(email).get();
+        return user.getIsEnabled();
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        //TODO
+        return userRepository.findByEmail(email).get();
     }
 }

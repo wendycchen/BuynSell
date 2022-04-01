@@ -3,6 +3,7 @@ package com.cgi.filters;
 import com.cgi.exceptions.JwtTokenInvalidException;
 import com.cgi.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -16,7 +17,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.function.Predicate;
 
-@Component
+@Component @Slf4j
 public class JwtFilter implements GatewayFilter {
 
     @Autowired
@@ -24,12 +25,16 @@ public class JwtFilter implements GatewayFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = (ServerHttpRequest) exchange.getRequest();
+        ServerHttpRequest request = exchange.getRequest();
+
+
+        log.info("{}",request.getURI().getPath());
 
         //Open endpoints that don't require our user to authenticate
-        final List<String> apiEndpoints = List.of("/api/v1/register", "/api/v1/login","/api/v1/confirm");
+        final List<String> apiEndpoints = List.of("/api/v1/account/register", "/api/v1/account/login","/api/v1/account/confirm/*");
 
-        Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints.stream()
+        Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints
+                .stream()
                 .noneMatch(uri -> r.getURI().getPath().contains(uri));
 
         //Using a predicate to determine if the endpoint is allowed to be accessed w/o token
@@ -44,6 +49,7 @@ public class JwtFilter implements GatewayFilter {
 
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
 
+
             //Using Jwtutil to check if the token is valid by comparing secrets
             try {
                 jwtUtil.validateToken(token);
@@ -51,15 +57,22 @@ public class JwtFilter implements GatewayFilter {
                 // If the token had wrong signature, was tampered with,expired, or was empty
                 ServerHttpResponse response = exchange.getResponse();
                 response.setStatusCode(HttpStatus.BAD_REQUEST);
-
+                log.info("{}",e.getMessage());
+                return response.setComplete();
+            }
+            //Front end authenticating to go to different "page"
+            Claims claims = jwtUtil.getClaims(token);
+            if(request.getURI().getPath().equals("/authenticate")){
+                ServerHttpResponse response = exchange.getResponse();
+                response.getHeaders().add("email",claims.getSubject());
+                response.getHeaders().add("role",claims.get("role").toString());
+                response.setStatusCode(HttpStatus.ACCEPTED);
                 return response.setComplete();
             }
 
-            //Getting out id from the token so that we can use it
-            Claims claims = jwtUtil.getClaims(token);
-            exchange.getRequest().mutate().header("id", String.valueOf(claims.get("id"))).build();
+            exchange.getRequest().mutate().header("email",claims.getSubject()).header("role",String.valueOf(claims.get("role"))).build();
+            log.info("Headers added, email: {}, role: {}",claims.getSubject(),claims.get("role"));
         }
-
         return chain.filter(exchange);
     }
 
