@@ -172,5 +172,6 @@
 		<module>ConsumerRabbitMQ</module>
 		<module>ProducerRabbitMQ</module>
 		<module>productMicroservice</module>
+		<module>Api-gateway</module>
 	</modules>
 </project>

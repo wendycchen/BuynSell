@@ -5,7 +5,6 @@ import com.cgi.accountservice.exceptions.EmailAlreadyExistsException;
 import com.cgi.accountservice.exceptions.EmailAndUsernameExists;
 import com.cgi.accountservice.exceptions.UsernameAlreadyExistsException;
 import com.cgi.accountservice.models.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 

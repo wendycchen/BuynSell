@@ -5,16 +5,12 @@ import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 
 @Component
 public class JwtUtil {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
-
-    @Value("${jwt.token.validity}")
-    private long tokenValidity;
 
     public Claims getClaims(final String token) {
         try {
@@ -25,16 +21,6 @@ public class JwtUtil {
         }
         return null;
     }
-
-    public String generateToken(User user) {
-        Claims claims = Jwts.claims().setSubject(id).setSubject(email);
-        long nowMillis = System.currentTimeMillis();
-        long expiresMillis = nowMillis + tokenValidity;
-        Date exp = new Date(expiresMillis);
-        return Jwts.builder().setClaims(claims).setIssuedAt(new Date(nowMillis)).setExpiration(exp)
-                .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
-    }
-
     public void validateToken(final String token) throws JwtTokenInvalidException {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);

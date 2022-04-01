@@ -3,6 +3,7 @@ package com.cgi.filters;
 import com.cgi.exceptions.JwtTokenInvalidException;
 import com.cgi.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -16,7 +17,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.function.Predicate;
 
-@Component
+@Component @Slf4j
 public class JwtFilter implements GatewayFilter {
 
     @Autowired
@@ -24,10 +25,10 @@ public class JwtFilter implements GatewayFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = (ServerHttpRequest) exchange.getRequest();
+        ServerHttpRequest request = exchange.getRequest();
 
         //Open endpoints that don't require our user to authenticate
-        final List<String> apiEndpoints = List.of("/api/v1/register", "/api/v1/login","/api/v1/confirm");
+        final List<String> apiEndpoints = List.of("/api/v1/account/register", "/api/v1/account/login","/api/v1/account/confirm/*");
 
         Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints.stream()
                 .noneMatch(uri -> r.getURI().getPath().contains(uri));
@@ -51,13 +52,14 @@ public class JwtFilter implements GatewayFilter {
                 // If the token had wrong signature, was tampered with,expired, or was empty
                 ServerHttpResponse response = exchange.getResponse();
                 response.setStatusCode(HttpStatus.BAD_REQUEST);
-
+                log.info("{}",e.getMessage());
                 return response.setComplete();
             }
 
             //Getting out id from the token so that we can use it
             Claims claims = jwtUtil.getClaims(token);
-            exchange.getRequest().mutate().header("id", String.valueOf(claims.get("id"))).build();
+            exchange.getRequest().mutate().header("email",claims.getSubject()).build();
+            log.info("email: {}, role: {}",claims.getSubject(),claims.get("role").toString());
         }
 
         return chain.filter(exchange);
