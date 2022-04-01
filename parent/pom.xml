@@ -29,6 +29,7 @@
 		<module>eureka-server</module>
 		<module>productMicroservice</module>
 		<module>Api-gateway</module>
+		<module>ampq-service</module>
 	</modules>
 
 	<dependencyManagement>

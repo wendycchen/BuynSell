@@ -7,7 +7,7 @@
         <groupId>com.cgi</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.cgi</groupId>
+
     <artifactId>ampq-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ampq-service</name>
