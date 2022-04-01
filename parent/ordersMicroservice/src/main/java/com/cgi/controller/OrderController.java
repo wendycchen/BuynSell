@@ -2,6 +2,8 @@ package com.cgi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.ws.rs.Path;
+
 import org.apache.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +33,11 @@ public class OrderController {
 	@GetMapping("/allOrders")
 	public ResponseEntity<List<Orders>> getAllOrders(){
 		return new ResponseEntity<>(service.getOrders(), org.springframework.http.HttpStatus.OK);
+	}
+	
+	@GetMapping("FindByEmail/{email}")
+	public List<Orders> getOrderByEmail(@PathVariable("email") String email) throws OrderNotFoundException{
+		return service.getOrderByEmail(email);
 	}
 	
 	@GetMapping("/order/{orderId}")

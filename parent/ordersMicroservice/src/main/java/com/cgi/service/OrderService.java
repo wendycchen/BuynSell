@@ -1,5 +1,6 @@
 package com.cgi.service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,15 @@ public class OrderService {
 			throw new OrderNotFoundException("Order does not exist");
 		}else {
 			return repo.findByOrderNumber(orderNumber);
+		}
+	}
+	
+	public List<Orders> getOrderByEmail(String email) throws OrderNotFoundException{
+		List<Orders> temp = repo.findByEmail(email);
+		if(temp.isEmpty()) {
+			throw new OrderNotFoundException("Order does not exist");
+		}else {
+			return temp;
 		}
 	}
 	
