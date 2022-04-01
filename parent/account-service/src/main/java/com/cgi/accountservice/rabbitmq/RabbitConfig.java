@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration @AllArgsConstructor @RequiredArgsConstructor
 public class RabbitConfig {
     //TODO fix yaml for routing key, look into centralizing these values
-    @Value("${rabbitmq.exchanges.internal}")
-    private String internalExchange;
+    //@Value("${rabbitmq.exchanges.internal}")
+    private String internalExchange = "internal.exchange";
 
-    @Value("${rabbitmq.queue.confirmation}")
-    private String confirmationQueue;
+    //@Value("${rabbitmq.queue.confirmation}")
+    private String confirmationQueue ="confirmation.queue";
 
     //@Value("$rabbitmq.routing-keys.internal-confirmation")
     private String internalConfirmationRoutingKey ="internal.confirmation.routing-key";

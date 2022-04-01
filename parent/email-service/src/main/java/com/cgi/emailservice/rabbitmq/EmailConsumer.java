@@ -1,5 +1,6 @@
 package com.cgi.emailservice.rabbitmq;
 
+
 import com.cgi.ampqservice.model.UserDto;
 import com.cgi.emailservice.services.EmailService;
 import lombok.extern.slf4j.Slf4j;
