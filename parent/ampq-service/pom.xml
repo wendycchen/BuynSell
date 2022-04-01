@@ -3,12 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>parent</artifactId>
+        <groupId>com.cgi</groupId>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.cgi</groupId>
+
     <artifactId>ampq-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ampq-service</name>
@@ -42,15 +41,4 @@
         </dependency>
 
     </dependencies>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
