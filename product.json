@@ -1,0 +1,76 @@
+[{
+  "_id": 123,
+  "price": 10000,
+  "pname": "Computer",
+  "condition": "new",
+  "brand": "Dell",
+  "desc": "Gaming Laptop XPS 15",
+  "postedBy": "Dell",
+  "_class": "com.example.productMicroservice.model.Product",
+  "date": {
+    "$date": "2022-12-02T05:00:00Z"
+  }
+},{
+  "_id": 246,
+  "price": 2000,
+  "pname": "IPhone",
+  "condition": "new",
+  "brand": "Iphone",
+  "desc": "IPhone ",
+  "postedBy": "Apple",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 446,
+  "price": 123,
+  "pname": "Plant",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "In-door",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 46,
+  "price": 13,
+  "pname": "In-door Plants",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "In-house plants",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 56,
+  "price": 103,
+  "pname": "out-door Plants",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "out-house plants",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 76,
+  "price": 503,
+  "pname": "Rose Plants",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "Rose plants",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 86,
+  "price": 803,
+  "pname": "Lilly Plants",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "Lilly plants",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+},{
+  "_id": 96,
+  "price": 804,
+  "pname": "Cactus",
+  "condition": "new",
+  "brand": "Walmart",
+  "desc": "Cactus",
+  "postedBy": "Walmart",
+  "_class": "com.example.productMicroservice.model.Product"
+}]
