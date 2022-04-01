@@ -8,14 +8,28 @@
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
+	<packaging>jar</packaging>
 	<artifactId>Api-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>Api-gateway</name>
-	<description>Demo project for Spring Boot</description>
+
 	<properties>
-		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>build-docker-image</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.google.cloud.tools</groupId>
+						<artifactId>jib-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -51,12 +65,4 @@
 		</dependency>
 
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 </project>
