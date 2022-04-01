@@ -67,26 +67,27 @@
 
 		</dependencies>
 	</dependencyManagement>
-	<profiles>
-		<profile>
-			<id>build-docker-image</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.google.cloud.tools</groupId>
-						<artifactId>jib-maven-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>2.6.0</version>
+				<configuration>
+					<to>
+						<image>gcr.io/buyandsell/apigateway</image>
+					</to>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+
 
 </project>
