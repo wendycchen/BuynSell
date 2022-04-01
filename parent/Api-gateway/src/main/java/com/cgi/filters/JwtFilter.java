@@ -27,10 +27,14 @@ public class JwtFilter implements GatewayFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
+
+        log.info("{}",request.getURI().getPath());
+
         //Open endpoints that don't require our user to authenticate
         final List<String> apiEndpoints = List.of("/api/v1/account/register", "/api/v1/account/login","/api/v1/account/confirm/*");
 
-        Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints.stream()
+        Predicate<ServerHttpRequest> isApiSecured = r -> apiEndpoints
+                .stream()
                 .noneMatch(uri -> r.getURI().getPath().contains(uri));
 
         //Using a predicate to determine if the endpoint is allowed to be accessed w/o token
@@ -45,6 +49,7 @@ public class JwtFilter implements GatewayFilter {
 
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
 
+
             //Using Jwtutil to check if the token is valid by comparing secrets
             try {
                 jwtUtil.validateToken(token);
@@ -55,13 +60,19 @@ public class JwtFilter implements GatewayFilter {
                 log.info("{}",e.getMessage());
                 return response.setComplete();
             }
-
-            //Getting out id from the token so that we can use it
+            //Front end authenticating to go to different "page"
             Claims claims = jwtUtil.getClaims(token);
-            exchange.getRequest().mutate().header("email",claims.getSubject()).build();
-            log.info("email: {}, role: {}",claims.getSubject(),claims.get("role").toString());
-        }
+            if(request.getURI().getPath().equals("/authenticate")){
+                ServerHttpResponse response = exchange.getResponse();
+                response.getHeaders().add("email",claims.getSubject());
+                response.getHeaders().add("role",claims.get("role").toString());
+                response.setStatusCode(HttpStatus.ACCEPTED);
+                return response.setComplete();
+            }
 
+            exchange.getRequest().mutate().header("email",claims.getSubject()).header("role",String.valueOf(claims.get("role"))).build();
+            log.info("Headers added, email: {}, role: {}",claims.getSubject(),claims.get("role"));
+        }
         return chain.filter(exchange);
     }
 

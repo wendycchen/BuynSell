@@ -72,4 +72,16 @@ public class UserServiceImplementation implements UserService {
         userRepository.enableAppUser(email);
         log.info("Email confirmed for user with email: {}", email);
     }
+
+    @Override
+    public boolean isEnabled(String email) {
+        User user = userRepository.findByEmail(email).get();
+        return user.getIsEnabled();
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        //TODO
+        return userRepository.findByEmail(email).get();
+    }
 }

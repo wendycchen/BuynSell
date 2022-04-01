@@ -12,6 +12,8 @@ public interface UserService extends UserDetailsService {
 
     String addUser(User user) throws EmailAndUsernameExists, EmailAlreadyExistsException, UsernameAlreadyExistsException;
     void enableUser(String email);
+    boolean isEnabled(String email);
+    User getUserByEmail(String email);
 
     //TODO add CRUD
 }

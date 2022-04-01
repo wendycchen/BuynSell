@@ -3,6 +3,7 @@ package com.cgi.accountservice.controller;
 import com.cgi.accountservice.exceptions.*;
 import com.cgi.accountservice.models.LoginRequest;
 import com.cgi.accountservice.models.RegistrationRequest;
+import com.cgi.accountservice.models.UserDto;
 import com.cgi.accountservice.services.RegistrationService;
 import com.cgi.accountservice.services.UserService;
 import com.cgi.accountservice.security.JwtUtil;
@@ -14,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -56,7 +59,7 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
             //Using springs authentication manager to check if login credentials are correct
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
@@ -67,9 +70,26 @@ public class AccountController {
             }
             //Grabbing our user to
             User user = (User) userService.loadUserByUsername(loginRequest.getEmail());
+
+            //TODO comment this back in, was commented out for testing purposes
+            //Checking to see if user has confirmed their account
+         /*   if(!userService.isEnabled(loginRequest.getEmail())){
+                log.info("User: {} tried to login before email confirmation", loginRequest.getEmail());
+                return ResponseEntity.badRequest().body("unconfirmed");
+            }*/
+
             //If the login credentials are correct, we generate a JWT token using the email, username and id as subjects.
             String token = jwtUtil.generateToken(user);
-            log.info("Successful login from user: {} with role(s): {}",user.getUsername(),user.getAuthorities());
-            return ResponseEntity.ok().body(token);
-        }
+            com.cgi.accountservice.models.User fullUser = userService.getUserByEmail(loginRequest.getEmail());
+            UserDto userDto = new UserDto(fullUser.getUsername(), fullUser.getFirstName(), fullUser.getLastName(), fullUser.getEmail(), fullUser.getUserRole().name());
+
+            log.info("Successful login from user: {} with role(s): {}, JWT: {}",user.getUsername(),user.getAuthorities(),token);
+            return ResponseEntity.ok().body(userDto);
+    }
+
+    //TODO remove this
+    @GetMapping(path = "/test")
+    public void confirmEmailConfirmation(@RequestHeader Map<String, String> headers) {
+      log.info("{} : {}",headers.get("email").toString(), headers.get("role"));
+    }
 }
