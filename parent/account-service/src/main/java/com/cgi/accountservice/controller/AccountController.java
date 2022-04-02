@@ -9,6 +9,7 @@ import com.cgi.accountservice.services.UserService;
 import com.cgi.accountservice.security.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -86,8 +87,9 @@ public class AccountController {
 
             log.info("Successful login from user: {} with role(s): {}, JWT: {}",user.getUsername(),user.getAuthorities(),token);
 
-            ResponseEntity<?> response = new ResponseEntity<>(userDto,HttpStatus.ACCEPTED);
-
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("Authorization", token);
+            ResponseEntity<?> response = new ResponseEntity<>(userDto,responseHeaders,HttpStatus.ACCEPTED);
             return response;
     }
 
