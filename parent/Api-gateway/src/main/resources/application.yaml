@@ -1,0 +1,26 @@
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200/"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  jackson:
+    default-property-inclusion: non_null
+jwt:
+  secret: secret
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+

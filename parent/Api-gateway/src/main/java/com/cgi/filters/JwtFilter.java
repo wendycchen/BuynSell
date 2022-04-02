@@ -3,6 +3,7 @@ package com.cgi.filters;
 import com.cgi.exceptions.JwtTokenInvalidException;
 import com.cgi.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -11,13 +12,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.function.Predicate;
-
-@Component @Slf4j
+@RestController
+@Component @Slf4j @RequiredArgsConstructor
 public class JwtFilter implements GatewayFilter {
 
     @Autowired
@@ -27,8 +30,10 @@ public class JwtFilter implements GatewayFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-
+        log.info("---------------------------------------------------------");
         log.info("{}",request.getURI().getPath());
+        log.info("---------------------------------------------------------");
+        log.info("---------------------------------------------------------");
 
         //Open endpoints that don't require our user to authenticate
         final List<String> apiEndpoints = List.of("/api/v1/account/register", "/api/v1/account/login","/api/v1/account/confirm/*");

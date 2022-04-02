@@ -1,8 +1,10 @@
 package com.cgi.accountservice.models;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@AllArgsConstructor
+@AllArgsConstructor @Getter
 public class UserDto {
     private String username;
     private String firstName;

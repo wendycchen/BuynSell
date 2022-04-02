@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration @RequiredArgsConstructor
 public class GatewayConfig {
 
-
     private final JwtFilter filter;
 
     @Bean
@@ -25,6 +24,7 @@ public class GatewayConfig {
                 .route("test", r -> r.path("/authenticate").filters(f -> f.filter(filter)).uri("lb://account-service"))
                 .build();
     }
+
 
 
 
