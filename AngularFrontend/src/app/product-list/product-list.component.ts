@@ -20,12 +20,6 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
       this.productsService.getProducts().subscribe((products : Product[]) => {
           this.products = products
-
-          for (let product of this.products) {
-              product.imageUrl = product.image ? 'data:image/jpg;base64,' + product.image :
-              "../../../assets/static/images/plant1.jpg";
-              
-          }
       }, (error: ErrorEvent) => {
       })
   }
