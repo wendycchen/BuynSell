@@ -22,6 +22,7 @@
 		<spring.cloud.starter.netflix.eureka.version>3.1.1</spring.cloud.starter.netflix.eureka.version>
 		<spring.cloud.starter.gateway.version>3.1.1</spring.cloud.starter.gateway.version>
 		<com.cgi.amqpservice.version>0.0.1-SNAPSHOT</com.cgi.amqpservice.version>
+		<image>tomskiff/${project.artifactId}:${project.version}</image>
 	</properties>
 
 	<dependencies>
@@ -99,9 +100,43 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<!--Configuration to use jib for building and pushing docker images -->
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>jib-maven-plugin</artifactId>
+					<version>3.1.4</version>
+					<configuration>
+						<from>
+							<image>eclipse-temurin</image>
+							<platforms>
+								<platform>
+									<architecture>arm64</architecture>
+									<os>linux</os>
+								</platform>
+								<platform>
+									<architecture>amd64</architecture>
+									<os>linux</os>
+								</platform>
+							</platforms>
+						</from>
+						<to>
+							<tags>
+								<tag>latest</tag>
+							</tags>
+						</to>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>build</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
