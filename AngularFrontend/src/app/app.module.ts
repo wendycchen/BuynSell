@@ -9,7 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ChatComponent } from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule} from '@angular/material/card';
@@ -17,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SellComponent } from './sell/sell.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -30,8 +31,8 @@ const routes: Routes = [
     path:'',
     component:HomeComponent
   }, {
-    path:'chat',
-    component:ChatComponent
+    path:'cart',
+    component:CartComponent
   }, {
     path:'profile',
     component:ProfileComponent
@@ -41,7 +42,11 @@ const routes: Routes = [
   }, {
     path:'product',
     component: ProductListComponent
+  },{
+    path: 'checkout',
+    component: CheckoutComponent
   }
+
 ]
 
 @NgModule({
@@ -53,9 +58,10 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    ChatComponent,
     SellComponent,
-    RegisterComponent
+    RegisterComponent,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

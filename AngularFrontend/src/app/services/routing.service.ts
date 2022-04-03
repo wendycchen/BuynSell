@@ -35,4 +35,10 @@ export class RoutingService {
   openProduct() {
     this.routerService.navigate(['product']);
   }
+  openCart(){
+    this.routerService.navigate(['cart']);
+  }
+  openCheckout(){
+    this.routerService.navigate(['checkout'])
+  }
 }

@@ -1,0 +1,124 @@
+<div class="container">
+  <h2>Checkout</h2>
+  <p>Please fill in the following details to proceed with your order. All fields required are marked with a
+    <strong>*</strong>.</p>
+  <div class="row">
+
+
+<!--Products that are in the cart should be displayed here**** Screen only accessible IF cart has items-->
+
+
+  <div class="col-md-8 order-md-1">
+    <h4 class="mat-body-2">Billing address*</h4>
+    <form class="needs-validation">
+      <div class="row">
+        <div class="col-md-6 mat-body-2">
+          <label for="firstName">First name*</label>
+          <input type="text" class="form-control" id="firstName" placeholder="First Name" value="" required>
+        </div>
+        <div class="col-md-6 mat-body-2">
+          <label for="lastName">Last name*</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Last name" value="" required>
+        </div>
+      </div>
+      <div class="mat-body-2">
+        <!--This value will be sent to the back end --->
+        <label for="email">Email*</label>
+        <input type="email" class="form-control" id="email" placeholder="CGI@gmail.com" required>
+      </div>
+      <br>
+      <!--ADDRESS SECTION-->
+      <div class="mat-body-2">
+        <label for="address">Address*</label>
+        <input type="text" class="form-control" id="address" placeholder="123 Seaseme Street" required>
+        <small class="text-muted">Street number and street name</small>
+
+      </div>
+      <br>
+      <div class="mat-body-2">
+        <label for="extraAddress">Address 2</label>
+        <input type="text" class="form-control" id="extraAddress" placeholder="Optional">
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-3 mat-body-2" >
+          <label for="country">Country*</label>
+          <select id="country" class="d-block h-50" required>
+            <option value="">Choose...</option>
+            <option>Canada</option>
+          </select>
+        </div>
+        <div class="col-md-3 mat-body-2">
+          <label for="state">Province/State*</label>
+          <select id="state" class="d-block h-50" required>
+            <option value="">Choose...</option>
+            <option>British Columbia</option>
+            <option>Alberta</option>
+            <option>Saskatchewan</option>
+            <option>Manitoba</option>
+            <option>Ontario</option>
+            <option>Quebec</option>
+            <option>Newfoundland</option>
+            <option>Prince Edward Island</option>
+            <option>New Brunswick</option>
+            <option>Yukon</option>
+            <option>Northwest Territories</option>
+            <option>Nunavut</option>
+            <option>Nova Scotia</option>
+          </select>
+        </div>
+        </div>
+      <br>
+        <div class="h-50 d-inline-block mat-body-2">
+          <label for="zip">Postal Code/ ZIP* </label>
+          <input type="text" class="form-control" id="zip" placeholder="Postal Code/ZIP" required>
+        </div>
+<!--PAYMENT SECTION-->
+      <hr class="mat-body-2">
+      <h4 class="mat-body-2">Payment*</h4>
+      <div class="d-block my-3">
+        <div class="custom-control custom-radio">
+          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+          <label class="custom-control-label" for="credit">Credit card</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+          <label class="custom-control-label" for="debit">Debit card</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mat-body-2">
+          <label for="ccname">Name on card*</label>
+          <input type="text" class="form-control" id="ccname" placeholder="ex. John Smith" required>
+          <small class="text-muted">Full name as displayed on card</small>
+        </div>
+        <div class="col-md-6 mat-body-2">
+          <label for="ccNum">Credit card number*</label>
+          <input type="text" class="form-control" id="ccNum" placeholder="1234 1234 1234 1234" required>
+          <small class="text-muted">16 digit card length only accepted*</small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mat-body-2">
+          <label for="ccExp">Expiration*</label>
+          <input type="text" class="form-control" id="ccExp" placeholder="ex. 09/23" required>
+        </div>
+        <div class="col-md-3 mat-body-2">
+          <label for="cccvs">CVS*</label>
+          <input type="text" class="form-control" id="cccvs" placeholder="" required>
+          <small class="text-muted">3 or 4 digits behind card</small>
+          <div class="invalid-feedback">
+            Security code required
+          </div>
+        </div>
+      </div>
+      <hr class="mat-body-2">
+      <!--Add submit function--->
+      <button class="btn btn-primary btn-lg btn-block" type="button">Continue to checkout</button>
+    </form>
+  </div>
+
+  </div>
+
+
+</div>

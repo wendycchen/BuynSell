@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   enterProduct() {
     this.routerService.openProduct();
   }
-  
+
   enterLogin() {
     this.routerService.openLogin();
   }
@@ -28,5 +28,7 @@ export class HeaderComponent implements OnInit {
   enterHome() {
     this.routerService.openHome();
   }
-
+  enterCart(){
+    this.routerService.openCart();
+  }
 }
