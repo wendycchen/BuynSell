@@ -20,6 +20,7 @@
 		<spring.boot.maven.plugin.version>2.6.5</spring.boot.maven.plugin.version>
 		<spring.boot.starter.test.version>2.6.6</spring.boot.starter.test.version>
 		<spring.cloud.starter.netflix.eureka.version>3.1.1</spring.cloud.starter.netflix.eureka.version>
+		<spring.cloud.starter.gateway.version>3.1.1</spring.cloud.starter.gateway.version>
 		<com.cgi.amqpservice.version>0.0.1-SNAPSHOT</com.cgi.amqpservice.version>
 	</properties>
 
@@ -60,6 +61,13 @@
 				<groupId>com.cgi.amqpservice</groupId>
 				<artifactId>ampq-service</artifactId>
 				<version>${com.cgi.amqpservice.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-gateway</artifactId>
+				<version>${spring.cloud.starter.gateway.version}</version>
 			</dependency>
 
 			<dependency>
@@ -80,7 +88,14 @@
 				<version>8.0.28</version>
 			</dependency>
 
-
+			<!-- only for mac, used in api gateway -->
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-resolver-dns-native-macos</artifactId>
+				<version>4.1.73.Final</version>
+				<classifier>osx-aarch_64</classifier>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -102,7 +117,7 @@
 		<module>eureka-server</module>
 		<module>productMicroservice</module>
 		<module>ampq-service</module>
-		<module>Api-gateway</module>
+		<module>api-gateway</module>
 	</modules>
 
 </project>
