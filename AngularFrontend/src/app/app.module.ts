@@ -8,7 +8,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ChatComponent } from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule} from '@angular/material/card';
@@ -21,6 +20,8 @@ import { AdminComponent } from './admin/admin.component';
 import { CanActivateRouteGuard } from './guards/can-activate-route.guard';
 import { TokenInterceptor } from './TokenInterceptor';
 import { RoleGuard } from './guards/role.guard';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -33,10 +34,9 @@ const routes: Routes = [
     path:'',
     component:HomeComponent,
     canActivate:[CanActivateRouteGuard]
-  }, {
-    path:'chat',
-    component:ChatComponent,
-    canActivate:[CanActivateRouteGuard]
+  },{
+    path:'cart',
+    component:CartComponent
   }, {
     path:'profile',
     component:ProfileComponent,
@@ -56,8 +56,12 @@ const routes: Routes = [
   }, {
     path:'admin',
     component: AdminComponent,
-    canActivate:[CanActivateRouteGuard, RoleGuard]
+    canActivate:[CanActivateRouteGuard, RoleGuard],
+  },{
+    path: 'checkout',
+    component: CheckoutComponent
   }
+
 ]
 
 @NgModule({
@@ -69,11 +73,12 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    ChatComponent,
     SellComponent,
     RegisterComponent,
     SettingComponent,
     AdminComponent,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
