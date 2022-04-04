@@ -7,10 +7,13 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-  db:
+    networks:
+      - spring
+  mysql:
     #Remove platform on windows, only used to run mysql on M1 mac
     platform: linux/x86_64
     image: mysql:5.7
+    container_name: mysql-container
     environment:
       # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
@@ -18,6 +21,28 @@ services:
       - '3307:3306'
     volumes:
       - my-db:/var/lib/mysql
+    networks:
+      - spring
+
+  eureka-server:
+    image: tomskiff/eureka-server:latest
+    container_name: eureka-server-container
+    ports:
+      - "8761:8761"
+    networks:
+      - spring
+
+  api-gateway:
+    image: tomskiff/api-gateway:latest
+    container_name: api-gateway-container
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - spring
 
   mongodb:
     image: mongo
@@ -30,6 +55,36 @@ services:
     ports:
       - 27017:27017
     restart: unless-stopped
+
+  account-service:
+    image: tomskiff/account-service:latest
+    container_name: account-service-container
+    ports:
+      - "9006:9006"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka-server
+      - rabbitmq
+      - mysql
+    networks:
+      - spring
+
+  email-service:
+    image: tomskiff/email-service:latest
+    container_name: email-service-container
+    ports:
+      - "9001:9001"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - eureka-server
+      - rabbitmq
+    networks:
+      - spring
+networks:
+  spring:
+    driver: bridge
 
 # Names our volume
 volumes:
