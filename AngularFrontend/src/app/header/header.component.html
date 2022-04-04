@@ -25,42 +25,47 @@
           Products
         </button>
       </li>
-      </ul>
-      <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
-        <ul class="navbar-nav ml-auto flex-nowrap">
+    </ul>
+    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+      <ul class="navbar-nav ml-auto flex-nowrap">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              *ngIf="authService.loginStatus == 1"
+            >
+              Profile
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" (click)="enterProfile()">My Profile</a>
+              <a class="dropdown-item" (click)="enterSetting()">Setting</a>
+              <!-- <a class="dropdown-item" href="/profile">My Profile</a>
+              <a class="dropdown-item" href="/profile/setting">Setting</a> -->
+            </div>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="enterSell()">
+            <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="enterSell()"> -->
+              Sell
+            </button>
+          </li>
         <li class="nav-item">
           <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 0" (click)="enterLogin()">
+          <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken == null" (click)="enterLogin()"> -->
             Log In/ Sign Up
           </button>
           <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="logOut()">
+          <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="logOut()"> -->
             Log Out
           </button>
         </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="enterSell()">
-            Sell
-          </button>
-        </li>
         
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            *ngIf="authService.loginStatus == 1"
-          >
-            Profile
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/profile">My Profile</a>
-            <a class="dropdown-item" href="/profile/setting">Setting</a>
-          </div>
-        </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus==1" (click)="enterAdmin()">
+          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus==2" (click)="enterAdmin()">
             Admin
           </button>
         </li>

@@ -7,12 +7,18 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  loginStatus:any;
+  loginStatus:any = 0;
+  userData: any;
 
   constructor(private http : HttpClient) { }
 
+
+  authenticateUser(data: any) {
+    return this.http.post("http://localhost:8080/api/v1/account/login", data);
+  }
+
   generateToken(request: any){
-    return this.http.post("http://localhost:9006/api/v1/account/authenticate",request,{responseType:'text' as 'json'});
+    return this.http.post("http://localhost:8080/authenticate",request,{responseType:'text' as 'json'});
   }
 
   setBearerToken(token : string){
@@ -27,8 +33,25 @@ export class AuthenticationService {
     this.loginStatus = status;
   }
 
-  isUserAuthenticated(token: any): Promise<boolean> {
-    return this.http.post(`http://localhost:9006/api/v1/account/authenticate`,{},
+  logOut() {
+    localStorage.removeItem('Bearer');
+  }
+
+  get data(): any {
+    console.log("I am inside authentication service get DAta");
+    console.log(this.userData);
+
+    return this.userData;
+  }
+
+  set data(val: any){
+    console.log("inside set data in authentication service");
+    this.userData = val;
+    console.log(this.userData);
+  }
+
+  isUserAuthenticated(token: any) {
+    return this.http.post(`http://localhost:8080/authenticate`,{},
     {
       headers: new HttpHeaders().set("Authorization", `Bearer ${token}`)
     })

@@ -15,11 +15,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SellComponent } from './sell/sell.component';
 import { SettingComponent } from './setting/setting.component';
 import { AdminComponent } from './admin/admin.component';
-import { CanActivateRouteGuard } from './can-activate-route.guard';
+import { CanActivateRouteGuard } from './guards/can-activate-route.guard';
+import { TokenInterceptor } from './TokenInterceptor';
 
 
 const routes: Routes = [
@@ -31,22 +32,28 @@ const routes: Routes = [
     component:RegisterComponent
   }, {
     path:'',
-    component:HomeComponent
+    component:HomeComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'chat',
-    component:ChatComponent
+    component:ChatComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'sell',
-    component:SellComponent
+    component:SellComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile/setting',
-    component:SettingComponent
+    component:SettingComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'product',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'admin',
     component: AdminComponent,
@@ -79,7 +86,11 @@ const routes: Routes = [
     MatCardModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

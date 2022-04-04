@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { RoutingService } from '../services/routing.service';
@@ -14,9 +14,13 @@ export class LoginComponent implements OnInit {
   token: any;
   errorMessage!: string;
 
+  numbers:any;
+
   form = new FormGroup({
-    inputEmail: new FormControl('', Validators.required),
-    inputPassword: new FormControl('', Validators.required)
+    inputEmail: new FormControl('', ),
+    inputPassword: new FormControl('',)
+    // inputEmail: new FormControl('', Validators.required),
+    // inputPassword: new FormControl('', Validators.required)
 
   })
 
@@ -28,6 +32,8 @@ export class LoginComponent implements OnInit {
 
   verifyLogin() {
     let userData = {
+      // "email": "testuser1@abc.com",
+      // "password":"user"
       "email": this.form.get('inputEmail')?.value,
       "password":this.form.get('inputPassword')?.value
     }
@@ -35,16 +41,45 @@ export class LoginComponent implements OnInit {
     console.log(this.form.get('inputEmail')?.value);
     console.log(this.form.get('inputPassword')?.value);
 
-    this.token = this.authService.generateToken(userData);
-    this.token.subscribe((tokenValue: any) => {
-      this.authService.setBearerToken(tokenValue);
+    this.authService.authenticateUser(userData).subscribe((res: any) => {
+      console.log("res ->", res)
+      this.token = res.token;
+      // this.authService.isUserAuthenticated(this.token);
+      
+      this.authService.setBearerToken(this.token);
+      this.authService.setLoginStatus(1);
+      this.authService.data = res;
+
       this.routerService.openHome();
 
-    }, (error: { message: string; }) => {
-      //TODO
-       console.log(error.message);
-       this.errorMessage = "Invalid Login"
+      // this.authService.setBearerToken(tokenValue);
+      // this.routerService.openHome();
     })
+
+
+
+    // this.token = this.authService.generateToken(userData);
+    // console.log(this.token);
+    // this.token.subscribe((tokenValue: any) => {
+
+    //   this.authService.setBearerToken(tokenValue);
+    //   // console.log("tokenValue----- " + tokenValue);
+    //   // this.authService.setLoginStatus(1);
+    //   this.routerService.openHome();
+
+    // }, (error: { message: string; }) => {
+    //   //TODO
+    //    console.log(error.message);
+    //    this.errorMessage = "Invalid Login"
+    // })
+
+    // this.authService.isUserAuthenticated(userData).subscribe((tokenValue: any) => {
+    //   this.routerService.openHome();
+    // }, (err: {message: string;}) => {
+    //   console.log(err.message);
+    //   this.errorMessage = "invalid";
+    // })
+    
 
   }
 

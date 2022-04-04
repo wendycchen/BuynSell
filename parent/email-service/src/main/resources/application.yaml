@@ -1,7 +1,0 @@
-rabbitmq:
-  exchanges:
-     internal: internal.exchange
-  queue:
-     notfication: email-service.queue
-  routing-keys:
-     internal-notification: internal.email-service.routing-key

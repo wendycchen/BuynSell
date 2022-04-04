@@ -2,7 +2,23 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+<<<<<<< HEAD
     <content url="file://$MODULE_DIR$" />
+=======
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/parent/Api-gateway" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/ConsumerRabbitMQ" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/ProducerRabbitMQ" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/account-service" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/ampq-service" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/cartMicroservice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/email-service" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/eureka-server" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/ordersMicroservice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/parent/productMicroservice" isTestSource="false" />
+    </content>
+>>>>>>> a751f21375a5136b3c0aa23e38e87c9a33d2f5ef
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
