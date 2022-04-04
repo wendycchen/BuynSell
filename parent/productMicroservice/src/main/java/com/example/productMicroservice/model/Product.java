@@ -21,7 +21,7 @@ public class Product {
 	
 	public Product(int prodId, double price, String pname, String condition, String brand, String desc, String postedBy,
 			LocalDate date) {
-		super();
+
 		this.prodId = prodId;
 		this.price = price;
 		this.pname = pname;

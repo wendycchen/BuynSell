@@ -2,6 +2,8 @@ package com.example.productMicroservice.controller;
 
 import java.util.List;
 
+import com.example.productMicroservice.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.productMicroservice.exception.ProductNotFoundException;
 import com.example.productMicroservice.model.Product;
-import com.example.productMicroservice.service.ProductService;
 
 @RestController
 @RequestMapping("/productMicro")
+
 public class ProductController {
 
+	@Autowired
 	private final ProductService productserve;
 	
 	public ProductController(ProductService productserve) {
