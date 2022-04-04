@@ -43,12 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.setLoginStatus(0);
     this.authService.logOut();
-    // console.log("---" );
-    // console.log(this.authService.getToken());
-    // Does setting it to empty means logging out?
-    // this.authService.setBearerToken(''); 
     this.routerService.openHome();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { AnyForUntypedForms, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { RoutingService } from '../services/routing.service';
@@ -14,34 +14,39 @@ export class SettingComponent implements OnInit {
   uForm:any;
   user:any;
   uid:any;
-  ufname:any;
-  ulname:string='';
+  lastName:any;
+  firstName:string='';
   email:string='';
-  blockList:any;
+  username:string='';
+  token:string='';
+  role:string='';
+  ufnameDisplay: string='';
+  ulnameDisplay: string='';
 
   pForm:any;
   warningMessage:string='';
   
-  constructor(private userServ: UserService, private formBuilder:FormBuilder) { }
+  constructor(private authServ:AuthenticationService, private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
-    this.userServ.getUser().subscribe(
-      (data:any) => {
-        this.user = data;
-        this.uid = this.user[0].id;
-        this.ufname = this.user[0].ufname;
-        this.ulname = this.user[0].ulname;
-        this.email = this.user[0].email;
-        this.blockList = this.user[0].blocked;
-        this.update();
-      }, (err:any) => {
-        console.log(err);
-      });
-      this.uForm = new FormGroup({
-        ufname: new FormControl('', Validators.required),
-        ulname: new FormControl('', Validators.required),
-        email: new FormControl('',Validators.required)
-      })
+
+    this.user = this.authServ.getLogUser();
+    console.log(this.user);
+    this.firstName = this.user.firstName;
+    this.lastName = this.user.lastName;
+    this.email = this.user.email;
+    this.ufnameDisplay = this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1);
+    this.ulnameDisplay = this.lastName.charAt(0).toUpperCase() + this.lastName.slice(1);
+
+    this.uForm = new FormGroup({
+      ufname: new FormControl('', Validators.required),
+      ulname: new FormControl('', Validators.required),
+      email: new FormControl('',Validators.required)
+    })
+
+    this.update();
+
+    
 
       this.pForm = new FormGroup({
         newPass: new FormControl('', Validators.required),
@@ -50,28 +55,23 @@ export class SettingComponent implements OnInit {
   }
 
   update() {
-    this.uForm = this.formBuilder.group({
-      id:this.uid,
-      ufname: this.ufname,
-      ulname: this.ulname,
-      email:this.email,
-      blocked:this.blockList
-    });
-    console.log("inside update() ----> " + this.blockList);
-    
+    console.log(this.firstName);
+    this.uForm.get('ufname').setValue(this.firstName);
+    this.uForm.get('ulname').setValue(this.lastName);
+    this.uForm.get('email').setValue(this.email);
   }
 
   updateProfile(uForm:any){
-    console.log(this.uForm);
-    console.log(this.uForm.valid);
-    this.userServ.updateUser(this.uForm.value).subscribe((data:any) => {
-      if(data != null) {
-        console.log("UPDATED OK");
-        this.ngOnInit();
-      } else {
-        console.log("NO UPDATE");
-      }
-    })
+    this.user.firstName = this.uForm.get('ufname').value;
+    this.user.lastName = this.uForm.get('ulname').value;
+    this.user.email = this.uForm.get('email').value;
+
+    console.log("inside update profile------");
+    console.log(this.user);
+
+
+    this.authServ.logUser(this.user);
+    this.ngOnInit();
   }
 
   updatePassword(pForm:any){
@@ -87,17 +87,17 @@ export class SettingComponent implements OnInit {
     
   }
 
-  unblockUser(id:number){
-    this.blockList = this.blockList.filter((item:any) => item.id !== id);
-    this.uForm.value.blocked = this.blockList;
-    this.userServ.updateUser(this.uForm.value).subscribe((data:any) => {
-      if(data != null) {
-        console.log("UPDATED OK");
+  // unblockUser(id:number){
+  //   this.blockList = this.blockList.filter((item:any) => item.id !== id);
+  //   this.uForm.value.blocked = this.blockList;
+  //   this.userServ.updateUser(this.uForm.value).subscribe((data:any) => {
+  //     if(data != null) {
+  //       console.log("UPDATED OK");
 
-      } else {
-        console.log("NO UPDATE");
-      }
-    })
-  }
+  //     } else {
+  //       console.log("NO UPDATE");
+  //     }
+  //   })
+  // }
 
 }

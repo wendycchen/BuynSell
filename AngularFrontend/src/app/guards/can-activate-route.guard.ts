@@ -16,24 +16,10 @@ export class CanActivateRouteGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       let token = this.auth.getToken();
-      console.log("INSIDE CAN ACTIVATE GUARD -----> " + token);
       if(token) {
         return true;
       }
       this.router.openLogin();
       return false;
-      // const res = this.auth.isUserAuthenticated(token);
-
-      // return res
-      // .then((res:any) => {
-      //   if(!res) {
-      //     this.rouObj.openLogin();
-      //   }
-      //   return res;
-      // })
-      // .catch((err) => {
-      //   this.rouObj.openLogin();
-      //   return false;
-      // })
   }
 }

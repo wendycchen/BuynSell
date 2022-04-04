@@ -19,9 +19,10 @@
             class="rounded-circle img-fluid"
             style="width: 150px"
           />
-          <h5 class="my-3" style="padding-top: 5px; padding-bottom: 5px">
-            {{ ufname }} {{ ulname }}
-          </h5>
+          <h1 class="my-3" style="padding-top: 5px; padding-bottom: 5px">
+            {{ ufnameDisplay }} {{ ulnameDisplay }}
+          </h1>
+          <p class="text-muted mb-1">{{email}}</p>          
           <div class="dropdown-divider"></div>
           <div class="list-group" id="myList" role="tablist">
             <a
@@ -38,14 +39,6 @@
               href="#changepassword"
               role="tab"
               >Change password</a
-            >
-            <div class="dropdown-divider"></div>
-            <a
-              class="list-group-item list-group-item-action"
-              data-toggle="list"
-              href="#editblock"
-              role="tab"
-              >Edit block list</a
             >
           </div>
         </div>
@@ -185,34 +178,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane" id="editblock" role="tabpanel">
-          <div class="table-box">
-          <table class="table" style="margin-top: 5%">
-            <thead>
-              <tr>
-                <th scope="col">User ID</th>
-                <th scope="col">Email</th>
-                <th scope="col">Unblock</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let block of blockList">
-                <th scope="row">{{ block.id }}</th>
-                <td>{{ block.email }}</td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    (click)="unblockUser(block.id)"
-                  >
-                    Unblock
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        
-        </div>
+       
       </div>
     </div>
   </div>
