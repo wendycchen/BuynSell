@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -21,7 +20,6 @@ import { SettingComponent } from './setting/setting.component';
 import { AdminComponent } from './admin/admin.component';
 import { CanActivateRouteGuard } from './guards/can-activate-route.guard';
 import { TokenInterceptor } from './TokenInterceptor';
-
 
 const routes: Routes = [
   {
