@@ -46,15 +46,15 @@ services:
 
   mongodb:
     image: mongo
-    container_name: mongodb
-    environment:
-      - PUID=1000
-      - PGID=1000
+    container_name: mongo-container
     volumes:
       - my-db:/var/lib/mongoDB
     ports:
-      - 27017:27017
+      - "27017:27017"
     restart: unless-stopped
+    networks:
+      - spring
+
 
   account-service:
     image: tomskiff/account-service:latest
@@ -92,6 +92,17 @@ services:
     depends_on:
       - eureka-server
       - rabbitmq
+    networks:
+      - spring
+
+  product-service:
+    image: tomskiff/product-microservice:latest
+    container_name: product-microservice-container
+    ports:
+      - "8999:8999"
+    depends_on:
+      - eureka-server
+      - mongodb
     networks:
       - spring
 networks:

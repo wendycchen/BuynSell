@@ -31,7 +31,7 @@ public class JwtFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
 
         log.info("---------------------------------------------------------");
-        log.info("{}",request.getURI().getPath());
+        log.info("{}",request.getURI());
         log.info("---------------------------------------------------------");
         log.info("---------------------------------------------------------");
 
