@@ -13,14 +13,14 @@ public class Product {
 	private int prodId;
 
 	private double price;
-	private String pname, condition, brand, desc, postedBy;
+	private String pname, condition, brand, desc, postedBy, imageUrl;
 	private LocalDate date;
 		
 	public Product() {
 	}
 	
 	public Product(int prodId, double price, String pname, String condition, String brand, String desc, String postedBy,
-			LocalDate date) {
+			LocalDate date, String imageUrl) {
 		super();
 		this.prodId = prodId;
 		this.price = price;
@@ -30,6 +30,7 @@ public class Product {
 		this.desc = desc;
 		this.postedBy = postedBy;
 		this.date = date;
+		this.imageUrl = imageUrl;
 	}
 	
 	public int getprodId() {
@@ -96,9 +97,18 @@ public class Product {
 		this.date = date;
 	}
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [prodId=" + prodId + ", price=" + price + ", pname=" + pname + ", condition=" + condition + ", brand="
-				+ brand + ", desc=" + desc + ", postedBy=" + postedBy + ", date=" + date + "]";
+		return "Product [prodId=" + prodId + ", price=" + price + ", pname=" + pname + ", condition=" + condition
+				+ ", brand=" + brand + ", desc=" + desc + ", postedBy=" + postedBy + ", imageUrl=" + imageUrl
+				+ ", date=" + date + "]";
 	}
 }

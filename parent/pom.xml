@@ -153,6 +153,7 @@
 		<module>productMicroservice</module>
 		<module>ampq-service</module>
 		<module>api-gateway</module>
+		<module>orders-microservice</module>
 	</modules>
 
 </project>

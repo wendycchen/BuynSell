@@ -40,6 +40,7 @@ public class ProductService {
 		prodObj.setPostedBy(product.getPostedBy());
 		prodObj.setBrand(product.getBrand());
 		prodObj.setDate(product.getDate());
+		prodObj.setImageUrl(product.getImageUrl());
 		return productRepo.save(prodObj);
 	}
 	

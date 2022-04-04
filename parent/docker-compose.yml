@@ -70,6 +70,18 @@ services:
     networks:
       - spring
 
+  orders-service:
+    image: tomskiff/orders-microservice:latest
+    container_name: orders-service-container
+    ports:
+      - "9004:9004"
+    depends_on:
+      - eureka-server
+      - rabbitmq
+      - mysql
+    networks:
+      - spring
+
   email-service:
     image: tomskiff/email-service:latest
     container_name: email-service-container
