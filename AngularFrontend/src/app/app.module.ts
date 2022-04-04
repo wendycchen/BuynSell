@@ -20,6 +20,7 @@ import { SettingComponent } from './setting/setting.component';
 import { AdminComponent } from './admin/admin.component';
 import { CanActivateRouteGuard } from './guards/can-activate-route.guard';
 import { TokenInterceptor } from './TokenInterceptor';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
@@ -55,7 +56,7 @@ const routes: Routes = [
   }, {
     path:'admin',
     component: AdminComponent,
-    canActivate:[CanActivateRouteGuard]
+    canActivate:[CanActivateRouteGuard, RoleGuard]
   }
 ]
 
