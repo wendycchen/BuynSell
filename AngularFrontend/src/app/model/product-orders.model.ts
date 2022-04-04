@@ -1,3 +1,5 @@
+import {ProductDetails} from "./product-details";
+
 export class ProductOrders {
-  productOrders: ProductOrders[] = [];
+  productOrders: ProductDetails[] = [];
 }

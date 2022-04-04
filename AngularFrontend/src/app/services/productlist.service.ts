@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Product } from '../model/product';
 import {Order} from "../model/order.model";
 import {ProductOrders} from "../model/product-orders.model";
+import {ProductDetails} from "../model/product-details";
 @Injectable({
 
   providedIn: 'root'
@@ -12,21 +13,26 @@ import {ProductOrders} from "../model/product-orders.model";
 
 export class ProductlistService {
 
-  public order = Order;
-  private productOrder = ProductOrders;
-  private orderSubject = new Subject();
+
+  private productOrder!: ProductDetails;
+  private orders: ProductOrders = new ProductOrders();
   private productOrderSubject = new Subject();
+  private ordersSubject = new Subject();
   private totalSubject = new Subject();
-  private total?: number;
+  public total?: number;
+
+  ProductOrderChange = this.productOrderSubject.asObservable();
+  OrdersChanged = this.ordersSubject.asObservable();
+  TotalChanged = this.totalSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   getProducts() : Observable<Product[]>{
-    return this.http.get<Product[]>("http://localhost:8076/productMicro/products");
+    return this.http.get<Product[]>("http://localhost:8078/productMicro/products");
   }
 
   getProduct(prodId : string): Observable<Product>{
-    return this.http.get<Product>("http://localhost:8076/productMicro/products/"+prodId);
+    return this.http.get<Product>("http://localhost:8078/productMicro/products/"+prodId);
   }
 
   saveOrder(order: ProductOrders){
