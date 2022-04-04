@@ -1,5 +1,6 @@
 package com.cgi.emailservice.rabbitmq;
 
+
 import com.cgi.ampqservice.model.UserDto;
 import com.cgi.emailservice.services.EmailService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +22,9 @@ public class EmailConsumer {
     //TODO finish this
     @RabbitListener(queues = "confirmation.queue")
     public void consumer(UserDto userInfo){
-        //TODO add logger
-        log.info("made it");
+
+        log.info("RabbitMQ message received, email: {} , name: {}",userInfo.email(), userInfo.name());
+        //TODO change link
         String link = "http://localhost:9006/api/v1/account/confirm?token=" + userInfo.token();
         String email = emailService.buildConfirmationEmail(userInfo.name(),link);
         emailService.sendConfirmation(userInfo.email(), email);
