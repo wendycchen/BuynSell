@@ -3,9 +3,13 @@ server:
 spring:
   application:
     name: account-service
+  rabbitmq:
+    addresses: rabbitmq:5672
+    #addresses: localhost:5672
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql-container:3306/accountDB?autoReconnect=true&useSSL=false
+    #url: jdbc:mysql://localhost:3307/accountDB?createDatabaseifNotExists=true
     username: root
     password: password
   jpa:
@@ -20,6 +24,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server-container:8761/eureka
+      #defaultZone: http://localhost:8761/eureka
       fetch-registry: true
       register-with-eureka: true
 
