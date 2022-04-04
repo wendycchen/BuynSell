@@ -3,10 +3,13 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-server-container:8761/eureka
+
 spring:
     application:
       name: email-service
+    rabbitmq:
+      addresses: rabbitmq:5672
     mail:
       host: smtp.gmail.com
       port: 587
@@ -20,7 +23,6 @@ spring:
               enable: true
         protocol: smtp
         test-connection: false
-
 
 rabbitmq:
   exchanges:
