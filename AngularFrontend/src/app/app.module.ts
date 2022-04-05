@@ -22,6 +22,7 @@ import { TokenInterceptor } from './TokenInterceptor';
 import { RoleGuard } from './guards/role.guard';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ROLE } from './role.enum';
 
 const routes: Routes = [
   {
@@ -50,7 +51,13 @@ const routes: Routes = [
     component: ProductListComponent
   }, {
     path:'admin',
+<<<<<<< HEAD
     component: AdminComponent
+=======
+    component: AdminComponent,
+    canActivate:[CanActivateRouteGuard, RoleGuard],
+    data: {expectedRole: ROLE.ADMIN}
+>>>>>>> 74716b7cb13b5a95d77f660f24f7db227c70f82a
   },{
     path: 'checkout',
     component: CheckoutComponent

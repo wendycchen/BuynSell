@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, JsonpClientBackend} from "@angular/common/http";
 import { map } from 'rxjs/operators';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -35,31 +36,24 @@ export class AuthenticationService {
 
   logOut() {
     localStorage.removeItem('Bearer');
+    localStorage.removeItem('UserInfo');
+
   }
 
-  get data(): any {
-    console.log("I am inside authentication service get DAta");
-    console.log(this.userData);
+  logUser(val: any) {
+    console.log("insidee log user.............." + JSON.stringify(val));
+    localStorage.setItem("UserInfo", JSON.stringify(val));
+    
+  } 
 
-    return this.userData;
+  getLogUser(): any{
+    return JSON.parse(localStorage.getItem("UserInfo") as string);
   }
 
-  set data(val: any){
-    console.log("inside set data in authentication service");
-    this.userData = val;
-    console.log(this.userData);
+  isUserAuthenticated(): boolean {
+    return !!localStorage.getItem("UserInfo");
   }
 
-  isUserAuthenticated(token: any) {
-    return this.http.post(`http://localhost:8080/authenticate`,{},
-    {
-      headers: new HttpHeaders().set("Authorization", `Bearer ${token}`)
-    })
-    .pipe(
-      map((res:any) => {
-        return res["isAuthenticated"];
-      })
-    ).toPromise();
-  }
+
 
 }

@@ -10,14 +10,19 @@ import { UserService } from '../services/user.service';
 export class ProfileComponent implements OnInit {
 
   user:any;
-  ufname:any;
-  ulname:any;
+  ufname: string = '';
+  ulname:string = '';
+  email:string = '';
   
   constructor(private authServ: AuthenticationService) { }
 
   ngOnInit(): void {
     console.log(" i am inside profile component ----- ")
-    console.log(this.authServ.data);
+    console.log(this.authServ.getLogUser());
+    this.user = this.authServ.getLogUser();
+    this.ufname = this.user.firstName.charAt(0).toUpperCase() + this.user.firstName.slice(1);
+    this.ulname = this.user.lastName.charAt(0).toUpperCase() + this.user.lastName.slice(1);
+    this.email = this.user.email;
     // this.userServ.getUser().subscribe(
     //   (data:any) => {
     //     this.user = data;

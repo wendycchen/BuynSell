@@ -47,9 +47,8 @@ export class LoginComponent implements OnInit {
       // this.authService.isUserAuthenticated(this.token);
       
       this.authService.setBearerToken(this.token);
-      this.authService.setLoginStatus(1);
-      this.authService.data = res;
-
+      // this.authService.data = res;
+      this.authService.logUser(res);
       this.routerService.openHome();
 
       // this.authService.setBearerToken(tokenValue);

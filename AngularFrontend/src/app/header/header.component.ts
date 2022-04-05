@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { CategorylistService } from '../services/categorylist.service';
 import { RoutingService } from '../services/routing.service';
 
 @Component({
@@ -9,9 +10,20 @@ import { RoutingService } from '../services/routing.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private routerService:RoutingService, public authService: AuthenticationService) { }
+  catoList: any = [];
+  constructor(private routerService:RoutingService, public authService: AuthenticationService, private catServ: CategorylistService) { }
 
   ngOnInit(): void {
+    this.catServ.getCategories().subscribe((data:any) => {
+      this.catoList = data;
+    })
+    this.update();
+  }
+
+  
+  update() {
+    console.log(this.catoList);
+    
   }
 
   enterSell() {
@@ -43,16 +55,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.setLoginStatus(0);
     this.authService.logOut();
-    // console.log("---" );
-    // console.log(this.authService.getToken());
-    // Does setting it to empty means logging out?
-    // this.authService.setBearerToken(''); 
     this.routerService.openHome();
   }
 
   enterCart(){
     this.routerService.openCart();
   }
+
+  
 }

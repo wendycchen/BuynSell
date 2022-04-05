@@ -31,6 +31,10 @@
         </button>
       </li>
     </ul>
+    <div class="input-group">
+      <input type="search" id="form1" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button type="button" class="btn btn-outline-primary">search</button>
+    </div>
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
       <ul class="navbar-nav ml-auto flex-nowrap">
           <li class="nav-item dropdown">
@@ -41,36 +45,34 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              *ngIf="authService.loginStatus == 1"
+              *ngIf="authService.getLogUser()"
             >
               Profile
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" (click)="enterProfile()">My Profile</a>
               <a class="dropdown-item" (click)="enterSetting()">Setting</a>
-              <!-- <a class="dropdown-item" href="/profile">My Profile</a>
-              <a class="dropdown-item" href="/profile/setting">Setting</a> -->
             </div>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="enterSell()">
+            <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="enterSell()">
             <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="enterSell()"> -->
               Sell
             </button>
           </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 0" (click)="enterLogin()">
+          <button type="button" class="btn btn-light" *ngIf="!authService.getLogUser()" (click)="enterLogin()">
           <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken == null" (click)="enterLogin()"> -->
             Log In/ Sign Up
           </button>
-          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus == 1" (click)="logOut()">
+          <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="logOut()">
           <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="logOut()"> -->
             Log Out
           </button>
         </li>
 
         <li class="nav-item">
-          <button type="button" class="btn btn-light" *ngIf="authService.loginStatus==2" (click)="enterAdmin()">
+          <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="enterAdmin()">
             Admin
           </button>
         </li>
