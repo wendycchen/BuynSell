@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
-import { CategorylistService } from '../services/categorylist.service';
 import { RoutingService } from '../services/routing.service';
 import {ProductlistService} from "../services/productlist.service";
 import {Product} from "../model/product";
@@ -14,7 +13,6 @@ import {User} from "../model/user";
 })
 export class SellComponent implements OnInit {
   pForm:any;
-  categories: any = [];
   urls = new Array<string>();
   warningMessage: string = '';
   missingFieldsMessage: string = '';
@@ -26,7 +24,6 @@ export class SellComponent implements OnInit {
 
   constructor(
     private productService : ProductlistService,
-    private catService: CategorylistService,
     private routerService: RoutingService,
     private authService: AuthenticationService
   ) {}
