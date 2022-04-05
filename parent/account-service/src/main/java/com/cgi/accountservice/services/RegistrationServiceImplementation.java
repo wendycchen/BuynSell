@@ -31,6 +31,7 @@ public class RegistrationServiceImplementation implements RegistrationService {
         String token;
         try {
             token = userService.addUser(new User(Role.USER, regRequest.getUsername(), regRequest.getFirstName(), regRequest.getLastName(), regRequest.getEmail(), regRequest.getPassword()));
+            //TODO change from my email
             UserDto userDto = new UserDto(regRequest.getFirstName(),"thomasskiff@outlook.com",token);
             producer.publish(userDto,"internal.exchange","internal.confirmation.routing-key");
         } catch (EmailAndUsernameExists | EmailAlreadyExistsException | UsernameAlreadyExistsException e) {

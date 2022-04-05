@@ -8,8 +8,8 @@ spring:
     #addresses: localhost:5672
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-container:3306/accountDB?autoReconnect=true&useSSL=false
-    #url: jdbc:mysql://localhost:3307/accountDB?createDatabaseifNotExists=true
+    #url: jdbc:mysql://mysql-container:3306/accountDB?autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3307/accountDB?createDatabaseifNotExists=true
     username: root
     password: password
   jpa:

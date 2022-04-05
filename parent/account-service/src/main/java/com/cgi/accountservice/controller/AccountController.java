@@ -43,7 +43,7 @@ public class AccountController {
     public ResponseEntity<?> register(@RequestBody RegistrationRequest regReq) throws UsernameAlreadyExistsException, EmailAndUsernameExists, EmailAlreadyExistsException {
         try{
             registrationService.register(regReq);
-            log.info("User with email: {}, username: {}, firstname: {}, lastname: {} has registered",regReq.getEmail(),regReq.getUsername(),regReq.getFirstName(),regReq.getLastName());
+            //log.info("User with email: {}, username: {}, firstname: {}, lastname: {} has registered",regReq.getEmail(),regReq.getUsername(),regReq.getFirstName(),regReq.getLastName());
             return ResponseEntity.ok().build();
         }
         catch(Exception e){
@@ -52,7 +52,7 @@ public class AccountController {
     }
 
     @GetMapping(path = "/confirm")
-    public void confirmEmailConfirmation(@RequestParam("token") String token) {
+    public void confirmEmailConfirmation(@RequestParam("token") String token, @RequestHeader("email") String email) {
         try {
             registrationService.confirmEmailToken(token);
         } catch (TokenNotFoundException | EmailAlreadyConfirmedException | TokenExpiredException e) {
@@ -83,7 +83,7 @@ public class AccountController {
             //If the login credentials are correct, we generate a JWT token using the email, username and id as subjects.
             String token = jwtUtil.generateToken(user);
             com.cgi.accountservice.models.User fullUser = userService.getUserByEmail(loginRequest.getEmail());
-            UserDto userDto = new UserDto(fullUser.getUsername(), fullUser.getFirstName(), fullUser.getLastName(), fullUser.getEmail(), fullUser.getUserRole().name());
+            UserDto userDto = new UserDto(fullUser.getUsername(), fullUser.getFirstName(), fullUser.getLastName(), fullUser.getEmail(), fullUser.getUserRole().name(),token);
 
             log.info("Successful login from user: {} with role(s): {}, JWT: {}",user.getUsername(),user.getAuthorities(),token);
 

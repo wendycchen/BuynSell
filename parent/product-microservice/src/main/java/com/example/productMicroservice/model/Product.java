@@ -11,28 +11,44 @@ public class Product {
 
 	@Id
 	private int prodId;
-
+	private String email;
+	private String username;
 	private double price;
-	private String pname, condition, brand, desc, postedBy, imageUrl;
+	private String pname, condition, brand, desc, postedBy, imageUrl, category;
 	private LocalDate date;
 		
 	public Product() {
 	}
-	
-	public Product(int prodId, double price, String pname, String condition, String brand, String desc, String postedBy,
-			LocalDate date, String imageUrl) {
-		super();
+
+	public Product(int prodId, String email, String username, double price, String pname, String condition, String brand, String desc, String postedBy, String imageUrl, String category, LocalDate date) {
 		this.prodId = prodId;
+		this.email = email;
+		this.username = username;
 		this.price = price;
 		this.pname = pname;
 		this.condition = condition;
 		this.brand = brand;
 		this.desc = desc;
 		this.postedBy = postedBy;
-		this.date = date;
 		this.imageUrl = imageUrl;
+		this.category = category;
+		this.date = date;
 	}
-	
+
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username){
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email){
+		this.email = email;
+	}
+
 	public int getprodId() {
 		return prodId;
 	}
@@ -110,5 +126,13 @@ public class Product {
 		return "Product [prodId=" + prodId + ", price=" + price + ", pname=" + pname + ", condition=" + condition
 				+ ", brand=" + brand + ", desc=" + desc + ", postedBy=" + postedBy + ", imageUrl=" + imageUrl
 				+ ", date=" + date + "]";
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }
