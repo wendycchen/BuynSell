@@ -2,11 +2,12 @@ import { Time } from "@angular/common";
 
 export class User {
     uid?:number;
-    ufname?:string;
+    private _ufname?:string;
     ulname?:string;
-    email?:string;
+    private _email?:string;
     password?:string;
     registrationDate?:Time;
     reviews?:string;
+
 
 }

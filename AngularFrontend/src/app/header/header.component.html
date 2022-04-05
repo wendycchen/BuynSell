@@ -25,6 +25,11 @@
           Products
         </button>
       </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" (click)="enterCart()">
+          Cart
+        </button>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control" type="search" placeholder="Search a category" aria-label="Search">
@@ -69,7 +74,7 @@
             Log Out
           </button>
         </li>
-        
+
         <li class="nav-item">
           <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="enterAdmin()">
             Admin

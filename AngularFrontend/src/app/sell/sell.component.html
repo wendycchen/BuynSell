@@ -6,7 +6,7 @@
   <form
     #productForm="ngForm"
     [formGroup]="pForm"
-    (ngSubmit)="verifyProduct(pForm)"
+    (ngSubmit)="verifyProduct()"
   >
     <div class="form-group row">
       <label for="inputTitle" class="col-sm-2 col-form-label">Post Title</label>
@@ -52,6 +52,7 @@
           <option value="{{ cat.cname }}" *ngFor="let cat of categories">
             {{ cat.cname }}
           </option>
+          <option>Wood</option>
         </select>
         <div
           *ngIf="
@@ -195,6 +196,7 @@
         </div>
       </div>
     </div>
+    <!--
     <div class="form-group row">
       <label for="inputImage" class="col-sm-2 col-form-label">Image</label>
       <div class="col-sm-10">
@@ -227,7 +229,7 @@
         />
       </div>
     </div>
-
+-->
     <div class="center-container">
       <div class="row">
         <div class="col btn-container">
@@ -243,6 +245,7 @@
             type="submit"
             class="btn btn-primary"
             style="width: 130px; position: absolute"
+            (click)="verifyProduct()"
           >
             List Product
           </button>

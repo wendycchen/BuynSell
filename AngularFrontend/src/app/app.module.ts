@@ -33,27 +33,22 @@ const routes: Routes = [
     component:RegisterComponent
   }, {
     path:'',
-    component:HomeComponent,
-    canActivate:[CanActivateRouteGuard]
+    component:HomeComponent
   },{
     path:'cart',
     component:CartComponent
   }, {
     path:'profile',
-    component:ProfileComponent,
-    canActivate:[CanActivateRouteGuard]
+    component:ProfileComponent
   }, {
     path:'sell',
-    component:SellComponent,
-    canActivate:[CanActivateRouteGuard]
+    component:SellComponent
   }, {
     path:'profile/setting',
-    component:SettingComponent,
-    canActivate:[CanActivateRouteGuard]
+    component:SettingComponent
   }, {
     path:'product',
-    component: ProductListComponent,
-    canActivate:[CanActivateRouteGuard]
+    component: ProductListComponent
   }, {
     path:'admin',
     component: AdminComponent,
@@ -93,7 +88,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, 
+    provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
   }],
