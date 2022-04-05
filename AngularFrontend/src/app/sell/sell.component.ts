@@ -21,6 +21,8 @@ export class SellComponent implements OnInit {
   count = 1;
   maxImageCount = 4;
   product : Product = new Product();
+  user: any;
+  username: string = '';
 
   constructor(
     private productService : ProductlistService,
@@ -30,14 +32,6 @@ export class SellComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.catService.getCategories().subscribe(
-      (data: any) => {
-        this.categories = data;
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    )
     this.pForm = new FormGroup({
       inputTitle: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       inputCategory: new FormControl('', Validators.required),
@@ -47,6 +41,11 @@ export class SellComponent implements OnInit {
       inputDescription: new FormControl('', Validators.required),
       inputImage: new FormControl('')
     })
+
+    this.user = this.authService.getLogUser();
+    // console.log(this.user);
+    // console.log("username ---- > " + this.user.username);
+    this.username = this.user.username;
   };
 
   preview(event: any) {
@@ -69,7 +68,7 @@ export class SellComponent implements OnInit {
     let productData = {
       "pname":this.pForm.get('inputTitle').value,
       "pBrand":this.pForm.get('inputBrand').value,
-      "pCategory":this.pForm.get('inputBrand').value,
+      "pCategory":this.pForm.get('inputCategory').value,
       "pCondition":this.pForm.get('inputCondition').value,
       "pPrice":this.pForm.get('inputPrice').value,
       "pDescription":this.pForm.get('inputDescription').value,
@@ -85,14 +84,18 @@ export class SellComponent implements OnInit {
     console.log(this.urls);
     */
     if(this.pForm.valid){
-      this.product = new Product();
-      this.product.pname = productData.pname;
+      // this.product = new Product();
+      this.product.prodId = this.getRandomInt();
       this.product.price = productData.pPrice;
+      this.product.pname = productData.pname;
+      this.product.condition = productData.pCondition;
       this.product.brand = productData.pBrand;
       this.product.desc = productData.pDescription;
-      this.product.imageUrl = productData.image;
+      this.product.category = productData.pCategory;
+      // this.product.imageUrl = productData.image;
+      this.product.postedBy = this.username;
+      this.product.imageUrl = null;
       //this.product.image = productData.image;
-      //this.product.postedBy = User.name;
       this.product.date = new Date();
       this.save();
     } else {
@@ -115,12 +118,15 @@ export class SellComponent implements OnInit {
   }
   */
 
+  getRandomInt() {
+    return Math.random()*9999;
+  }
 
   save(){
-    console.log(this.product);
+    console.log("THIS IS MY PRODUCT "  + this.product);
     this.productService.addProduct(this.product).subscribe(data => console.log(data),
       error => console.log(error));
-    this.product = new Product();
+    // this.product = new Product();
   }
 
 

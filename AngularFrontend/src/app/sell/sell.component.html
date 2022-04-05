@@ -49,10 +49,34 @@
           formControlName="inputCategory"
         >
           <option selected="" value="">Choose a category</option>
-          <option value="{{ cat.cname }}" *ngFor="let cat of categories">
-            {{ cat.cname }}
-          </option>
-          <option>Wood</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Art">Art</option>
+          <option value="Baby Clothes">Baby Clothes</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Books">Books</option>
+          <option value="Car">Car</option>
+          <option value="Collectables">Collectables</option>
+          <option value="Computers">Computers</option>
+          <option value="DVD">DVD</option>
+          <option value="Garden">Garden</option>
+          <option value="Graphics Card">Graphics Card</option>
+          <option value="Homemade Products">Homemade Products</option>
+          <option value="Large Furnitures">Large Furnitures</option>
+          <option value="Men Clothes">Men Clothes</option>
+          <option value="Monitor">Monitor</option>
+          <option value="Nintendo Consoles">Nintendo Consoles</option>
+          <option value="Phone">Phone</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Sony Consoles">Sony Consoles</option>
+          <option value="Sports">Sports</option>
+          <option value="Tablets">Tablets</option>
+          <option value="Toys">Toys</option>
+          <option value="TV">TV</option>
+          <option value="Video Games">Video Games</option>
+          <option value="Watches">Watches</option>
+          <option value="Women Clothes">Women Clothes</option>
+          <option value="XBOX">XBOX</option>
+          <option value="Others">Others</option>
         </select>
         <div
           *ngIf="
@@ -245,7 +269,6 @@
             type="submit"
             class="btn btn-primary"
             style="width: 130px; position: absolute"
-            (click)="verifyProduct()"
           >
             List Product
           </button>
