@@ -11,8 +11,6 @@ public class Product {
 
 	@Id
 	private int prodId;
-	private String email;
-	private String username;
 	private double price;
 	private String pname, condition, brand, desc, postedBy, imageUrl, category;
 	private LocalDate date;
@@ -22,8 +20,6 @@ public class Product {
 
 	public Product(int prodId, String email, String username, double price, String pname, String condition, String brand, String desc, String postedBy, String imageUrl, String category, LocalDate date) {
 		this.prodId = prodId;
-		this.email = email;
-		this.username = username;
 		this.price = price;
 		this.pname = pname;
 		this.condition = condition;
@@ -35,19 +31,6 @@ public class Product {
 		this.date = date;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username){
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email){
-		this.email = email;
-	}
 
 	public int getprodId() {
 		return prodId;
