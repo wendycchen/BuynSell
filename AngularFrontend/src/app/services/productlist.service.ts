@@ -15,28 +15,69 @@ export class ProductlistService {
 
 
   private productOrder!: ProductDetails;
-  private orders: ProductOrders = new ProductOrders();
+  public orders: ProductOrders = new ProductOrders();
+
   private productOrderSubject = new Subject();
   private ordersSubject = new Subject();
   private totalSubject = new Subject();
-  public total?: number;
+
+  public total!: number;
 
   ProductOrderChange = this.productOrderSubject.asObservable();
   OrdersChanged = this.ordersSubject.asObservable();
   TotalChanged = this.totalSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  private allProductsUrl: string;
+  private getProductsByIdUrl: string;
+  private addProductsUrl: string;
+  private deleteProductsUrl: string;
+  private newOrderUrl: string;
+  private allOrdersUrl: string;
+  private orderByEmailUrl: string;
+  private orderByOrderNumberUrl: string;
+
+
+  constructor(private http: HttpClient) {
+    this.allProductsUrl = "http://localhost:9001/productMicro/products";
+    this.getProductsByIdUrl = "http://localhost:9001/productMicro/products";
+    this.addProductsUrl = "http://localhost:9001/productMicro/products";
+    this.deleteProductsUrl = "http://localhost:9001/productMicro/products/";
+    this.newOrderUrl = "http://localhost:9004/api/orders/newOrder";
+    this.allOrdersUrl = "http://localhost:9004/api/orders/order";
+    this.orderByEmailUrl = "http://localhost:9004/api/orders/FindByEmail/";
+    this.orderByOrderNumberUrl = "http://localhost:9004/api/orderNumber/";
+  }
 
   getProducts() : Observable<Product[]>{
-    return this.http.get<Product[]>("http://localhost:8078/productMicro/products");
+    return this.http.get<Product[]>(this.allProductsUrl);
   }
 
   getProduct(prodId : string): Observable<Product>{
-    return this.http.get<Product>("http://localhost:8078/productMicro/products/"+prodId);
+    return this.http.get<Product>(this.getProductsByIdUrl+prodId);
   }
 
-  saveOrder(order: ProductOrders){
-    return this.http.post("http://localhost:9004/api/orders/order/newOrder", order);
+  addProduct(product: Product){
+    return this.http.post(this.addProductsUrl, product);
+  }
+
+  deleteProduct(productId: number){
+    return this.http.delete(this.deleteProductsUrl+productId);
+  }
+
+  addOrder(order: Order){
+    return this.http.post(this.newOrderUrl, order);
+  }
+
+  getAllOrders(){
+    return this.http.get(this.allOrdersUrl);
+  }
+
+  getOrderByEmail(email: String){
+    return this.http.get(this.orderByEmailUrl+email);
+  }
+
+  getOrderByOrderNumber(orderNum: number){
+    return this.http.get(this.orderByOrderNumberUrl+orderNum)
   }
 
 }

@@ -25,6 +25,11 @@
           Products
         </button>
       </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" (click)="enterCart()">
+          Cart
+        </button>
+      </li>
     </ul>
     <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
       <ul class="navbar-nav ml-auto flex-nowrap">
@@ -63,7 +68,7 @@
             Log Out
           </button>
         </li>
-        
+
         <li class="nav-item">
           <button type="button" class="btn btn-light" *ngIf="authService.loginStatus==2" (click)="enterAdmin()">
             Admin

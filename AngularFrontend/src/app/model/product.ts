@@ -10,7 +10,7 @@ export class Product {
     price?:number;
     postedBy?:string;
     date?:Date;
-    imageUrl?: string;
+    imageUrl?: null;
     image!: [Byte];
 }
 

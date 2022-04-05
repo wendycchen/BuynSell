@@ -6,6 +6,8 @@ import {MatCardModule} from '@angular/material/card';
 import {ProductOrders} from "../model/product-orders.model";
 import {ProductDetails} from "../model/product-details";
 import {Subscription} from "rxjs";
+import {error} from "@angular/compiler/src/util";
+import {Order} from "../model/order.model";
 
 @Component({
   selector: 'app-product-list',
@@ -13,36 +15,36 @@ import {Subscription} from "rxjs";
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public term : string
+  public term: string
   public products!: Product[];
   // Cart service
   productOrders: ProductDetails[] = [];
-  //selectedProductOrder: ProductDetails;
-  // private shoppingCartOrders: ProductOrders;
-  // sub: Subscription;
+  selectedProductOrder!: ProductDetails;
+  private shoppingCartOrders!: ProductOrders;
+  sub!: Subscription;
   productSelected: boolean = false;
 
-  constructor(router : Router, route : ActivatedRoute, private productsService : ProductlistService) {
-      this.term = route.snapshot.paramMap.get('term') || ""
+  constructor(router: Router, route: ActivatedRoute, private productsService: ProductlistService) {
+    this.term = route.snapshot.paramMap.get('term') || ""
   }
 
   ngOnInit(): void {
-      this.productsService.getProducts().subscribe((products : Product[]) => {
-          this.products = products
-      }, (error: ErrorEvent) => {
-      });
-      this.productOrders=[];
-      // this.loadOrders();
-  }
-/*
-  loadOrders(){
-    this.sub = this.productsService.OrdersChanged.subscribe(()=>{
-      this.shoppingCartOrders = this.productsService.ProductOrders;
+    this.productsService.getProducts().subscribe((products: Product[]) => {
+      this.products = products
+    }, (error: ErrorEvent) => {
     });
-  }*/
-/*
-  addToCart(order: ProductDetails){
-    this.productsService.SelectedProductOrder=order;
+    this.productOrders = [];
+    this.loadOrders();
+  }
+
+  loadOrders(){
+    this.sub = this.productsService.OrdersChanged.subscribe(() =>{
+      this.shoppingCartOrders = this.productsService.orders;
+    });
+  }
+
+/*  addToCart(order: ProductDetails){
+    this.productsService.selectedProductOrder=order;
     this.selectedProductOrder = this.productsService.SelectedProductOrder;
     this.productSelected = true;
   }
