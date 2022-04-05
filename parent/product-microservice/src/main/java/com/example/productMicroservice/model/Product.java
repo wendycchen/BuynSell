@@ -14,6 +14,7 @@ public class Product {
 	private double price;
 	private String pname, condition, brand, desc, postedBy, imageUrl, category;
 	private LocalDate date;
+	private String image;
 		
 	public Product() {
 	}
