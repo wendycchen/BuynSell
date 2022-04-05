@@ -14,8 +14,10 @@ export class UserService {
     return this.httpClient.get<User>('http://localhost:3000/user');
   }
 
-  updateUser(user:any): Observable<any> {
-    return this.httpClient.put(`http://localhost:3000/user/${user.id}`, user)
+  updateUser(pw:string): Observable<any> {
+    console.log("my pw is---- > " + pw);
+    return this.httpClient.put(`http://localhost:8080/api/v1/account/update`, pw);
+
   }
 
 

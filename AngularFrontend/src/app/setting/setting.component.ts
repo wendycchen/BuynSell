@@ -26,7 +26,7 @@ export class SettingComponent implements OnInit {
   pForm:any;
   warningMessage:string='';
   
-  constructor(private authServ:AuthenticationService, private formBuilder:FormBuilder) { }
+  constructor(private authServ:AuthenticationService, private formBuilder:FormBuilder, private userServ:UserService) { }
 
   ngOnInit(): void {
 
@@ -81,6 +81,9 @@ export class SettingComponent implements OnInit {
     const newCPass = this.pForm.get('newConfirmPass').value;
     if(newPass === (newCPass)){
       //allow to change pass ----- send to backend
+      this.userServ.updateUser(newPass).subscribe((res: any) => {
+        console.log(res);
+      })
     } else {
       this.warningMessage = "Please check your passwords again.";
     }
