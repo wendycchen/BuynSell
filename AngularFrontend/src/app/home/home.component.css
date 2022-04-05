@@ -1,0 +1,19 @@
+.card-container {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    /* display:flex; */
+    /* justify-content: space-around; */
+
+}
+
+.product-items {
+    margin-top: 20px;
+    margin-bottom: 30px;       
+}
+
+.btn-format {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
