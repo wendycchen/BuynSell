@@ -24,10 +24,10 @@ export class AdminComponent implements OnInit {
   deleteProduct(productId: any){
     this.productsService.deleteProduct(productId).subscribe((data: any) => {
       console.log(data);
+      this.ngOnInit();
     }, (err:any) => {
       console.log(err);
     })
-    this.ngOnInit();
   }
 
 }

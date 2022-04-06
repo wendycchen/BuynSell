@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { RoutingService } from '../services/routing.service';
 import {CartService} from "../services/cart.service";
+import { ProductlistService } from '../services/productlist.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import {CartService} from "../services/cart.service";
 export class HeaderComponent implements OnInit {
   cartItems: number = 0;
   catoList: any = [];
-  constructor(private routerService:RoutingService, public authService: AuthenticationService, private cartService: CartService) { }
+  constructor(private routerService:RoutingService, public authService: AuthenticationService, private cartService: CartService, private prodService: ProductlistService) { }
 
   ngOnInit(): void {
     

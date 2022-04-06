@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/product';
 import { AuthenticationService } from '../services/authentication.service';
+import { ProductlistService } from '../services/productlist.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -13,27 +15,45 @@ export class ProfileComponent implements OnInit {
   ufname: string = '';
   ulname:string = '';
   email:string = '';
+  username:string='';
+  products: Product[] = [];
+  productsByMe: Array<Product> = [];
   
-  constructor(private authServ: AuthenticationService) { }
+  constructor(private authServ: AuthenticationService, private prodService: ProductlistService) { }
 
   ngOnInit(): void {
-    console.log(" i am inside profile component ----- ")
     console.log(this.authServ.getLogUser());
     this.user = this.authServ.getLogUser();
     this.ufname = this.user.firstName.charAt(0).toUpperCase() + this.user.firstName.slice(1);
     this.ulname = this.user.lastName.charAt(0).toUpperCase() + this.user.lastName.slice(1);
     this.email = this.user.email;
-    // this.userServ.getUser().subscribe(
-    //   (data:any) => {
-    //     this.user = data;
-    //     this.ufname = this.user[0].ufname;
-    //     this.ulname = this.user[0].ulname;
-    //     // this.email = this.user[0].email;
-    //     // this.blockList = this.user[0].blocked;
-    //     // this.update();
-    //   }, (err:any) => {
-    //     console.log(err);
-    //   });
+    this.username = this.user.username;
+
+    this.prodService.getProducts().subscribe((products: Product[]) => {
+      this.products = products;
+      for(var i = 0; i < this.products.length; i++) {
+        if(this.products[i].postedBy === this.username){
+          this.productsByMe.push(this.products[i]);
+        }
+      }
+      console.log(this.productsByMe);
+    }, (error: ErrorEvent) => {
+      console.log(error);
+    })
+
+
+
   }
+
+  deleteProduct(prodId: number) {
+    this.prodService.deleteProduct(prodId).subscribe((data: any) => {
+      console.log(data);
+      this.productsByMe = [];
+      this.ngOnInit();
+    }, (err:any) => {
+      console.log(err);
+    })
+  }
+
 
 }

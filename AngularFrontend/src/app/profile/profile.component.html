@@ -28,7 +28,32 @@
       </div>
       <div class="col-sm-1"></div>
       <div class="col col-sm-8">
-        <h2>Product I have listed...</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Post ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Price</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Category</th>
+              <th scope="col">Created By</th>
+              <th scope="col">Image</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productsByMe; let i = index;">
+              <th scope="row">{{product.prodId}}</th>
+              <td>{{product.pname}}</td>
+              <td>CA${{product.price}}</td>
+              <td>{{product.brand}}</td>
+              <td>{{product.category}}</td>
+              <td>{{product.postedBy}}</td>
+              <td><img src={{product.image}} style="height:100px; width: 100px"/></td>
+              <td><button type="button" class="btn btn-outline-danger" (click)="deleteProduct(product.prodId)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

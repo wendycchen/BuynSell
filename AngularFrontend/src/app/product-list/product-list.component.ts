@@ -18,6 +18,11 @@ import {CartService} from "../services/cart.service";
 export class ProductListComponent implements OnInit {
   public term: string
   public products!: Product[];
+  public userProducts: Array<Product> = [];
+  public adminProducts: Array<Product> = [];
+  filteredCat:any;
+  aList: any;
+  uList: any;
   // Cart service
   public prodList: any;
 
@@ -27,10 +32,24 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsService.getProducts().subscribe((products: Product[]) => {
-      this.products = products
+      this.products = products;
+      console.log(this.products);
+      for(var i = 0; i < this.products.length; i++) {
+        if(this.products[i].postedBy === "ADMIN") {
+          console.log("FOUND");
+          this.adminProducts.push(this.products[i]);
+        } else {
+          this.userProducts.push(this.products[i]);
+        }
+      }
+      console.log("-----------------------------------");
+      console.log(this.adminProducts);
+      console.log(this.userProducts);
     }, (error: ErrorEvent) => {
     });
 
+    this.aList = this.adminProducts;
+    this.uList = this.userProducts;
     this.prodList.forEach((x: Product)=>{
       Object.assign(x, {quantity: 1, total: x.price});
     })
@@ -38,6 +57,18 @@ export class ProductListComponent implements OnInit {
 
   addToCart(prod: Product){
     this.cartService.addToCart(prod);
+  }
+
+  filtered(event:any) {
+    const filteredCat = (event.target.value);
+    this.adminProducts = this.aList;
+    this.userProducts = this.uList;
+    if(filteredCat !== "All") {
+      this.aList = this.adminProducts;
+       this.adminProducts = this.adminProducts.filter(item => item.category === filteredCat);
+      this.uList = this.userProducts;
+      this.userProducts = this.userProducts.filter(item => item.category === filteredCat);
+    }
   }
 
 

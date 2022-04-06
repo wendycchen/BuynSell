@@ -2,26 +2,139 @@
   <div class="title-container">
     <h1>Products For Sale</h1>
   </div>
+  <div class="dropdown d-grid gap-2 col-4 mx-auto filter-by-category" >    
+        <select
+        class="dropdown-toggle btn btn-outline-primary"
+        [(ngModel)]="filteredCat"
+          (change)="filtered($event)"
+        >
+          <option value="All" selected="selected">All</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Art">Art</option>
+          <option value="Baby Clothes">Baby Clothes</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Books">Books</option>
+          <option value="Car">Car</option>
+          <option value="Collectables">Collectables</option>
+          <option value="Computers">Computers</option>
+          <option value="DVD">DVD</option>
+          <option value="Garden">Garden</option>
+          <option value="Graphics Card">Graphics Card</option>
+          <option value="Homemade Products">Homemade Products</option>
+          <option value="Large Furnitures">Large Furnitures</option>
+          <option value="Men Clothes">Men Clothes</option>
+          <option value="Monitor">Monitor</option>
+          <option value="Nintendo Consoles">Nintendo Consoles</option>
+          <option value="Phone">Phone</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Sony Consoles">Sony Consoles</option>
+          <option value="Sports">Sports</option>
+          <option value="Tablets">Tablets</option>
+          <option value="Toys">Toys</option>
+          <option value="TV">TV</option>
+          <option value="Video Games">Video Games</option>
+          <option value="Watches">Watches</option>
+          <option value="Women Clothes">Women Clothes</option>
+          <option value="XBOX">XBOX</option>
+          <option value="Others">Others</option>
+        </select>
+  </div>
 
-  <div class="d-flex mx-6 card-container" >
-    <div class="card product-box" style="width: 18rem" *ngFor="let product of products; let i = index">
-      <img class="card-img-top" src={{product.image}} alt="Card image cap" style="height:280px; width: 280px;"/>
-      <div class="card-body">
-        <h2 class="card-title">{{product.pname}}</h2>
-        <h3>CA${{product.price | number : '1.2-2'}}</h3>
-        <div class="dropdown-divider"></div>
-        <p class="card-text"><b>Descrption</b><br>
-          {{product.desc}}
-        </p>
+  <div *ngIf="adminProducts.length > 0"></div>
+  <div class="no-products" *ngIf="adminProducts.length < 1 && userProducts.length < 1">
+    <h1>Unfortunately there are no products...☹ </h1>
+  </div>
+  <div class="admin-product-box" *ngIf="adminProducts.length > 0">
+    <div class="admin-title">
+      <h2>♡ Featured Products Posted By Admins ♡</h2>
+    </div>
+    <div class="d-flex mx-6 card-container">
+      <div
+        class="card product-box"
+        style="width: 18rem"
+        *ngFor="let adminProduct of adminProducts; let i = index"
+      >
+        <img
+          class="card-img-top"
+          src="{{ adminProduct.image }}"
+          alt="Card image cap"
+          style="height: 280px; width: 280px"
+        />
+        <div class="card-body">
+          <h2 class="card-title">{{ adminProduct.pname }}</h2>
+          <h3>CA${{ adminProduct.price | number: "1.2-2" }}</h3>
+          <div class="dropdown-divider"></div>
+          <p class="card-text">
+            <b>Descrption</b><br />
+            {{ adminProduct.desc }}
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Highlights</b></li>
+          <li class="list-group-item">
+            Brand: <i>{{ adminProduct.brand }}</i>
+          </li>
+          <li class="list-group-item">
+            Condition: {{ adminProduct.condition }}
+          </li>
+          <li class="list-group-item">
+            Posted By: <b style="color: red">{{ adminProduct.postedBy }}</b>
+          </li>
+        </ul>
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="addToCart(adminProduct)"
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>Highlights</b></li>
-        <li class="list-group-item">Brand: <i>{{product.brand}}</i></li>
-        <li class="list-group-item">Condition: {{product.condition}}</li>
-        <li class="list-group-item">Posted By: {{product.postedBy}}</li>
-      </ul>
-      <div class="card-body">
-        <button type="button" class="btn btn-outline-primary" (click)="addToCart(product)">Add to cart</button>
+    </div>
+  </div>
+  <div class="user-product-box">
+    <div class="admin-title"  *ngIf="userProducts.length > 0">
+      <h2>♡ Products Posted By Other Users ♡</h2>
+    </div>
+    <div class="d-flex mx-6 card-container">
+      <div
+        class="card product-box"
+        style="width: 18rem"
+        *ngFor="let product of userProducts; let i = index"
+      >
+        <img
+          class="card-img-top"
+          src="{{ product.image }}"
+          alt="Card image cap"
+          style="height: 280px; width: 280px"
+        />
+        <div class="card-body">
+          <h2 class="card-title">{{ product.pname }}</h2>
+          <h3>CA${{ product.price | number: "1.2-2" }}</h3>
+          <div class="dropdown-divider"></div>
+          <p class="card-text">
+            <b>Descrption</b><br />
+            {{ product.desc }}
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Highlights</b></li>
+          <li class="list-group-item">
+            Brand: <i>{{ product.brand }}</i>
+          </li>
+          <li class="list-group-item">Condition: {{ product.condition }}</li>
+          <li class="list-group-item">Posted By: {{ product.postedBy }}</li>
+        </ul>
+        <div class="card-body">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="addToCart(product)"
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
     </div>
   </div>

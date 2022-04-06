@@ -31,14 +31,7 @@
         </button>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control" type="search" placeholder="Search a category" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-      <!-- <div class="input-group">
-      <input type="search" id="form1" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-      <button type="button" class="btn btn-outline-primary">search</button>
-    </div> -->
+    
     <button class="btn btn-outline-primary" (click)="enterCart()" style="margin-left: 15px">
       <i style="font-size: 21px" class="fas fa-cart-plus"></i>
       <div style="font-size: 9px;" class="badge bg-danger">{{cartItems}}</div>
@@ -65,17 +58,14 @@
           </li>
           <li class="nav-item">
             <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="enterSell()">
-            <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="enterSell()"> -->
               Sell
             </button>
           </li>
         <li class="nav-item">
           <button type="button" class="btn btn-light" *ngIf="!authService.getLogUser()" (click)="enterLogin()">
-          <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken == null" (click)="enterLogin()"> -->
             Log In/ Sign Up
           </button>
           <button type="button" class="btn btn-light" *ngIf="authService.getLogUser()" (click)="logOut()">
-          <!-- <button type="button" class="btn btn-light" *ngIf="authService.getToken != null" (click)="logOut()"> -->
             Log Out
           </button>
         </li>
