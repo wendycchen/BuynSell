@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/product';
 import { AuthenticationService } from '../services/authentication.service';
+import { ProductlistService } from '../services/productlist.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,12 +9,25 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  constructor(private authServ:AuthenticationService) { }
+  public products!: Product[];
+  
+  constructor(private productsService: ProductlistService) { }
 
   ngOnInit(): void {
-    // console.log(this.authServ.data);
-
+    this.productsService.getProducts().subscribe((products: Product[]) => {
+      this.products = products
+      console.log(this.products);
+    }, (error: ErrorEvent) => {
+    });
+  } 
+  
+  deleteProduct(productId: any){
+    this.productsService.deleteProduct(productId).subscribe((data: any) => {
+      console.log(data);
+    }, (err:any) => {
+      console.log(err);
+    })
+    this.ngOnInit();
   }
 
 }

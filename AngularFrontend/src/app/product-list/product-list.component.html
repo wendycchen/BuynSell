@@ -3,9 +3,9 @@
     <h1>Products For Sale</h1>
   </div>
 
-  <div class="d-flex mx-5 card-container" >
+  <div class="d-flex mx-6 card-container" >
     <div class="card product-box" style="width: 18rem" *ngFor="let product of products; let i = index">
-      <img class="card-img-top" src={{product.image}} alt="Card image cap" />
+      <img class="card-img-top" src={{product.image}} alt="Card image cap" style="height:280px; width: 280px;"/>
       <div class="card-body">
         <h2 class="card-title">{{product.pname}}</h2>
         <h3>CA${{product.price | number : '1.2-2'}}</h3>

@@ -1,50 +1,30 @@
+<div class="title-container">
+  <h1>All Postings</h1>
+</div>
 <div class="product-list-container">
-
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Post ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Category</th>
+        <th scope="col">Created By</th>
+        <th scope="col">Image</th>
+        <th scope="col">Delete?</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor="let product of products; let i = index;">
+        <th scope="row">{{product.prodId}}</th>
+        <td>{{product.pname}}</td>
+        <td>CA${{product.price}}</td>
+        <td>{{product.brand}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.postedBy}}</td>
+        <td><img src={{product.image}} style="height:100px; width: 100px"/></td>
+        <td><button type="button" class="btn btn-outline-danger" (click)="deleteProduct(product.prodId)">Delete</button></td>
       </tr>
     </tbody>
   </table>
