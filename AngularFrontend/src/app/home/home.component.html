@@ -2,312 +2,127 @@
   <img src="assets/images/dashboard.png" style="width: 100%; height: 700px;" alt="Image Broken">
 </div>> -->
 <!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
-  <!-- Indicators/dots -->
-  <div class="carousel-indicators">
-    <button
-      type="button"
-      data-bs-target="#demo"
-      data-bs-slide-to="0"
-      class="active"
-    ></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+<div class="page-container">
+  <div id="demo" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators/dots -->
+
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#demo"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#demo"
+            data-bs-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#demo"
+            data-bs-slide-to="2"
+          ></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="assets/images/payments.jpg"
+              alt="Los Angeles"
+              class="d-block"
+              style="width: 70%; height: 750px; margin-left: auto; margin-right: auto"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/images/dashboard.png"
+              alt="Chicago"
+              class="d-block"
+              style="width: 70%; height: 750px;  margin-left: auto; margin-right: auto"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/images/dash.jpg"
+              alt="New York"
+              class="d-block"
+              style="width: 70%; height: 750px;  margin-left: auto; margin-right: auto"
+            />
+          </div>
+        </div>
+
+        <!-- Left and right controls/icons -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#demo"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#demo"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
   </div>
 
-  <!-- The slideshow/carousel -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-        src="assets/images/payments.jpg"
-        alt="Los Angeles"
-        class="d-block"
-        style="width: 70%; margin-left: auto; margin-right: auto"
-      />
+  <!-- cards -->
+  <div class="admin-product-box" *ngIf="adminProducts.length > 0">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <!-- Indicators/dots -->
+      <div class="col-sm-8">
+    <div class="admin-title">
+      <h2>♡ Featured Products Posted By Admins ♡</h2>
     </div>
-    <div class="carousel-item">
-      <img
-        src="assets/images/dashboard.png"
-        alt="Chicago"
-        class="d-block"
-        style="width: 70%; margin-left: auto; margin-right: auto"
-      />
-    </div>
-    <div class="carousel-item">
-      <img
-        src="assets/images/dash.jpg"
-        alt="New York"
-        class="d-block"
-        style="width: 70%; margin-left: auto; margin-right: auto"
-      />
-    </div>
-  </div>
-
-  <!-- Left and right controls/icons -->
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#demo"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#demo"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
-
-<div class="container card-container">
-  <div class="row product-items">
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
+    <div class="d-flex mx-6 card-container">
+      <div
+        class="card product-box"
+        style="width: 18rem"
+        *ngFor="let adminProduct of adminProducts; let i = index"
+      >
         <img
           class="card-img-top"
-          src="assets/images/monitor.avif"
+          src="{{ adminProduct.image }}"
           alt="Card image cap"
-          style="height: 200px"
+          style="height: 280px; width: 280px"
         />
         <div class="card-body">
-          <h3 class="card-title">Monitors</h3>
-          <p class="card-text">Shop the latest monitor brands</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop monitors</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/wclothes.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Women Clothes</h3>
-          <p class="card-text">See the fashion trend loved by many others</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop women clothes</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/bclothes.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Baby Clothes</h3>
+          <h2 class="card-title">{{ adminProduct.pname }}</h2>
+          <h3>CA${{ adminProduct.price | number: "1.2-2" }}</h3>
+          <div class="dropdown-divider"></div>
           <p class="card-text">
-            Never enough clothes for the babies? No worries, we got you
+            <b>Descrption</b><br />
+            {{ adminProduct.desc }}
           </p>
         </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop baby clothes</a
-          >
-        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b>Highlights</b></li>
+          <li class="list-group-item">
+            Brand: <i>{{ adminProduct.brand }}</i>
+          </li>
+          <li class="list-group-item">
+            Condition: {{ adminProduct.condition }}
+          </li>
+          <li class="list-group-item">
+            Posted By: <b style="color: red">{{ adminProduct.postedBy }}</b>
+          </li>
+        </ul>
+        <div class="card-body"></div>
       </div>
     </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/switch.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Nintendo Games</h3>
-          <p class="card-text">
-            Looking for young teens' new favourites? You can never go wrong with
-            Nintendo's newest switch consoles
-          </p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop Nintendo</a
-          >
-        </div>
-      </div>
+    <div class="view-more-container">
+      <a href='/product' class="view-more-link" >> View More</a>
     </div>
-  </div>
-
-  <div class="row product-items">
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/ps5.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Sony</h3>
-          <p class="card-text">NEW PS5 is the greatest gift</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop Sony</a
-          >
-        </div>
-      </div>
     </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/collectables.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Collectables</h3>
-          <p class="card-text">
-            Ancient historical products are rare... but you can find them all on
-            here
-          </p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop collectables</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/mclothes.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Men Clothes</h3>
-          <p class="card-text">
-            Upgrade the looks with the newest products in trend
-          </p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop men clothes</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/graphics.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Graphics Card</h3>
-          <p class="card-text">
-            Still waiting for that out-of-stock graphics card out there? No need
-          </p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop graphics card</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row product-items">
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/phone.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Phones</h3>
-          <p class="card-text">Everyday necessity</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop phones</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/watch.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Watches</h3>
-          <p class="card-text">Bring up the classic look</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop watches</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/accessory.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Accessories</h3>
-          <p class="card-text">Fashion necessity? Right here</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link"
-            >Shop accessories</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem; height: 25rem">
-        <img
-          class="card-img-top"
-          src="assets/images/shoes.avif"
-          alt="Card image cap"
-          style="height: 200px"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Shoes</h3>
-          <p class="card-text">New shoes for your new looks</p>
-        </div>
-        <div class="btn-format">
-          <a href="#" class="btn btn-outline-primary stretched-link">Shop </a>
-        </div>
-      </div>
-    </div>
+    <div class="col-sm-2"></div>
   </div>
 </div>

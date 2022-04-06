@@ -38,9 +38,9 @@ export class ProductlistService {
 
 
   constructor(private http: HttpClient) {
-    this.allProductsUrl = "http://localhost:8080/productMicro/products";
+    this.allProductsUrl = "http://localhost:9001/productMicro/products";
     this.getProductsByIdUrl = "http://localhost:9001/productMicro/products";
-    this.addProductsUrl = "http://localhost:8080/productMicro/products";
+    this.addProductsUrl = "http://localhost:9001/productMicro/products";
     this.deleteProductsUrl = "http://localhost:9001/productMicro/products/";
     this.newOrderUrl = "http://localhost:9004/api/orders/newOrder";
     this.allOrdersUrl = "http://localhost:9004/api/orders/order";

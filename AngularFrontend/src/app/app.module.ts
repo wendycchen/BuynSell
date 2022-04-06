@@ -30,29 +30,36 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 const routes: Routes = [
   {
-    path:'login',
+    path:'',
     component:LoginComponent
+    
   }, {
     path:'register',
     component:RegisterComponent
   }, {
-    path:'',
-    component:HomeComponent
+    path:'home',
+    component:HomeComponent,
+    canActivate:[CanActivateRouteGuard]
   },{
     path:'cart',
-    component:CartComponent
+    component:CartComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'sell',
-    component:SellComponent
+    component:SellComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile/setting',
-    component:SettingComponent
+    component:SettingComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'product',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'admin',
     component: AdminComponent,
@@ -60,7 +67,8 @@ const routes: Routes = [
     data: {expectedRole: ROLE.ADMIN}
   },{
     path: 'checkout',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate:[CanActivateRouteGuard]
   }
 
 ]
