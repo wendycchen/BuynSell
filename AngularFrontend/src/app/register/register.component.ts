@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { RoutingService } from '../services/routing.service';
+import {RegistrationService} from "../services/registration.service";
 
 
 @Component({
@@ -14,8 +15,8 @@ export class RegisterComponent implements OnInit {
   rForm:any;
   message:string = '';
   userEmail:string='';
-  constructor(private routerService:RoutingService, private authService: AuthenticationService) {
-   }
+  constructor(private routerService:RoutingService, private authService: AuthenticationService, private registrationService : RegistrationService) {
+  }
 
   ngOnInit(): void {
     this.rForm = new FormGroup({
@@ -29,13 +30,14 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyRegister(fForm:any) {
-    
+
     let userData = {
-      "ufname": this.rForm.get('inputFirstName')?.value,
-      "ulname":this.rForm.get('inputLastName')?.value,
+      "firstName": this.rForm.get('inputFirstName')?.value,
+      "lastName":this.rForm.get('inputLastName')?.value,
       "email": this.rForm.get('inputEmail')?.value,
-      "uname":this.rForm.get('inputUsername')?.value,
-      "password":this.rForm.get('inputPassword')?.value
+      "password":this.rForm.get('inputPassword')?.value,
+      "username":this.rForm.get('inputUsername')?.value,
+
     }
     console.log(this.rForm.get('inputPassword').value);
     console.log(this.rForm.get('inputConfirmPassword').value);
@@ -44,16 +46,24 @@ export class RegisterComponent implements OnInit {
         this.userEmail = this.rForm.get('inputEmail')?.value;
         document.getElementById("modal-btn")?.click();
         // this.routerService.openHome();
-        
+        this.registrationService.register(userData).subscribe((res: any) => {
+          console.log("res ->", res)
+          //this.routerService.openLogin();
+        })
       } else {
         this.message = "Passwords do not match.";
       }
-      
+
 
     }
 
   }
 
+
+  enterLogin() {
+    this.routerService.openLogin();
+
+  }
 
   resendEmail() {
     //Not sure if we're doing this?
