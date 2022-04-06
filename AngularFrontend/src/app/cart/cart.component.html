@@ -1,14 +1,62 @@
-<div class="cart-container">
-  <div class="null-cart">Cart is empty</div> <!--Add logic for empty cart-->
-
-
-  <div class="not-null-cart">
-    <!--Display products-->
-  </div> <!--add logic ngFor-->
-
-  <div>
-    <button type="button" class="btn btn-dark"(click)="openCheckout()">Checkout</button>
+<ng-container *ngIf="product.length!=0"> <!--logic for items in cart-->
+  <div class="container">
+  <div class="mat-card" id="inCart">
+    <div class="cart-product">
+      <table class="table table-responsive-md">
+        <thead>
+          <tr>
+            <th>Name:</th>
+            <th>Image:</th>
+            <th>Description:</th>
+            <th>Price:</th>
+            <th>Brand:</th>
+            <th>Date:</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of product">
+            <td>{{prod.pname}}</td>
+            <td><img src="" style="width: 150px">{{prod.imageUrl}}</td>
+            <td>{{prod.desc}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.brand}}</td>
+            <td>{{prod.date}}</td>
+            <td>
+              <button class="mat-flat-button" (click)="deleteItem(prod)"><i class="fas fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+        <tr>
+          <td colspan="4">Grand total: ${{totalCost}}</td>
+        </tr>
+        <tr>
+          <td colspan="2"><button class="mat-flat-button" (click)="removeAllItems()" style="width: 40%">Clear Cart</button></td>
+          <td colspan="2"><button class="mat-flat-button" (click)="enterProduct()" style="width: 40%">Products</button></td>
+          <td colspan="2" ><button class="mat-flat-button" (click)="openCheckout()" style="width: 40%">Checkout</button></td>
+        </tr>
+      </table>
+    </div>
   </div>
+    <div class="checkout">
+      <button type="button" class="btn btn-dark" id="checkoutBtn" (click)="openCheckout()">Checkout</button>
+    </div>
+  </div>
+</ng-container>
 
 
+
+
+<ng-container *ngIf="product.length==0"> <!--empty cart-->
+<div class="card-container">
+  <div class="mat-card"><!--Add logic for empty cart-->
+  <h1>My Cart</h1>
+  </div>
+<div class="center">
+  <img src="/assets/images/empty-cart.webp" alt="Empty Cart">
+  <h2>Cart is Empty</h2>
+  <h4>To add products to your cart click below</h4>
+  <button class="mat-raised-button" (click)="enterProduct()">Shop for products here!</button>
 </div>
+</div>
+</ng-container>
