@@ -24,6 +24,10 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ROLE } from './role.enum';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 const routes: Routes = [
   {
     path:'login',
@@ -85,6 +89,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     MatCardModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     RouterModule.forRoot(routes)
   ],
   providers: [{

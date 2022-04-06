@@ -3,38 +3,32 @@
     <h2>New Posting</h2>
   </div>
   <div class="warning-message">{{ missingFieldsMessage }}</div>
-  <form
-    #productForm="ngForm"
-    [formGroup]="pForm"
-    (ngSubmit)="verifyProduct()"
-  >
+  <form #productForm="ngForm" [formGroup]="pForm" (ngSubmit)="verifyProduct($event)">
     <div class="form-group row">
-      <label for="inputTitle" class="col-sm-2 col-form-label">Post Title</label>
+      <label for="pname" class="col-sm-2 col-form-label">Post Title</label>
       <div class="col-sm-10">
         <input
           type="text"
           class="form-control"
-          formControlName="inputTitle"
-          id="inputTitle"
+          formControlName="pname"
+          id="pname"
         />
         <div
           *ngIf="
-            pForm.get('inputTitle')?.errors &&
-            (pForm.get('inputTitle').dirty || pForm.get('inputTitle').touched)
+            pForm.get('pname')?.errors &&
+            (pForm.get('pname').dirty || pForm.get('pname').touched)
           "
         >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputTitle').hasError('required')"
+            *ngIf="pForm.get('pname').hasError('required')"
             >This field is required.</small
           >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputTitle').hasError('minlength')"
+            *ngIf="pForm.get('pname').hasError('minlength')"
             >The minimum length for this field is
-            {{
-              pForm.get("inputTitle").errors.minlength.requiredLength
-            }}
+            {{ pForm.get("pname").errors.minlength.requiredLength }}
             characters.</small
           >
         </div>
@@ -46,7 +40,7 @@
         <select
           id="inputState"
           class="form-control"
-          formControlName="inputCategory"
+          formControlName="category"
         >
           <option selected="" value="">Choose a category</option>
           <option value="Accessories">Accessories</option>
@@ -80,14 +74,14 @@
         </select>
         <div
           *ngIf="
-            pForm.get('inputCategory')?.errors &&
-            (pForm.get('inputCategory').dirty ||
-              pForm.get('inputCategory').touched)
+            pForm.get('category')?.errors &&
+            (pForm.get('category').dirty ||
+              pForm.get('category').touched)
           "
         >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputCategory').hasError('required')"
+            *ngIf="pForm.get('category').hasError('required')"
             >This field is required.</small
           >
         </div>
@@ -95,46 +89,44 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputBrand" class="col-sm-2 col-form-label">Brand</label>
+      <label for="brand" class="col-sm-2 col-form-label">Brand</label>
       <div class="col-sm-10">
         <input
           type="text"
           class="form-control"
-          formControlName="inputBrand"
-          id="inputBrand"
+          formControlName="brand"
+          id="brand"
         />
         <div
           *ngIf="
-            pForm.get('inputBrand')?.errors &&
-            (pForm.get('inputBrand').dirty || pForm.get('inputBrand').touched)
+            pForm.get('brand')?.errors &&
+            (pForm.get('brand').dirty || pForm.get('brand').touched)
           "
         >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputBrand').hasError('required')"
+            *ngIf="pForm.get('brand').hasError('required')"
             >This field is required.</small
           >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputBrand').hasError('minlength')"
+            *ngIf="pForm.get('brand').hasError('minlength')"
             >The minimum length for this field is
-            {{
-              pForm.get("inputBrand").errors.minlength.requiredLength
-            }}
+            {{ pForm.get("brand").errors.minlength.requiredLength }}
             characters.</small
           >
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputCondition" class="col-sm-2 col-form-label"
+      <label for="condition" class="col-sm-2 col-form-label"
         >Condition</label
       >
       <div class="col-sm-10">
         <select
           class="form-control"
-          id="inputCondition"
-          formControlName="inputCondition"
+          id="condition"
+          formControlName="condition"
         >
           <option selected="" value="" class="required">
             Choose a condition
@@ -146,14 +138,14 @@
         </select>
         <div
           *ngIf="
-            pForm.get('inputCondition')?.errors &&
-            (pForm.get('inputCondition').dirty ||
-              pForm.get('inputCondition').touched)
+            pForm.get('condition')?.errors &&
+            (pForm.get('condition').dirty ||
+              pForm.get('condition').touched)
           "
         >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputCondition').hasError('required')"
+            *ngIf="pForm.get('condition').hasError('required')"
             >This field is required.</small
           >
         </div>
@@ -161,7 +153,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
+      <label for="price" class="col-sm-2 col-form-label">Price</label>
       <div class="col-sm-10">
         <div class="form-row">
           <div class="form-group col-md-1" style="padding-top: 10px">CAD$</div>
@@ -169,23 +161,23 @@
             <input
               type="text"
               class="form-control"
-              formControlName="inputPrice"
+              formControlName="price"
             />
             <div
               *ngIf="
-                pForm.get('inputPrice')?.errors &&
-                (pForm.get('inputPrice').dirty ||
-                  pForm.get('inputPrice').touched)
+                pForm.get('price')?.errors &&
+                (pForm.get('price').dirty ||
+                  pForm.get('price').touched)
               "
             >
               <small
                 class="text-danger"
-                *ngIf="pForm.get('inputPrice').hasError('required')"
+                *ngIf="pForm.get('price').hasError('required')"
                 >This field is required.</small
               >
               <small
                 class="text-danger"
-                *ngIf="pForm.get('inputPrice').hasError('pattern')"
+                *ngIf="pForm.get('price').hasError('pattern')"
                 >Please provide a valid price point.</small
               >
             </div>
@@ -195,65 +187,64 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputDescription" class="col-sm-2 col-form-label"
+      <label for="desc" class="col-sm-2 col-form-label"
         >Description</label
       >
       <div class="col-sm-10">
         <textarea
           class="form-control"
-          id="inputDescription"
-          formControlName="inputDescription"
+          id="desc"
+          formControlName="desc"
           rows="10"
         ></textarea>
         <div
           *ngIf="
-            pForm.get('inputDescription')?.errors &&
-            (pForm.get('inputDescription').dirty ||
-              pForm.get('inputDescription').touched)
+            pForm.get('desc')?.errors &&
+            (pForm.get('desc').dirty ||
+              pForm.get('desc').touched)
           "
         >
           <small
             class="text-danger"
-            *ngIf="pForm.get('inputDescription').hasError('required')"
+            *ngIf="pForm.get('desc').hasError('required')"
             >This field is required.</small
           >
         </div>
       </div>
     </div>
-    <!--
+
+    <!-- Images -->
     <div class="form-group row">
-      <label for="inputImage" class="col-sm-2 col-form-label">Image</label>
-      <div class="col-sm-10">
-        <input
-          type="file"
-          class="form-control-file"
-          id="inputImage"
-          formControlName="inputImage"
-          multiple
-          accept="image/*"
-          (change)="preview($event)"
-        />
-      </div>
+      <label for="image" class="col-sm-2 col-form-label">Image</label>
+      <!-- <form [formGroup]="image" (ngSubmit)="onFileSubmit(imageUploaded)"> -->
+        <div class="col-sm-6">
+          <input
+            type="file"
+            class="form-control-file"
+            id="image"
+            formControlName="image"
+            accept="image/*"
+            #imageUploaded
+          />
+        </div>
+        <div class="col-sm-3">
+          <button
+            class="btn btn-outline-primary"
+            type="submit"
+            value="Add"
+            (click)="onFileSubmit(imageUploaded, $event)"
+          >
+            Add
+          </button>
+        </div>
+      <!-- </form> -->
     </div>
     <div class="form-group row">
-      <label for="inputImagePreview" class="col-sm-2 col-form-label"></label>
-      <div class="col-sm-10">
-        <span class="text-danger">{{ warningMessage }}</span>
-      </div>
+      <img src="{{ url }}" style="height:200px; width:200px"/>
     </div>
-    <div class="form-group row">
-      <label for="inputImagePreview" class="col-sm-2 col-form-label"></label>
-      <div class="col-sm-10">
-        <img
-          *ngFor="let url of urls"
-          [src]="url"
-          height="200"
-          width="200"
-          class="image-preview"
-        />
-      </div>
-    </div>
--->
+    <!-- height="200"
+          width="200" -->
+    <!-- Buttons -->
     <div class="center-container">
       <div class="row">
         <div class="col btn-container">
@@ -321,7 +312,7 @@
         Are you sure you want to cancel this posting and return back to home
         page?
       </div>
-      <div class="modal-footer" >
+      <div class="modal-footer">
         <!-- In case user accidentally hits the cancel button -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Go back to posting
@@ -331,7 +322,8 @@
           type="button"
           class="btn btn-primary"
           (click)="returnToHome()"
-          data-dismiss="modal">
+          data-dismiss="modal"
+        >
           Cancel posting
         </button>
       </div>

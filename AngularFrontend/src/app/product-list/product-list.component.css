@@ -1,0 +1,26 @@
+.page-container{
+    margin-top: 3%;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.title-container {
+    /* border: 1px solid; */
+    
+    text-align: center;
+    color:red;
+}
+
+.card-container{
+    flex-wrap: wrap; 
+    text-align: center; 
+    display:flex;
+    justify-content: space-between;
+    margin-top:5%;
+    margin-bottom: 5%;
+}
+
+
+.product-box {
+    margin-bottom: 40px;
+}

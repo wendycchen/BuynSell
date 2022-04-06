@@ -11,7 +11,7 @@ export class Product {
     price?:number;
     postedBy?:string;
     date?:Date;
-    imageUrl?: null;
-    image!: [Byte];
+    image?: null;
+    // image!: [Byte];
 }
 
