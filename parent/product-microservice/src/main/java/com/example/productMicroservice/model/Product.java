@@ -19,7 +19,7 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(int prodId, double price, String pname, String condition, String brand, String desc, String postedBy, String imageUrl, String category, LocalDate date) {
+	public Product(int prodId, double price, String pname, String condition, String brand, String desc, String postedBy, String imageUrl, String category, LocalDate date,String image) {
 		this.prodId = prodId;
 		this.price = price;
 		this.pname = pname;
@@ -30,8 +30,24 @@ public class Product {
 		this.imageUrl = imageUrl;
 		this.category = category;
 		this.date = date;
+		this.image = image;
 	}
 
+	public int getProdId() {
+		return prodId;
+	}
+
+	public void setProdId(int prodId) {
+		this.prodId = prodId;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public int getprodId() {
 		return prodId;
