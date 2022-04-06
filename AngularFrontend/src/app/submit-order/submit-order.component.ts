@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {RoutingService} from "../services/routing.service";
+import {CartService} from "../services/cart.service";
+import {ProductlistService} from "../services/productlist.service";
+import {Product} from "../model/product";
 
 @Component({
   selector: 'app-submit-order',
@@ -8,7 +11,8 @@ import {RoutingService} from "../services/routing.service";
 })
 export class SubmitOrderComponent implements OnInit {
   orderNum!: number;
-  constructor(private routerService: RoutingService) { }
+  constructor(private routerService: RoutingService, private cartService:CartService,
+              private productService: ProductlistService) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +28,6 @@ export class SubmitOrderComponent implements OnInit {
   openHome(){
     this.routerService.openHome();
   }
+
 
 }

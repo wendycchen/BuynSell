@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let prod of product">
-            <td><img src="/assets/images/empty-cart.webp" style="width: 350px" alt="Product-Image">{{prod.imageUrl}}</td>
+            <td><img src="{{prod.imageUrl}}" style="width: 350px" alt="Product-Image"></td>
             <td>{{prod.pname}}</td>
             <td>{{prod.desc}}</td>
             <td>{{prod.price}}</td>
