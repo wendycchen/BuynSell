@@ -48,8 +48,12 @@ export class RoutingService {
   openCart(){
     this.routerService.navigate(['cart']);
   }
-  
+
   openCheckout(){
     this.routerService.navigate(['checkout'])
+  }
+
+  openSubmitOrder(){
+    this.routerService.navigate(['submitOrder'])
   }
 }

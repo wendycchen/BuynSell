@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RoutingService} from "../services/routing.service";
+import {max} from "rxjs";
 
 @Component({
   selector: 'app-checkout',
@@ -8,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class CheckoutComponent implements OnInit {
 
 
-
-  constructor() { }
+  constructor(private router : RoutingService) { }
 
   ngOnInit(): void {
   }
+
+  submitCheckout(){
+    console.log("submitted checkout")
+    this.router.openSubmitOrder();
+  }
+
 
 }

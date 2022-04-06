@@ -1,8 +1,8 @@
-.mat-card{
+.mat-card_a{
   height: 60vh;
   margin: 30px;
   padding: 20px;
-  background: beige;
+  background: white;
 }
 
 #inCart{
@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   word-break: break-all;
-  border: 1px solid black;
   border-radius: 0.2px;
+  border: white;
 }
 
 .center{
@@ -33,4 +33,46 @@
 #checkoutBtn{
   width: 20vh;
   border: 2px solid red;
+  margin-bottom: 73%;
+}
+
+ng-container{
+  background: aliceblue;
+}
+
+h1, h2, h4{
+  font-weight: 800;
+}
+
+#shopMore{
+  background: lightgrey;
+}
+
+#shopMore:hover{
+  transform: scale(1.5) perspective(1px);
+}
+
+td{
+  font-size: 15px;
+  font-weight: 300;
+  text-align: center;
+}
+
+th {
+  font-size: 18px;
+  font-weight: 400;
+  color: blue;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.total_cost{
+  text-align:end;
+  font-weight: 400;
+  color: red;
+}
+
+.mat-flat-button:hover{
+  transform: scale(1.1) perspective(1px);
+  background: lightgray;
 }

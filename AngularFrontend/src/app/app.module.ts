@@ -27,6 +27,7 @@ import { ROLE } from './role.enum';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { SubmitOrderComponent } from './submit-order/submit-order.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
   },{
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'submitOrder',
+    component: SubmitOrderComponent
   }
 
 ]
@@ -79,7 +84,8 @@ const routes: Routes = [
     SettingComponent,
     AdminComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SubmitOrderComponent
   ],
   imports: [
     BrowserModule,
