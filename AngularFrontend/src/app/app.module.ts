@@ -31,29 +31,36 @@ import { SubmitOrderComponent } from './submit-order/submit-order.component';
 
 const routes: Routes = [
   {
-    path:'login',
+    path:'',
     component:LoginComponent
+
   }, {
     path:'register',
     component:RegisterComponent
   }, {
-    path:'',
-    component:HomeComponent
+    path:'home',
+    component:HomeComponent,
+    canActivate:[CanActivateRouteGuard]
   },{
     path:'cart',
-    component:CartComponent
+    component:CartComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'sell',
-    component:SellComponent
+    component:SellComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile/setting',
-    component:SettingComponent
+    component:SettingComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'product',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate:[CanActivateRouteGuard]
   }, {
     path:'admin',
     component: AdminComponent,
@@ -63,10 +70,10 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutComponent
   },
-  {
-    path: 'submitOrder',
-    component: SubmitOrderComponent
-  }
+{
+  path: 'submitOrder',
+  component:SubmitOrderComponent
+}
 
 ]
 

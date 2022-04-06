@@ -9,11 +9,11 @@ export class RoutingService {
   constructor(private routerService:Router) { }
 
   openLogin() {
-    this.routerService.navigate(['login']);
+    this.routerService.navigate(['']);
   }
 
   openHome() {
-    this.routerService.navigate(['']);
+    this.routerService.navigate(['home']);
   }
 
   openRegister() {
