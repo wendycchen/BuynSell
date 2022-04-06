@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-<div style="margin-top: 5rem;">
-    <style>
-        .product-img-container {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("../../assets/images/plant1.jpg");
-            height: 250px;
-            width: 100%;
-        }
-    </style>
-    <h2 class="mx-auto text-center" style="margin-bottom: 6rem;">Our Products</h2>
-    <div class="d-flex mx-5" style="justify-content: center; flex-wrap: wrap; text-align: center;">
-        <mat-card *ngFor="let product of products; let i = index" style="margin: auto; width: 350px; background-color:lightgrey; margin-bottom: 10px;">
-            <mat-card-header>
-                <!-- <mat-card-subtitle>Angular Material Card</mat-card-subtitle> -->
-            </mat-card-header>
-            <mat-card-content>
-                <mat-card-title style="color: green;">{{ product.pname }}</mat-card-title>
-                <mat-card-subtitle class="product-img-container" [style.backgroundImage]="'url(' + product.imageUrl + ')'" ></mat-card-subtitle>
-                <!-- <img ng-src="{{product.imageUrl}}"> -->
-                <mat-card-subtitle>${{ product.price | number : '1.2-2' }}</mat-card-subtitle>
-                <mat-card-subtitle>{{ product.condition}}</mat-card-subtitle>
-                <mat-card-subtitle>{{ product.brand }}</mat-card-subtitle>
-                <mat-card-subtitle>{{ product.desc }}</mat-card-subtitle>
-                <mat-card-subtitle>{{ product.postedBy }}</mat-card-subtitle>
-            </mat-card-content>
-            <mat-card-actions>
-                <button class="btn btn-success" (click)="addToCart(product)">Add to cart</button>
-            </mat-card-actions>
-        </mat-card>
-=======
 <div class="page-container">
   <div class="title-container">
     <h1>Products For Sale</h1>
@@ -54,9 +21,8 @@
         <li class="list-group-item">Posted By: {{product.postedBy}}</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="btn btn-outline-primary">Add to cart</a>
+        <button type="button" class="btn btn-outline-primary" (click)="addToCart(product)">Add to cart</button>
       </div>
->>>>>>> 92a2ce408c77cc9c221e2437f1729ca689363d57
     </div>
   </div>
 </div>
