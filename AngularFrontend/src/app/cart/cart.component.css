@@ -1,0 +1,36 @@
+.mat-card{
+  height: 60vh;
+  margin: 30px;
+  padding: 20px;
+  background: beige;
+}
+
+#inCart{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  border: 1px solid black;
+  border-radius: 0.2px;
+}
+
+.center{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.checkout{
+  position: absolute;
+  margin: 0;
+  left: 45%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#checkoutBtn{
+  width: 20vh;
+  border: 2px solid red;
+}
