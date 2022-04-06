@@ -6,11 +6,12 @@ export class Product {
     pname!: string;
     condition?:string;
     brand?:string;
+    category?:string;
     desc?:string;
     price!:number;
     postedBy?:string;
     date?:Date;
-    imageUrl?: null;
-    image!: [Byte];
+    image?: null;
+    // image!: [Byte];
 }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import { CategorylistService } from '../services/categorylist.service';
 import { RoutingService } from '../services/routing.service';
 import {CartService} from "../services/cart.service";
 
@@ -10,6 +9,7 @@ import {CartService} from "../services/cart.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+<<<<<<< HEAD
   cartItems: number = 0;
   catoList: any = [];
   constructor(private routerService:RoutingService, public authService: AuthenticationService, private catServ: CategorylistService
@@ -32,6 +32,18 @@ export class HeaderComponent implements OnInit {
     console.log(this.catoList);
 
   }
+=======
+
+  constructor(private routerService:RoutingService, public authService: AuthenticationService) { }
+
+  ngOnInit(): void {
+    // this.catServ.getCategories().subscribe((data:any) => {
+    //   this.catoList = data;
+    // })
+    // this.update();
+  }
+
+>>>>>>> 92a2ce408c77cc9c221e2437f1729ca689363d57
 
   enterSell() {
     this.routerService.openSell();

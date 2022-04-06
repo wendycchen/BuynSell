@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div style="margin-top: 5rem;">
     <style>
         .product-img-container {
@@ -29,7 +30,33 @@
                 <button class="btn btn-success" (click)="addToCart(product)">Add to cart</button>
             </mat-card-actions>
         </mat-card>
+=======
+<div class="page-container">
+  <div class="title-container">
+    <h1>Products For Sale</h1>
+  </div>
+
+  <div class="d-flex mx-5 card-container" >
+    <div class="card product-box" style="width: 18rem" *ngFor="let product of products; let i = index">
+      <img class="card-img-top" src={{product.image}} alt="Card image cap" />
+      <div class="card-body">
+        <h2 class="card-title">{{product.pname}}</h2>
+        <h3>CA${{product.price | number : '1.2-2'}}</h3>
+        <div class="dropdown-divider"></div>
+        <p class="card-text"><b>Descrption</b><br>
+          {{product.desc}}
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Highlights</b></li>
+        <li class="list-group-item">Brand: <i>{{product.brand}}</i></li>
+        <li class="list-group-item">Condition: {{product.condition}}</li>
+        <li class="list-group-item">Posted By: {{product.postedBy}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="btn btn-outline-primary">Add to cart</a>
+      </div>
+>>>>>>> 92a2ce408c77cc9c221e2437f1729ca689363d57
     </div>
+  </div>
 </div>
-
-
