@@ -12,6 +12,5 @@ export class Product {
     postedBy?:string;
     date?:Date;
     image?: null;
-    // image!: [Byte];
 }
 

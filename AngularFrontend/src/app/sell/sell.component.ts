@@ -46,9 +46,6 @@ export class SellComponent implements OnInit {
       image: new FormControl('')
     })
 
-    // this.image = this.formBuilder.group({
-    //   file: new FormControl('')
-    // })
 
     this.user = this.authService.getLogUser();
     this.username = this.user.username;
@@ -58,7 +55,7 @@ export class SellComponent implements OnInit {
     console.log("this.pForm --->", this.pForm)
 
 
-    
+
     let productData = {
       "pname":this.pForm.get('pname').value,
       "brand":this.pForm.get('brand').value,
@@ -69,17 +66,8 @@ export class SellComponent implements OnInit {
       // "image":this.pForm.get('image').value
       "image":this.image
     }
-    /*console.log(this.pForm.valid);
-    console.log(this.pForm.get('condition').value);
-    console.log(this.pForm.get('inputTitle').value);
-    console.log(this.pForm.get('brand').value);
-    console.log(this.pForm.get('category').value);
-    console.log(this.pForm.get('price').value);
-    console.log(this.pForm.get('desc').value);
-    console.log(this.urls);
-    */
+
     if(this.pForm.valid){
-      // this.product = new Product();
       this.product.prodId = this.getRandomInt();
       this.product.price = productData.price;
       this.product.pname = productData.pname;
@@ -141,11 +129,9 @@ export class SellComponent implements OnInit {
               this.url = link;
               this.pForm.value.image = this.url;
               this.image = this.url
-              // console.log("input pform ----> " + this.pForm.value.inputImage.toString());
               console.log("on file submit image URL: ");
               console.log(this.url);
               console.log(this.pForm);
-              // this.productService.addProduct(this.pForm.value).subscribe(data => console.log(data), error => console.log(error));
             }
           });
         })
@@ -155,7 +141,7 @@ export class SellComponent implements OnInit {
           console.log(url);
         }
       });
-    
+
   }
 
 }

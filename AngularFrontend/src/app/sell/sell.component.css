@@ -8,7 +8,6 @@
     margin-top:5%;
     text-align: center;
     color: rgb(219, 15, 15);
-    /* margin-bottom:3%; */
 }
 
 .warning-message{
@@ -39,13 +38,13 @@
     z-index: 1;
     background-color: #2d3a85;
   }
-  
+
   a:hover .submenu-container {
     border: 2px solid gray;
     height: 128px;
     transition: height 0.25s linear;
   }
-  
+
   .submenu-item {
     padding: 0.3rem 0.8rem;
   }

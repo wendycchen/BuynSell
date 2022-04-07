@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
-  
+
   uForm:any;
   user:any;
   uid:any;
@@ -25,7 +25,7 @@ export class SettingComponent implements OnInit {
 
   pForm:any;
   warningMessage:string='';
-  
+
   constructor(private authServ:AuthenticationService, private formBuilder:FormBuilder, private userServ:UserService) { }
 
   ngOnInit(): void {
@@ -46,12 +46,12 @@ export class SettingComponent implements OnInit {
 
     this.update();
 
-    
+
 
       this.pForm = new FormGroup({
         newPass: new FormControl('', Validators.required),
         newConfirmPass: new FormControl('', Validators.required)
-      })  
+      })
   }
 
   update() {
@@ -87,20 +87,7 @@ export class SettingComponent implements OnInit {
     } else {
       this.warningMessage = "Please check your passwords again.";
     }
-    
+
   }
-
-  // unblockUser(id:number){
-  //   this.blockList = this.blockList.filter((item:any) => item.id !== id);
-  //   this.uForm.value.blocked = this.blockList;
-  //   this.userServ.updateUser(this.uForm.value).subscribe((data:any) => {
-  //     if(data != null) {
-  //       console.log("UPDATED OK");
-
-  //     } else {
-  //       console.log("NO UPDATE");
-  //     }
-  //   })
-  // }
 
 }

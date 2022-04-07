@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
         // this.routerService.openHome();
         this.registrationService.register(userData).subscribe((res: any) => {
           console.log("res ->", res)
-          //this.routerService.openLogin();
         })
       } else {
         this.message = "Passwords do not match.";
@@ -65,9 +64,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  resendEmail() {
-    //Not sure if we're doing this?
-  }
+
 
 
 }
