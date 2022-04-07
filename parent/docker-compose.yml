@@ -86,7 +86,7 @@ services:
     image: tomskiff/email-service:latest
     container_name: email-service-container
     ports:
-      - "9001:9001"
+      - "8999:8999"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
@@ -99,7 +99,7 @@ services:
     image: tomskiff/product-microservice:latest
     container_name: product-microservice-container
     ports:
-      - "8999:8999"
+      - "9001:9001"
     depends_on:
       - eureka-server
       - mongodb

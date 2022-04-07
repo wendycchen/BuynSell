@@ -12,6 +12,8 @@ spring:
             allowedMethods:
               - GET
               - POST
+              - PUT
+
       discovery:
         locator:
           enabled: true

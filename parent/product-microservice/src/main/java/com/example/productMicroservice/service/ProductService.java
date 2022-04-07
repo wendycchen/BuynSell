@@ -11,9 +11,11 @@ import com.example.productMicroservice.repository.ProductRepo;
 
 @Service
 public class ProductService {
-	
+
+
 	private final ProductRepo productRepo;
-	
+
+	@Autowired
 	public ProductService(ProductRepo productRepo) {
 		this.productRepo = productRepo;
 	}
@@ -40,7 +42,7 @@ public class ProductService {
 		prodObj.setPostedBy(product.getPostedBy());
 		prodObj.setBrand(product.getBrand());
 		prodObj.setDate(product.getDate());
-		prodObj.setImageUrl(product.getImageUrl());
+		prodObj.setImage(product.getImage());
 		return productRepo.save(prodObj);
 	}
 	

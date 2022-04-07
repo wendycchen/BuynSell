@@ -1,9 +1,9 @@
 server:
-  port: 8999
+  port: 9001
 
 spring:
   application:
-    name: productMicroservice
+    name: product-microservice
   data:
     mongodb:
       #host: localhost

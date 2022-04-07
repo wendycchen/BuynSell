@@ -18,7 +18,7 @@ public class GatewayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("account-service", r -> r.path("/api/v1/account/**").filters(f -> f.filter(filter)).uri("lb://account-service"))
-                .route("productMicroservice", r -> r.path("/productMicro/**").filters(f -> f.filter(filter)).uri("lb://product-microservice"))
+                .route("product-microservice", r -> r.path("/productMicro/**").filters(f -> f.filter(filter)).uri("lb://productMicroservice"))
                 .route("ordersMicroservice", r -> r.path("/ordersMicroservice/**").filters(f -> f.filter(filter)).uri("lb://ordersMicroservice"))
                 //TODO figure out a better way to do this
                 .route("test", r -> r.path("/authenticate").filters(f -> f.filter(filter)).uri("lb://account-service"))
