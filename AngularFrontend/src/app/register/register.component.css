@@ -1,6 +1,7 @@
 .center-container{
     width:100%vw;
     height:100%vh;
+    margin-bottom: 25px;
 }
 
 .title{
@@ -16,7 +17,7 @@
 }
 
 .form-container{
-    margin-top:5%;
+    margin-top:2%;
     margin-left: 15%;
     margin-right:15%;
 }
