@@ -22,6 +22,13 @@ public class Orders {
 	public Orders() {
 		super();
 	}
+	
+	public Orders(int orderId, String email) {
+		super();
+		this.orderId = orderId;
+		orderNumber = rand.nextLong(1000, 1000000);
+		this.email = email;
+	}
 
 	public int getOrderId() {
 		return orderId;
