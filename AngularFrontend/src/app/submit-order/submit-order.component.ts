@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../services/cart.service';
+import { ProductlistService } from '../services/productlist.service';
 import {RoutingService} from "../services/routing.service";
-import {CartService} from "../services/cart.service";
-import {ProductlistService} from "../services/productlist.service";
+
 import {Product} from "../model/product";
 
 @Component({
@@ -11,10 +12,21 @@ import {Product} from "../model/product";
 })
 export class SubmitOrderComponent implements OnInit {
   orderNum!: number;
+
   constructor(private routerService: RoutingService, private cartService:CartService,
               private productService: ProductlistService) { }
 
+
   ngOnInit(): void {
+    console.log("PLS SHOW ITEM LIST----->" + this.cartService.itemList);
+    for(var i = 0; i < this.cartService.itemList.length; i++) {
+      console.log(this.cartService.itemList[i]);
+      this.productService.deleteProduct(this.cartService.itemList[i].prodId).subscribe((data:any) => {
+        console.log(data);
+      }, (err:any) => {
+        console.log(err);
+      })
+    }
   }
 
   autoGenOrderNum(): number{
@@ -26,6 +38,7 @@ export class SubmitOrderComponent implements OnInit {
   }
 
   openHome(){
+
     this.routerService.openHome();
   }
 

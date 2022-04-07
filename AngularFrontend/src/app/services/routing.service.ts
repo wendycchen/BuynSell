@@ -43,7 +43,6 @@ export class RoutingService {
   openAdmin() {
     this.routerService.navigate(['admin']);
 
-
   }
   openCart(){
     this.routerService.navigate(['cart']);

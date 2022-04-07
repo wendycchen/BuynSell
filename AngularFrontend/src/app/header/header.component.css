@@ -2,3 +2,17 @@
     width: 1000px;
     margin-left:200px;
 }
+
+.navbar navbar-expand-lg navbar-light bg-light{
+  background-color: black;
+}
+
+.btn{
+  margin: 10px;
+}
+.btn:hover{
+  transform: scale(1.1);
+  color: blue;
+}
+
+

@@ -1,4 +1,5 @@
-<ng-container *ngIf="product.length!=0"> <!--logic for items in cart-->
+<body>
+<div *ngIf="product.length!=0" class="page-container"> <!--logic for items in cart-->
   <div class="container">
   <div class="mat-card" id="inCart">
     <div class="cart-product">
@@ -37,22 +38,21 @@
     </div>
   </div>
   </div>
-</ng-container>
+</div>
 
 
 
 
 
-<ng-container *ngIf="product.length==0"> <!--empty cart-->
-<div class="card-container">
+<div *ngIf="product.length==0" style="margin: 0"> <!--empty cart-->
   <div class="mat-card_a"><!--Add logic for empty cart-->
   <h1>My Cart</h1>
-  </div>
-<div class="center">
+<div class="center" style="margin: 0">
   <img src="/assets/images/empty-cart.webp" alt="Empty Cart">
   <h2>Cart is Empty</h2>
   <h4>To add products to your cart click below</h4>
   <button class="mat-raised-button" id="shopMore" (click)="enterProduct()">Shop for products here!</button>
 </div>
+  </div>
 </div>
-</ng-container>
+</body>
