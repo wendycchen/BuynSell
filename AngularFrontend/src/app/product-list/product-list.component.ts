@@ -33,18 +33,13 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productsService.getProducts().subscribe((products: Product[]) => {
       this.products = products;
-      console.log(this.products);
       for(var i = 0; i < this.products.length; i++) {
         if(this.products[i].postedBy === "ADMIN") {
-          console.log("FOUND");
           this.adminProducts.push(this.products[i]);
         } else {
           this.userProducts.push(this.products[i]);
         }
       }
-      console.log("-----------------------------------");
-      console.log(this.adminProducts);
-      console.log(this.userProducts);
     }, (error: ErrorEvent) => {
     });
 

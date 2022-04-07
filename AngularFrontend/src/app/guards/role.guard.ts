@@ -9,13 +9,10 @@ import { RoutingService } from "../services/routing.service";
 })
 export class RoleGuard implements CanActivate {
     constructor(private router: RoutingService, private authServ: AuthenticationService) {
-        // const 
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
        const expectedRole = route.data["expectedRole"];
        const currentUser = this.authServ.getLogUser();
-       console.log("GETTING TOKEN--- > " + this.authServ.getToken());
-       console.log("CURRENT ====== " + currentUser.role);
     
        if(currentUser.role === expectedRole) {
            return true;

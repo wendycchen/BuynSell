@@ -41,7 +41,6 @@ export class AuthenticationService {
   }
 
   logUser(val: any) {
-    console.log("insidee log user.............." + JSON.stringify(val));
     localStorage.setItem("UserInfo", JSON.stringify(val));
     
   } 

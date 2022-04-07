@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
           this.productsByMe.push(this.products[i]);
         }
       }
-      console.log(this.productsByMe);
     }, (error: ErrorEvent) => {
       console.log(error);
     })
@@ -47,7 +46,6 @@ export class ProfileComponent implements OnInit {
 
   deleteProduct(prodId: number) {
     this.prodService.deleteProduct(prodId).subscribe((data: any) => {
-      console.log(data);
       this.productsByMe = [];
       this.ngOnInit();
     }, (err:any) => {

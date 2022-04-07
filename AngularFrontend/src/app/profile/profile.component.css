@@ -3,18 +3,14 @@
     margin-bottom:5%;
     margin-left: 15%;
     margin-right:15%;
-    width:100%vw;
-    height:100%vh;
+    width:100vw;
+    height:100vh;
 }
 
 .col{
-    /* border-style:1px solid;
-    border-color:rgb(65, 65, 65); */
-    /* margin-right:50px; */
 }
 
 .title{
     margin-top:5%;
-    /* text-align: center; */
     color: rgb(219, 15, 15);
 }

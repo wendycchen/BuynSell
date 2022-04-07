@@ -16,7 +16,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitCheckout(){
-    console.log("submitted checkout")
     this.router.openSubmitOrder();
   }
 

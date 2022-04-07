@@ -15,11 +15,8 @@ export class SubmitOrderComponent implements OnInit {
   constructor(private routerService: RoutingService, private prodServ: ProductlistService, private cartServ: CartService) { }
 
   ngOnInit(): void {
-    console.log("PLS SHOW ITEM LIST----->" + this.cartServ.itemList);
     for(var i = 0; i < this.cartServ.itemList.length; i++) {
-      console.log(this.cartServ.itemList[i]);
       this.prodServ.deleteProduct(this.cartServ.itemList[i].prodId).subscribe((data:any) => {
-        console.log(data);
       }, (err:any) => {
         console.log(err);
       })
@@ -30,7 +27,6 @@ export class SubmitOrderComponent implements OnInit {
     let min = Math.ceil(100000);
     let max = Math.ceil(100000000);
     this.orderNum = Math.floor(Math.random() * (max - min + 1) + min);
-    console.log(this.orderNum)
     return this.orderNum;
   }
 

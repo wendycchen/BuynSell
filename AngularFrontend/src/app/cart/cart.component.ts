@@ -18,7 +18,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe(res=>{
-      console.log("checking products?????? -----------------> " + res);
       this.product = res;
       this.totalCost = this.cartService.getTotalPrice();
     })
