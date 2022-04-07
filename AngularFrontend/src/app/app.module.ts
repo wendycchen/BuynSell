@@ -40,31 +40,31 @@ const routes: Routes = [
   }, {
     path:'home',
     component:HomeComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   },{
     path:'cart',
     component:CartComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile',
     component:ProfileComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   }, {
     path:'sell',
     component:SellComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   }, {
     path:'profile/setting',
     component:SettingComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   }, {
     path:'product',
     component: ProductListComponent,
-    canActivate:[CanActivateRouteGuard]
+    //canActivate:[CanActivateRouteGuard]
   }, {
     path:'admin',
     component: AdminComponent,
-    canActivate:[CanActivateRouteGuard, RoleGuard],
+    //canActivate:[CanActivateRouteGuard, RoleGuard],
     data: {expectedRole: ROLE.ADMIN}
   },{
     path: 'checkout',

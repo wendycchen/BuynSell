@@ -3,6 +3,8 @@ import { CartService } from '../services/cart.service';
 import { ProductlistService } from '../services/productlist.service';
 import {RoutingService} from "../services/routing.service";
 
+import {Product} from "../model/product";
+
 @Component({
   selector: 'app-submit-order',
   templateUrl: './submit-order.component.html',
@@ -36,5 +38,6 @@ export class SubmitOrderComponent implements OnInit {
 
     this.routerService.openHome();
   }
+
 
 }

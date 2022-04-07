@@ -1,7 +1,11 @@
 
+.page-container{
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+}
 .product-items {
     margin-top: 20px;
-    margin-bottom: 30px;       
+    margin-bottom: 30px;
 }
 
 .btn-format {
@@ -16,12 +20,12 @@
     margin-top:30px;
     margin-left:30px;
     text-align: center;
-    
+
 }
 
 .card-container{
-    flex-wrap: wrap; 
-    text-align: center; 
+    flex-wrap: wrap;
+    text-align: center;
     display:flex;
     justify-content: space-around;
     margin-top:3%;

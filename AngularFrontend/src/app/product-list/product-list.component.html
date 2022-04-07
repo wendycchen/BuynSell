@@ -2,13 +2,12 @@
   <div class="title-container">
     <h1>Products For Sale</h1>
   </div>
-  <div class="dropdown d-grid gap-2 col-4 mx-auto filter-by-category" >    
+  <div class="dropdown d-grid gap-2 col-4 mx-auto filter-by-category" >
         <select
-        class="dropdown-toggle btn btn-outline-primary"
+        class="dropdown-toggle btn btn-dark"
         [(ngModel)]="filteredCat"
-          (change)="filtered($event)"
-        >
-          <option value="All" selected="selected">All</option>
+          (change)="filtered($event)">
+          <option class="drop_select" value="" selected disabled>Please select a Category</option>
           <option value="Accessories">Accessories</option>
           <option value="Art">Art</option>
           <option value="Baby Clothes">Baby Clothes</option>
