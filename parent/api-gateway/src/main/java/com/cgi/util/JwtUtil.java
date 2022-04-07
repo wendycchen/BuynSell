@@ -2,11 +2,12 @@ package com.cgi.util;
 
 import com.cgi.exceptions.JwtTokenInvalidException;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
-@Component
+@Component @Slf4j
 public class JwtUtil {
 
     @Value("${jwt.secret}")
@@ -17,7 +18,7 @@ public class JwtUtil {
             Claims body = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
             return body;
         } catch (Exception e) {
-            System.out.println(e.getMessage() + " => " + e);
+            log.info("Error getting jwt claims {}",e.getMessage());
         }
         return null;
     }

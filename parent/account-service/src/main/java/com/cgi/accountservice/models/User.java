@@ -23,7 +23,6 @@ public class User {
     private String password;
     private Boolean isEnabled = false;
 
-    //TODO add other fields
 
     public User(Role userRole, String username, String firstName, String lastName, String email, String password) {
         this.userRole = userRole;

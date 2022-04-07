@@ -37,10 +37,6 @@ public class RegistrationServiceImplementation implements RegistrationService {
         } catch (EmailAndUsernameExists | EmailAlreadyExistsException | UsernameAlreadyExistsException e) {
             log.info("Unsuccessful Registration for user with email: {}, username: {}, firstname: {}, lastname: {}, \n with error {}",regRequest.getEmail(),regRequest.getUsername(),regRequest.getFirstName(),regRequest.getLastName(),e.getMessage());
         }
-
-        //TODO change from my email
-
-
     }
 
     @Transactional

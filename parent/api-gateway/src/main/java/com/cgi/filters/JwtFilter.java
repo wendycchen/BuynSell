@@ -23,7 +23,7 @@ import java.util.function.Predicate;
 @Component @Slf4j @RequiredArgsConstructor
 public class JwtFilter implements GatewayFilter {
 
-    @Autowired
+
     private JwtUtil jwtUtil;
 
     @Override

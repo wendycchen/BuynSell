@@ -43,7 +43,6 @@ public class AccountController {
     public ResponseEntity<?> register(@RequestBody RegistrationRequest regReq) throws UsernameAlreadyExistsException, EmailAndUsernameExists, EmailAlreadyExistsException {
         try{
             registrationService.register(regReq);
-            //log.info("User with email: {}, username: {}, firstname: {}, lastname: {} has registered",regReq.getEmail(),regReq.getUsername(),regReq.getFirstName(),regReq.getLastName());
             return ResponseEntity.ok().build();
         }
         catch(Exception e){
