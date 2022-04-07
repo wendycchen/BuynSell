@@ -12,11 +12,14 @@ import com.example.productMicroservice.repository.ProductRepo;
 @Service
 public class ProductService {
 	
-	private final ProductRepo productRepo;
+	@Autowired
+	ProductRepo productRepo; 
 	
-	public ProductService(ProductRepo productRepo) {
-		this.productRepo = productRepo;
-	}
+//	private final ProductRepo productRepo;
+//	
+//	public ProductService(ProductRepo productRepo) {
+//		this.productRepo = productRepo;
+//	}
 	
 	public List<Product> getProducts() {
 		return productRepo.findAll();

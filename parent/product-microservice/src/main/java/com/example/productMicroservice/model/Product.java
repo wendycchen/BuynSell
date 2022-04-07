@@ -41,13 +41,13 @@ public class Product {
 	}
 
 
-	public int getprodId() {
-		return prodId;
-	}
-	
-	public void setprodId(int prodId) {
-		this.prodId = prodId;
-	}
+//	public int getprodId() {
+//		return prodId;
+//	}
+//	
+//	public void setprodId(int prodId) {
+//		this.prodId = prodId;
+//	}
 	
 	public double getPrice() {
 		return price;

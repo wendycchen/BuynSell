@@ -2,9 +2,7 @@ package com.cgi.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.ws.rs.Path;
-
-import org.apache.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +21,13 @@ import com.cgi.service.OrderService;
 @RequestMapping("/api/orders")
 public class OrderController {
 	
-	private final OrderService service;
-	
-	public OrderController(OrderService service) {
-		this.service = service;
-	}
+	@Autowired
+	OrderService service;
+//	private final OrderService service;
+//	
+//	public OrderController(OrderService service) {
+//		this.service = service;
+//	}
 
 	
 	@GetMapping("/allOrders")
